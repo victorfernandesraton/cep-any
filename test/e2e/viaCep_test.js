@@ -8,4 +8,11 @@ async function SimpleTest() {
   assert.equal(result?.state, "BA");
 }
 
+async function ErrorInvalidCep() {
+  await assert.rejects(async () => {
+    await handler.getCepInfo("j");
+  }, "Cep not found");
+}
+
 await SimpleTest();
+await ErrorInvalidCep();
