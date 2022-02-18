@@ -1,7 +1,7 @@
 import { strict as assert } from "assert";
-import ViaCepRequestCep from "../../lib/service/external/viacep/request.js";
+import { providers } from "../../lib/service/index.js";
 
-const handler = new ViaCepRequestCep();
+const handler = providers.viacep;
 
 async function SimpleTest() {
   const result = await handler.getCepInfo("41342315");
