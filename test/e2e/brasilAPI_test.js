@@ -1,7 +1,7 @@
 import { strict as assert } from "assert";
-import BrasilAPI from "../../lib/service/external/brasilAPI/request.js";
+import { providers } from "../../lib/service/index.mjs";
 
-const handler = new BrasilAPI();
+const handler = providers.brasilAPI;
 
 async function SimpleTest() {
   const result = await handler.getCepInfo("41342315");

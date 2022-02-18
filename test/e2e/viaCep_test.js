@@ -1,5 +1,5 @@
 import { strict as assert } from "assert";
-import { providers } from "../../lib/service/index.js";
+import { providers } from "../../lib/service/index.mjs";
 
 const handler = providers.viacep;
 
