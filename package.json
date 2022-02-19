@@ -11,9 +11,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.26.0",
     "node-fetch": "3.2.0"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/jest": "27.4.0",
     "jest": "27.5.1",
     "ts-jest": "27.1.3",
