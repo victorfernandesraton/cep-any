@@ -1,4 +1,4 @@
-import IGetCep from "./service/external/cepServices";
+import IGetCep from "./service/external/cepServices.js";
 
 export default class GetCepInfo {
   services: IGetCep[];

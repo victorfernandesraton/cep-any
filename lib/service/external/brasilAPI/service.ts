@@ -1,7 +1,7 @@
-import axios from "axios";
-import IGetCep from "../cepServices";
-import Service from "../service";
-import { responseToCep } from "./adapters/response";
+import fetch from "node-fetch";
+import IGetCep from "../cepServices.js";
+import Service from "../service.js";
+import { responseToCep } from "./adapters/response.js";
 
 export default class BrasilAPI extends Service implements IGetCep {
   readonly baseURL: string;
@@ -13,7 +13,7 @@ export default class BrasilAPI extends Service implements IGetCep {
   getInfo = async (cep: string) => {
     const url = `${this.baseURL}${cep}`;
     try {
-      const requestData = await axios.get(url, {
+      const requestData = await fetch(url, {
         method: "GET",
       });
       if (requestData.status != 200) {
@@ -24,7 +24,9 @@ export default class BrasilAPI extends Service implements IGetCep {
         }
       }
 
-      return responseToCep(requestData.data);
+      const data = await requestData.json();
+
+      return responseToCep(data);
     } catch (error) {
       if (typeof error == "string") {
         throw new Error(error);
