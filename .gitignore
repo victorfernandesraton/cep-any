@@ -102,4 +102,4 @@ dist
 
 # TernJS port file
 .tern-port
-./dist_test
+dist_test/
