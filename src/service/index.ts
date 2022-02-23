@@ -1,4 +1,4 @@
-import { Cep } from "entity/cep";
+import { Cep } from "../entity/cep";
 
 export abstract class CepService {
   readonly api: string;

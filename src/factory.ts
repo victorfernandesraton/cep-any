@@ -1,7 +1,7 @@
-import { Provider } from "provider";
-import { CepService } from "service";
-import { BrasilAPIService } from "service/brasilAPI";
-import { ViaCepService } from "service/viacep";
+import { Provider } from "./provider";
+import { CepService } from "./service";
+import { BrasilAPIService } from "./service/brasilAPI";
+import { ViaCepService } from "./service/viacep";
 
 interface FactoryOptions {
   useDefaultProviders?: boolean;

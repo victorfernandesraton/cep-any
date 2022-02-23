@@ -1,6 +1,6 @@
 import axios from "axios";
-import { Cep } from "entity/cep";
-import { CepService } from "service/";
+import { CepService } from "..";
+import { Cep } from "../../entity/cep";
 import { responseToCep } from "./adapters";
 
 export class BrasilAPIService extends CepService {

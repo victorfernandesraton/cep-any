@@ -1,5 +1,5 @@
-import { CepService } from "service/";
 import { Cep } from "./entity/cep";
+import { CepService } from "./service";
 
 export class Provider {
   services: CepService[];
