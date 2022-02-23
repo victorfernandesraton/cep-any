@@ -1,17 +1,16 @@
 import axios from "axios";
-import Cep from "../../../cep.js";
-import RequestCep from "../cepServices.js";
-import Service from "../service.js";
-import { responseToCep } from "./adapters/response.js";
+import { Cep } from "entity/cep";
+import { CepService } from "service/";
+import { responseToCep } from "./adapters";
 
-export default class ViaCepRequestCep extends Service implements RequestCep {
+export class ViaCepService extends CepService {
   readonly baseUrl: string;
   constructor() {
     super("viacep");
     this.baseUrl = "https://viacep.com.br";
   }
 
-  getInfo = async (cep: string): Promise<Cep> => {
+  execute = async (cep: string): Promise<Cep> => {
     try {
       const resultData = await axios.get(`${this.baseUrl}/ws/${cep}/json`, {
         method: "GET",

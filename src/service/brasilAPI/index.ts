@@ -1,16 +1,16 @@
 import axios from "axios";
-import IGetCep from "../cepServices.js";
-import Service from "../service.js";
-import { responseToCep } from "./adapters/response.js";
+import { Cep } from "entity/cep";
+import { CepService } from "service/";
+import { responseToCep } from "./adapters";
 
-export default class BrasilAPI extends Service implements IGetCep {
+export class BrasilAPIService extends CepService {
   readonly baseURL: string;
   constructor() {
     super("brasilAPI");
     this.baseURL = "https://brasilapi.com.br/api/cep/v1/";
   }
 
-  getInfo = async (cep: string) => {
+  execute = async (cep: string): Promise<Cep> => {
     const url = `${this.baseURL}${cep}`;
     try {
       const requestData = await axios.get(url, {

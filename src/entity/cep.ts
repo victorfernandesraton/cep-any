@@ -6,7 +6,7 @@ interface CepParams {
   neighborhood: string;
 }
 
-export default class Cep {
+export class Cep {
   readonly cep: string;
   readonly street: string;
   readonly city: string;

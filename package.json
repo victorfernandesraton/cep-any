@@ -5,11 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "pretest": "npm run build:test",
-    "tsc": "tsc",
-    "build:test": "rm -r ./dist_test && tsc --module commonjs --outDir dist_test"
+    "tsc": "tsc"
   },
-  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
