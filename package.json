@@ -1,20 +1,24 @@
 {
   "name": "cep-any",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A modern and future ts/js lib for cep consult",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "jest",
     "tsc": "tsc"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": {
+    "name": "Victor Fernandes Raton",
+    "email": "vfbraton@gmail.com",
+    "url": "https://github.com/victorfernandesraton"
+  },
+  "license": "MIT",
   "dependencies": {
-    "axios": "^0.26.0"
+    "axios": "0.26.0"
   },
   "devDependencies": {
-    "@types/axios": "^0.14.0",
+    "@types/axios": "0.14.0",
     "@types/jest": "27.4.0",
     "jest": "27.5.1",
     "ts-jest": "27.1.3",
