@@ -11,8 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.26.0",
-    "node-fetch": "^3.2.0"
+    "axios": "^0.26.0"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
