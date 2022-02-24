@@ -4,7 +4,8 @@
   "description": "A modern and future ts/js lib for cep consult",
   "main": "index.ts",
   "scripts": {
-    "test": "jest",
+    "test:unit": "jest --verbose ./test/unit",
+    "test:e2e": "jest --verbose ./test/e2e",
     "build:dev": "tsc ",
     "build:production": "rm -r ./dist && tsc --project tsconfig.build.json"
   },
