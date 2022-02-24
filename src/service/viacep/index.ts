@@ -10,7 +10,7 @@ export class ViaCepService extends CepService {
     this.baseUrl = "https://viacep.com.br";
   }
 
-  execute = async (cep: string): Promise<Cep> => {
+  handler = async (cep: string): Promise<Cep> => {
     try {
       const resultData = await axios.get(`${this.baseUrl}/ws/${cep}/json`, {
         method: "GET",
