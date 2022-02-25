@@ -6,6 +6,7 @@
   "scripts": {
     "test:unit": "jest --verbose ./test/unit",
     "test:e2e": "jest --verbose ./test/e2e",
+    "test:watch": "jest --verbose --watchAll",
     "build:dev": "tsc ",
     "build:production": "rm -r ./dist && tsc --project tsconfig.build.json"
   },
