@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CepService } from "..";
+import { CepService } from "../index";
 import { Cep } from "../../entity/cep";
 import { responseToCep } from "./adapters";
 

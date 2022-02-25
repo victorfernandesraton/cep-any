@@ -1,4 +1,4 @@
-import { ViaCepService } from "../../src/service/viacep/";
+import { ViaCepService } from "../../src/service/viacep/index";
 
 describe("ViaCepService", () => {
   const stub = new ViaCepService();

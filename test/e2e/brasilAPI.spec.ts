@@ -1,5 +1,5 @@
 import { RequestError } from "../../src/errors/requestError";
-import { BrasilAPIService } from "../../src/service/brasilAPI";
+import { BrasilAPIService } from "../../src/service/brasilAPI/index";
 
 describe("ViaCepService", () => {
   const stub = new BrasilAPIService();
