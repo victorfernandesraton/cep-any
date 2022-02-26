@@ -4,21 +4,21 @@ import { BrasilAPIService } from "./service/brasilAPI";
 import { ViaCepService } from "./service/viacep";
 
 interface FactoryOptions {
-  useDefaultProviders?: boolean;
-  custonProviders?: CepService[];
+	useDefaultProviders?: boolean;
+	custonProviders?: CepService[];
 }
 
 export function Factory({
-  useDefaultProviders = true,
-  custonProviders,
+	useDefaultProviders = true,
+	custonProviders,
 }: FactoryOptions): Provider {
-  let services: CepService[] = [];
-  if (useDefaultProviders) {
-    services = [(new ViaCepService(), new BrasilAPIService())];
-  }
-  if (custonProviders?.length) {
-    services = [...services, ...custonProviders];
-  }
+	let services: CepService[] = [];
+	if (useDefaultProviders) {
+		services = [(new ViaCepService(), new BrasilAPIService())];
+	}
+	if (custonProviders?.length) {
+		services = [...services, ...custonProviders];
+	}
 
-  return new Provider(services);
+	return new Provider(services);
 }
