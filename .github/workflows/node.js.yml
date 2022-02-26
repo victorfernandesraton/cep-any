@@ -23,7 +23,9 @@ jobs:
         ci_node_index: [0, 1, 2, 3]
 
     steps:
-		  - name: Lint
+
+		  - uses: actions/checkout@v2
+      - name: Lint
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
@@ -31,6 +33,7 @@ jobs:
       - run: npm ci
       - run: npm run lint
 
+      - uses: actions/checkout@v2
       - name: Unit test
         uses: actions/setup-node@v2
         with:
