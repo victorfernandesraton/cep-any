@@ -20,11 +20,10 @@ jobs:
         ci_node_total: [4]
         # Indexes for parallel jobs (starting from zero).
         # E.g. use [0, 1] for 2 parallel jobs, [0, 1, 2] for 3 parallel jobs, etc.
-        ci_node_index: [0, 1, 2, 3]
+        ci_node_index: [0, 1]
 
     steps:
-
-		  - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
       - name: Lint
         uses: actions/setup-node@v2
         with:
