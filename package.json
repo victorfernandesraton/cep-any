@@ -2,13 +2,13 @@
   "name": "cep-any",
   "version": "0.1.0",
   "description": "A modern and future ts/js lib for cep consult",
-  "main": "index.ts",
+  "main": "dist/index.js",
   "scripts": {
     "test:unit": "jest --verbose ./test/unit",
     "test:e2e": "jest --verbose ./test/e2e",
     "test:watch": "jest --verbose --watchAll",
     "test": "jest --verbose",
-    "build:dev": "tsc ",
+    "build:dev": "rm -r ./dist && tsc --project tsconfig.build.json",
     "build:production": "rm -r ./dist && tsc --project tsconfig.build.json"
   },
   "keywords": [],
