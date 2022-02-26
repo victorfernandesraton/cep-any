@@ -9,6 +9,10 @@ interface ParseXML {
   uf?: string;
 }
 
+export function parseParamsToXML(data: string): string {
+  return `<?xml version="1.0"?>\n	<soapenv:Envelope 		xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cli="http://cliente.bean.master.sigep.bsb.correios.com.br/">  <soapenv:Header />  <soapenv:Body>    <cli:consultaCEP>      <cep>${data}</cep>    </cli:consultaCEP>  </soapenv:Body></soapenv:Envelope>`;
+}
+
 export function responseToCep(data: string): Cep {
   try {
     const returnStatement =
