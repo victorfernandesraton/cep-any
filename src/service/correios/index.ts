@@ -5,20 +5,22 @@ import { RequestError } from "../../errors/requestError";
 import { parseParamsToXML, responseToCep } from "./adapters";
 
 export class CorreiosService extends CepService {
-	readonly baseURL: string;
 	constructor() {
 		super("correios");
-		this.baseURL = "https://apps.correios.com.br";
+		this.baseUrl = "https://apps.correios.com.br";
 	}
 
 	handler = async (cep: string): Promise<Cep> => {
-		const url = `${this.baseURL}/SigepMasterJPA/AtendeClienteService/AtendeCliente`;
 		try {
-			const requestData = await axios.post(url, parseParamsToXML(cep), {
-				headers: {
-					"Content-Type": "application/xml",
-				},
-			});
+			const requestData = await axios.post(
+				`${this.baseUrl}/SigepMasterJPA/AtendeClienteService/AtendeCliente`,
+				parseParamsToXML(cep),
+				{
+					headers: {
+						"Content-Type": "application/xml",
+					},
+				}
+			);
 
 			if (requestData.status != 200) {
 				if (requestData.status >= 400 && requestData.status <= 499) {

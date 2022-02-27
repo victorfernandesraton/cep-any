@@ -16,8 +16,8 @@ describe("CorreiosService", () => {
 	});
 
 	test("should be not a valid cep", async () => {
-		expect(async () => {
-			await stub.execute("00000000");
-		}).rejects.toThrowError(new RequestError("not found", stub.api));
+		expect(stub.execute("00000000")).rejects.toThrowError(
+			new RequestError("not found", stub.api)
+		);
 	});
 });

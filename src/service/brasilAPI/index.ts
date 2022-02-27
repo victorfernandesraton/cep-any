@@ -5,16 +5,14 @@ import { RequestError } from "../../errors/requestError";
 import { responseToCep } from "./adapters";
 
 export class BrasilAPIService extends CepService {
-	readonly baseURL: string;
 	constructor() {
 		super("brasilAPI");
-		this.baseURL = "https://brasilapi.com.br/api/cep/v1/";
+		this.baseUrl = "https://brasilapi.com.br/api/cep/v1/";
 	}
 
 	handler = async (cep: string): Promise<Cep> => {
-		const url = `${this.baseURL}${cep}`;
 		try {
-			const requestData = await axios.get(url);
+			const requestData = await axios.get(`${this.baseUrl}${cep}`);
 			if (requestData.status != 200) {
 				if (requestData.status >= 400 && requestData.status <= 499) {
 					throw new RequestError("not found", this.api, requestData);
