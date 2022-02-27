@@ -3,6 +3,7 @@ import { ParamError } from "../errors/paramError";
 
 export abstract class CepService {
 	readonly api: string;
+	protected baseUrl: string = "";
 	constructor(api: string) {
 		this.api = api;
 	}

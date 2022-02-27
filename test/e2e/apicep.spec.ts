@@ -1,8 +1,8 @@
 import { RequestError } from "../../src/errors/requestError";
-import { BrasilAPIService } from "../../src/service/brasilAPI/index";
+import { ApiCepService } from "../../src/service/apicep/index";
 
-describe("BrasilAPIService", () => {
-	const stub = new BrasilAPIService();
+describe("ApiCepService", () => {
+	const stub = new ApiCepService();
 
 	test("should be a valid cep", async () => {
 		const result = await stub.execute("41342320");
@@ -16,8 +16,8 @@ describe("BrasilAPIService", () => {
 	});
 
 	test("should be not a valid cep", async () => {
-		expect(async () => {
-			await stub.execute("00000000");
-		}).rejects.toThrowError(new RequestError("not found", stub.api));
+		expect(stub.execute("00000000")).rejects.toThrowError(
+			new RequestError("not found", stub.api)
+		);
 	});
 });

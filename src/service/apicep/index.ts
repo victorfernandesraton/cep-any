@@ -1,22 +1,27 @@
 import axios from "axios";
-import { CepService } from "..";
 import { Cep } from "../../entity/cep";
 import { RequestError } from "../../errors/requestError";
+import { CepService } from "../index";
 import { responseToCep } from "./adapters";
 
-export class BrasilAPIService extends CepService {
-	readonly baseURL: string;
+export class ApiCepService extends CepService {
 	constructor() {
-		super("brasilAPI");
-		this.baseURL = "https://brasilapi.com.br/api/cep/v1/";
+		super("apicep");
+		this.baseUrl = "https://ws.apicep.com/cep.json";
 	}
-
 	handler = async (cep: string): Promise<Cep> => {
-		const url = `${this.baseURL}${cep}`;
 		try {
-			const requestData = await axios.get(url);
-			if (requestData.status != 200) {
-				if (requestData.status >= 400 && requestData.status <= 499) {
+			const requestData = await axios.get(this.baseUrl, {
+				params: {
+					code: cep,
+				},
+			});
+
+			if (requestData.status != 200 || requestData?.data?.status != 200) {
+				if (
+					(requestData.status >= 400 || requestData?.data?.status) &&
+					(requestData.status <= 499 || requestData?.data?.status <= 499)
+				) {
 					throw new RequestError("not found", this.api, requestData);
 				} else {
 					throw new RequestError("invalid request", this.api, requestData);
