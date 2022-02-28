@@ -4,4 +4,6 @@ module.exports = {
 	testEnvironment: "node",
 	roots: ["./test/"],
 	testTimeout: 1000000,
+	detectOpenHandles: true,
+	slowTestThreshold: 20,
 };
