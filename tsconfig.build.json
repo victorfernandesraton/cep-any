@@ -1,8 +1,0 @@
-{
-  "extends": "./tsconfig.json",
-  "include": ["./src"],
-  "compilerOptions": {
-    "sourceMap": false,
-    "target": "ES5" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
-  }
-}

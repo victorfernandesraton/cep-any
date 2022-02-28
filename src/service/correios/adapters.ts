@@ -34,13 +34,13 @@ export function responseToCep(data: string): Cep {
 				return result;
 			}, {});
 
-		return new Cep({
-			cep: parsedReturnStatement.cep,
-			state: parsedReturnStatement.uf,
-			city: parsedReturnStatement.cidade,
-			street: parsedReturnStatement.bairro,
-			neighborhood: parsedReturnStatement.end,
-		});
+		return {
+			cep: parsedReturnStatement.cep ?? "",
+			state: parsedReturnStatement.uf ?? "",
+			city: parsedReturnStatement.cidade ?? "",
+			street: parsedReturnStatement.bairro ?? "",
+			neighborhood: parsedReturnStatement.end ?? "",
+		};
 	} catch (e) {
 		throw new ParserError("not implement xml", "correios");
 	}

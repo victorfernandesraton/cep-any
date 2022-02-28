@@ -8,12 +8,11 @@ interface CepResponse {
 	address: string;
 }
 export function responseToCep(data: CepResponse): Cep {
-	console.log(data);
-	return new Cep({
+	return {
 		cep: data.code.replaceAll("-", ""),
 		city: data.city,
 		state: data.state,
-		neighborhood: data.district,
+		neighborhood: data.district ?? "",
 		street: data.address,
-	});
+	};
 }

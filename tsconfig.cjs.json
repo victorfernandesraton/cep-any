@@ -1,0 +1,12 @@
+{
+	"extends": "./tsconfig.json",
+	"include": ["./src"],
+	"compilerOptions": {
+		"lib": ["ES2015", "ES2016", "DOM"],
+		"outDir": "dist/cjs",
+		"noEmit": true,
+		"module": "CommonJS",
+		"sourceMap": false,
+		"target": "es2015" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+	}
+}
