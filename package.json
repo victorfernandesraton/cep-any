@@ -9,8 +9,10 @@
 		"test:watch": "jest --verbose --watchAll",
 		"test": "jest --verbose",
 		"lint": "eslint ./src",
-		"build:dev": "rm -r ./dist && tsc --project tsconfig.build.json",
-		"build": "rm -fr dist/* && tsc -p tsconfig.esm.json && babel  src --out-dir dist/web && NODE_ENV=production webpack",
+		"build:web": "rm -fr dist/web && tsc -p tsconfig.web.json && webpack",
+		"build:cjs": "rm -fr dist/cjs && tsc -p tsconfig.cjs.json",
+		"build:esm": "rm -fr dist/esm && tsc -p tsconfig.esm.json",
+		"build": "npm run build:web && npm run build:esm && npm run build:cjs",
 		"build:production": "rm -r ./dist && NODE_ENV=production webpack"
 	},
 	"keywords": [],
@@ -21,13 +23,12 @@
 	},
 	"license": "MIT",
 	"dependencies": {
-		"@babel/preset-env": "7.16.11",
-		"@babel/preset-typescript": "7.16.7",
 		"axios": "0.26.0"
 	},
 	"devDependencies": {
 		"@babel/cli": "^7.17.6",
 		"@babel/core": "7.17.5",
+		"@babel/preset-env": "^7.16.11",
 		"@types/jest": "27.4.1",
 		"@typescript-eslint/eslint-plugin": "5.12.1",
 		"@typescript-eslint/parser": "5.12.1",
@@ -45,7 +46,8 @@
 	"exports": {
 		".": {
 			"import": "./dist/esm/index.js",
-			"require": "./dist/cjs/index.js"
+			"require": "./dist/cjs/index.js",
+			"default": "./dist/web/index.js"
 		}
 	}
 }

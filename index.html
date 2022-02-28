@@ -6,13 +6,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
 </head>
-<script src="./lib/bundle.js"></script>
+<script type="text/javascript" src="./dist/web/bundle.js"></script>
 <body>
 
 </body>
 	<script>
 		console.log(cep)
-		const data =  cep.default("41342320").them(data => console.log)
+		const data =  cep("41342320").them(data => console.log)
 		console.log(data)
 	</script>
 </html>
