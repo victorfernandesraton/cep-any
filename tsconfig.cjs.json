@@ -2,10 +2,9 @@
 	"extends": "./tsconfig.json",
 	"include": ["./src"],
 	"compilerOptions": {
-		"declaration": true /* Generate .d.ts files from TypeScript and JavaScript files in your project. */,
-		"outDir": "dist/cjs",
-		"module": "CommonJS",
+		"outDir": "./lib/cjs",
+		"module": "commonjs",
 		"sourceMap": false,
-		"target": "ES2015" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+		"target": "ES5" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
 	}
 }
