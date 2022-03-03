@@ -22,14 +22,6 @@ export class CorreiosService extends CepService {
 				}
 			);
 
-			if (requestData.status != 200) {
-				if (requestData.status >= 400 && requestData.status <= 499) {
-					throw new RequestError("not found", this.api, requestData);
-				} else {
-					throw new RequestError("invalid request", this.api, requestData);
-				}
-			}
-
 			const data = await requestData.data;
 
 			return responseToCep(data);
@@ -43,7 +35,7 @@ export class CorreiosService extends CepService {
 				) {
 					throw new RequestError("not found", this.api);
 				} else {
-					throw error;
+					throw new RequestError("unknow error", this.api);
 				}
 			}
 		}

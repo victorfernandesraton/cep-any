@@ -19,4 +19,9 @@ describe("ViaCepService", () => {
 			new RequestError("not found", stub.api)
 		);
 	});
+	test("should be not find value for this cep", async () => {
+		expect(stub.execute("411111111")).rejects.toThrowError(
+			new RequestError("not found", stub.api)
+		);
+	});
 });
