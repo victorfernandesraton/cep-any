@@ -5,6 +5,7 @@
 		"outDir": "./dist/cjs",
 		"module": "commonjs",
 		"sourceMap": false,
+		"esModuleInterop": false,
 		"target": "ES5" /* Set the JavaScript language version for emitted JavaScript and include compatible distrary declarations. */
 	}
 }

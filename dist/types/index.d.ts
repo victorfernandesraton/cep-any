@@ -1,4 +1,3 @@
 import { Cep } from "./entity/cep";
-declare const cep: (cep: string) => Promise<Cep>;
-export default cep;
+export default function (cep: string): Promise<Cep>;
 //# sourceMappingURL=index.d.ts.map
