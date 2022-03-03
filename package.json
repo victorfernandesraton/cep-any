@@ -1,6 +1,6 @@
 {
 	"name": "cep-any",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "A modern and future ts/js lib for cep consult",
 	"main": "dist/cjs/index.js",
 	"scripts": {
@@ -35,6 +35,9 @@
 	"module": "dist/esm/index.js",
 	"engines": {
 		"node": ">= 16.14.0"
+	},
+	"directories": {
+		"lib": "dist"
 	},
 	"typings": "./dist/types/index.d.ts",
 	"exports": {
