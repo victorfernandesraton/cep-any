@@ -34,6 +34,9 @@ export function responseToCep(data: string): Cep {
 				return result;
 			}, {});
 
+		if (parsedReturnStatement?.cep === "" || !parsedReturnStatement?.cep) {
+			throw new ParserError("not returnd a cep to parse", "correios");
+		}
 		return {
 			cep: parsedReturnStatement.cep ?? "",
 			state: parsedReturnStatement.uf ?? "",

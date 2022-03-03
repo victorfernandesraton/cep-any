@@ -1,6 +1,0 @@
-{
-	"presets": ["@babel/preset-env", "@babel/preset-typescript"],
-	"plugins": ["es6-promise"],
-	"include": ["/src/", "/node_modules/"],
-	"retainLines": true
-}
