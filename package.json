@@ -1,16 +1,16 @@
 {
 	"name": "cep-any",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"description": "A modern and future ts/js dist for cep consult",
-	"main": "./dist/cjs/index.js",
+	"main": "dist/cjs/index.js",
 	"scripts": {
 		"test:unit": "jest --verbose ./test/unit",
 		"test:e2e": "jest --verbose ./test/e2e",
 		"test:watch": "jest --verbose --watchAll",
 		"test": "jest --verbose",
 		"lint": "eslint ./src",
-		"build:cjs": "rm -fr ./dist/cjs && tsc -p tsconfig.cjs.json",
-		"build:esm": "rm -fr ./dist/esm && tsc -p tsconfig.esm.json",
+		"build:cjs": "rm -fr dist/cjs && tsc -p tsconfig.cjs.json",
+		"build:esm": "rm -fr dist/esm && tsc -p tsconfig.esm.json",
 		"build": "npm run build:esm && npm run build:cjs",
 		"prepublishOnly": "npm run build"
 	},
@@ -34,13 +34,13 @@
 		"typescript": "4.5.5"
 	},
 	"files": [
-		"./dist"
+		"dist"
 	],
-	"module": "./dist/esm/index.js",
+	"module": "dist/esm/index.js",
 	"engines": {
 		"node": ">= 16.14.0"
 	},
-	"typings": "./dist/types/index.d.ts",
+	"typings": "dist/types/index.d.ts",
 	"exports": {
 		".": {
 			"import": "./dist/esm/index.js",
