@@ -1,6 +1,6 @@
 {
 	"name": "cep-any",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"description": "A modern and future ts/js dist for cep consult",
 	"main": "dist/cjs/index.js",
 	"scripts": {
