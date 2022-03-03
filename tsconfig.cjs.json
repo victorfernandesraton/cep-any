@@ -2,9 +2,9 @@
 	"extends": "./tsconfig.json",
 	"include": ["./src"],
 	"compilerOptions": {
-		"outDir": "./lib/cjs",
+		"outDir": "./dist/cjs",
 		"module": "commonjs",
 		"sourceMap": false,
-		"target": "ES5" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+		"target": "ES5" /* Set the JavaScript language version for emitted JavaScript and include compatible distrary declarations. */
 	}
 }

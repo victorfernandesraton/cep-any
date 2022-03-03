@@ -1,0 +1,8 @@
+export interface Cep {
+    cep: string;
+    street: string;
+    city: string;
+    state: string;
+    neighborhood: string;
+}
+//# sourceMappingURL=cep.d.ts.map

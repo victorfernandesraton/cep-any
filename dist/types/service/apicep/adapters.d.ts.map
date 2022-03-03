@@ -1,0 +1,1 @@
+{"version":3,"file":"adapters.d.ts","sourceRoot":"","sources":["../../../../src/service/apicep/adapters.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,GAAG,EAAE,MAAM,kBAAkB,CAAC;AAEvC,UAAU,WAAW;IACpB,IAAI,EAAE,MAAM,CAAC;IACb,KAAK,EAAE,MAAM,CAAC;IACd,IAAI,EAAE,MAAM,CAAC;IACb,QAAQ,CAAC,EAAE,MAAM,CAAC;IAClB,OAAO,EAAE,MAAM,CAAC;CAChB;AACD,wBAAgB,aAAa,CAAC,IAAI,EAAE,WAAW,GAAG,GAAG,CAQpD"}
