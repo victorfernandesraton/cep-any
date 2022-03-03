@@ -5,4 +5,3 @@ export interface Cep {
     state: string;
     neighborhood: string;
 }
-//# sourceMappingURL=cep.d.ts.map

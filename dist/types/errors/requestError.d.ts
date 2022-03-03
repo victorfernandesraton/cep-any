@@ -5,4 +5,3 @@ export declare class RequestError extends BasicError {
     readonly response: AxiosResponse | undefined;
     constructor(message: string | undefined, api: string, request?: AxiosResponse);
 }
-//# sourceMappingURL=requestError.d.ts.map

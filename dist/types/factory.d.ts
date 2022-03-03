@@ -6,4 +6,3 @@ interface FactoryOptions {
 }
 export declare function Factory({ useDefaultProviders, custonProviders, }: FactoryOptions): Provider;
 export {};
-//# sourceMappingURL=factory.d.ts.map

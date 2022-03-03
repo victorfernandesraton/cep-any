@@ -1,7 +1,8 @@
 import { Factory } from "./factory";
-export default function (cep) {
+function cep(cep) {
     const facotry = Factory({
         useDefaultProviders: true,
     });
     return facotry.execute(cep);
 }
+export default cep;

@@ -1,6 +1,6 @@
 {
 	"name": "cep-any",
-	"version": "1.0.7",
+	"version": "1.0.8",
 	"description": "A modern and future ts/js dist for cep consult",
 	"main": "dist/cjs/index.js",
 	"scripts": {
@@ -11,11 +11,18 @@
 		"lint": "eslint ./src",
 		"build:cjs": "rm -fr dist/cjs && tsc -p tsconfig.cjs.json",
 		"build:esm": "rm -fr dist/esm && tsc -p tsconfig.esm.json",
-		"build": "npm run build:esm && npm run build:cjs",
+		"build": "rm -fr dist && npm run build:esm && npm run build:cjs",
 		"prepublishOnly": "npm run build"
 	},
 	"type": "module",
-	"keywords": [],
+	"keywords": [
+		"cep",
+		"cep-any",
+		"promise-any",
+		"zip",
+		"zipcode",
+		"zio-br"
+	],
 	"author": {
 		"name": "Victor Fernandes Raton",
 		"email": "vfbraton@gmail.com",

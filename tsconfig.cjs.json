@@ -6,6 +6,7 @@
 		"module": "commonjs",
 		"sourceMap": false,
 		"esModuleInterop": false,
+		"isolatedModules": false /* Ensure that each file can be safely transpiled without relying on other imports. */,
 		"target": "ES5" /* Set the JavaScript language version for emitted JavaScript and include compatible distrary declarations. */
 	}
 }

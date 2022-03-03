@@ -5,6 +5,9 @@
 		"outDir": "./dist/esm",
 		"sourceMap": false,
 		"module": "ESNext",
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"isolatedModules": true /* Ensure that each file can be safely transpiled without relying on other imports. */,
 		"target": "es2015" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
 	}
 }

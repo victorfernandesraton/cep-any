@@ -8,4 +8,3 @@ interface CepResponse {
 }
 export declare function responseToCep(data: CepResponse): Cep;
 export {};
-//# sourceMappingURL=adapters.d.ts.map

@@ -5,4 +5,3 @@ export declare class ViaCepService extends CepService {
     constructor();
     handler: (cep: string) => Promise<Cep>;
 }
-//# sourceMappingURL=index.d.ts.map

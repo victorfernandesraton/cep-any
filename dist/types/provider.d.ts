@@ -5,4 +5,3 @@ export declare class Provider {
     constructor(services: CepService[]);
     execute: (cep: string) => Promise<Cep>;
 }
-//# sourceMappingURL=provider.d.ts.map

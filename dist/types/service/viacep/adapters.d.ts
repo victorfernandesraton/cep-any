@@ -7,4 +7,3 @@ export interface CepResponse {
     bairro?: string;
 }
 export declare function responseToCep(data: CepResponse): Cep;
-//# sourceMappingURL=adapters.d.ts.map

@@ -8,4 +8,3 @@ export declare abstract class CepService {
     execute: (cep: string) => Promise<Cep>;
     abstract handler(cep: string): Promise<Cep>;
 }
-//# sourceMappingURL=index.d.ts.map
