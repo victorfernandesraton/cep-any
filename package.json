@@ -36,7 +36,7 @@
 	"engines": {
 		"node": ">= 16.14.0"
 	},
-	"types": "./dist/types/index.d.ts",
+	"typings": "./dist/types/index.d.ts",
 	"exports": {
 		".": {
 			"import": "./dist/esm/index.js",
