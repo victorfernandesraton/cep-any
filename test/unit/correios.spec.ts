@@ -1,4 +1,4 @@
-import { responseToCep } from "../../src/service/correios/adapters";
+import { responseToCep } from "../../src/service/correios/adapters.js";
 
 describe("correios", () => {
 	describe("adapters", () => {

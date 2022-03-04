@@ -1,5 +1,5 @@
-import { Cep } from "./entity/cep";
-import { Factory } from "./factory";
+import { Cep } from "./entity/cep.js";
+import { Factory } from "./factory.js";
 
 function cep(cep: string): Promise<Cep> {
 	const facotry = Factory({

@@ -1,5 +1,5 @@
-import { RequestError } from "../../src/errors/requestError";
-import { ViaCepService } from "../../src/service/viacep/index";
+import { RequestError } from "../../src/errors/requestError.js";
+import { ViaCepService } from "../../src/service/viacep/index.js";
 
 describe("ViaCepService", () => {
 	const stub = new ViaCepService();

@@ -1,5 +1,5 @@
-import { Cep } from "../entity/cep";
-import { ParamError } from "../errors/paramError";
+import { Cep } from "../entity/cep.js";
+import { ParamError } from "../errors/paramError.js";
 
 export abstract class CepService {
 	readonly api: string;

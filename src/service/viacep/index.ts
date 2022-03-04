@@ -1,8 +1,8 @@
 import axios from "axios";
-import { CepService } from "../index";
-import { Cep } from "../../entity/cep";
-import { responseToCep } from "./adapters";
-import { RequestError } from "../../errors/requestError";
+import { CepService } from "../index.js";
+import { Cep } from "../../entity/cep.js";
+import { responseToCep } from "./adapters.js";
+import { RequestError } from "../../errors/requestError.js";
 
 export class ViaCepService extends CepService {
 	readonly baseUrl: string;

@@ -1,4 +1,4 @@
-import { Cep } from "../../entity/cep";
+import { Cep } from "../../entity/cep.js";
 
 export interface CepResponse {
 	cep?: string;

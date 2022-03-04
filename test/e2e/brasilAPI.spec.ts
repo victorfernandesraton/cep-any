@@ -1,5 +1,5 @@
-import { RequestError } from "../../src/errors/requestError";
-import { BrasilAPIService } from "../../src/service/brasilAPI/index";
+import { RequestError } from "../../src/errors/requestError.js";
+import { BrasilAPIService } from "../../src/service/brasilAPI/index.js";
 
 describe("BrasilAPIService", () => {
 	const stub = new BrasilAPIService();

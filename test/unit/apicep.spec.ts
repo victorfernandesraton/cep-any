@@ -1,4 +1,4 @@
-import { responseToCep } from "../../src/service/apicep/adapters";
+import { responseToCep } from "../../src/service/apicep/adapters.js";
 
 describe("apicep", () => {
 	describe("responseToCep", () => {

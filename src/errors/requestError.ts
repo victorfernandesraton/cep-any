@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { BasicError } from "./basicError";
+import { BasicError } from "./basicError.js";
 
 export class RequestError extends BasicError {
 	readonly api: string;

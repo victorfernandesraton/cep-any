@@ -1,5 +1,5 @@
-import { RequestError } from "../../src/errors/requestError";
-import { ApiCepService } from "../../src/service/apicep/index";
+import { RequestError } from "../../src/errors/requestError.js";
+import { ApiCepService } from "../../src/service/apicep/index.js";
 
 describe("ApiCepService", () => {
 	const stub = new ApiCepService();
