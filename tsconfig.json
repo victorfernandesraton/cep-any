@@ -11,7 +11,7 @@
 		// "disableReferencedProjectLoad": true,             /* Reduce the number of projects loaded automatically by TypeScript. */
 
 		/* Language and Environment */
-		"target": "ES6" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
+		"target": "ES5" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
 		"lib": [
 			"ES2021.Promise",
 			"ES2021.String"
@@ -26,7 +26,7 @@
 		"noLib": false /* Disable including any library files, including the default lib.d.ts. */,
 		"useDefineForClassFields": true /* Emit ECMAScript-standard-compliant class fields. */,
 		"declaration": true /* Generate .d.ts files from TypeScript and JavaScript files in your project. */,
-		"declarationDir": "./dist/types",
+		"declarationDir": "./dist",
 
 		/* Modules */
 		"module": "ES6" /* Specify what module code is generated. */,
@@ -81,7 +81,7 @@
 
 		/* Type Checking */
 		"strict": true /* Enable all strict type-checking options. */,
-		// "noImplicitAny": true,                            /* Enable error reporting for expressions and declarations with an implied `any` type.. */
+		"noImplicitAny": false /* Enable error reporting for expressions and declarations with an implied `any` type.. */,
 		// "strictNullChecks": true,                         /* When type checking, take into account `null` and `undefined`. */
 		// "strictFunctionTypes": true,                      /* When assigning functions, check to ensure parameters and the return values are subtype-compatible. */
 		// "strictBindCallApply": true,                      /* Check that the arguments for `bind`, `call`, and `apply` methods match the original function. */
