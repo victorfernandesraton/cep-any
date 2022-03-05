@@ -14,14 +14,9 @@ describe("ViaCepService", () => {
 		expect(result.city).toStrictEqual("Salvador");
 	});
 
-	test("should be not a valid cep", async () => {
+	test("should be not a valid cep", () => {
 		expect(stub.execute("00000000")).rejects.toThrowError(
-			new RequestError("not found", stub.api)
-		);
-	});
-	test("should be not find value for this cep", async () => {
-		expect(stub.execute("411111111")).rejects.toThrowError(
-			new RequestError("not found", stub.api)
+			new RequestError("not valid request", stub.api)
 		);
 	});
 });

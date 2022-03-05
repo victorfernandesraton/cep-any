@@ -12,27 +12,16 @@ export class ViaCepService extends CepService {
 	}
 
 	handler = async (cep: string): Promise<Cep> => {
-		try {
-			const requestData = await axios.get(`${this.baseUrl}/ws/${cep}/json`, {
-				method: "GET",
-			});
+		const requestData = await axios.get(`${this.baseUrl}/ws/${cep}/json`, {
+			method: "GET",
+		});
 
-			const data = requestData.data;
-			const result = responseToCep(data);
-			return result;
-		} catch (error) {
-			if (typeof error == "string") {
-				throw new Error(error);
-			} else {
-				if (
-					error instanceof Error &&
-					error?.message == "Request failed with status code 404"
-				) {
-					throw new RequestError("not found", this.api);
-				} else {
-					throw error;
-				}
-			}
+		if (requestData.status != 200) {
+			throw new RequestError("not valid request", this.api);
 		}
+		const data = requestData.data;
+
+		const result = responseToCep(data);
+		return result;
 	};
 }
