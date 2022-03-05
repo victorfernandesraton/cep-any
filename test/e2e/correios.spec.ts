@@ -1,7 +1,7 @@
 import { RequestError } from "../../src/errors/requestError.js";
 import { CorreiosService } from "../../src/service/correios/index.js";
 
-describe("CorreiosService", () => {
+describe.skip("CorreiosService", () => {
 	const stub = new CorreiosService();
 
 	test("should be a valid cep", async () => {

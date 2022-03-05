@@ -1,7 +1,7 @@
 import { RequestError } from "../../src/errors/requestError.js";
 import { BrasilAPIService } from "../../src/service/brasilAPI/index.js";
 
-describe("BrasilAPIService", () => {
+describe.skip("BrasilAPIService", () => {
 	const stub = new BrasilAPIService();
 
 	test("should be a valid cep", async () => {

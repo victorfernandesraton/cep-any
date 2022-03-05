@@ -1,7 +1,7 @@
 import { RequestError } from "../../src/errors/requestError.js";
 import { ApiCepService } from "../../src/service/apicep/index.js";
 
-describe("ApiCepService", () => {
+describe.skip("ApiCepService", () => {
 	const stub = new ApiCepService();
 
 	test("should be a valid cep", async () => {
