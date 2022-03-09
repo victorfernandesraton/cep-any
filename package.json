@@ -7,13 +7,13 @@
 		"url": "https://github.com/victorfernandesraton/cep-any"
 	},
 	"scripts": {
-		"test:unit": "jest --verbose ./test/unit",
-		"test:e2e": "jest --verbose ./test/e2e",
-		"test:watch": "jest --verbose --watchAll",
-		"test": "jest --verbose",
-		"lint": "eslint ./src",
-		"build": "rollup -c",
-		"watch": "rollup -cw",
+		"test:unit": "npx jest --verbose ./test/unit",
+		"test:e2e": "npx jest --verbose ./test/e2e",
+		"test:watch": "npx jest --verbose --watchAll",
+		"test": "npx jest --verbose",
+		"lint": "npx eslint ./src",
+		"build": "npx rollup -c",
+		"watch": "npx rollup -cw",
 		"prepublishOnly": "npm run build"
 	},
 	"keywords": [
