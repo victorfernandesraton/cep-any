@@ -2,6 +2,10 @@
 	"name": "cep-any",
 	"version": "1.0.12",
 	"description": "A modern and low dependency cep consult lib",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/victorfernandesraton/cep-any"
+	},
 	"scripts": {
 		"test:unit": "jest --verbose ./test/unit",
 		"test:e2e": "jest --verbose ./test/e2e",
