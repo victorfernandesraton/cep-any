@@ -16,12 +16,8 @@ export class ViaCepService extends CepService {
 			method: "GET",
 		});
 
-		if (requestData.status != 200) {
-			throw new RequestError("not valid request", this.api);
-		}
 		const data = requestData.data;
 
-		const result = responseToCep(data);
-		return result;
+		return responseToCep(data);
 	};
 }

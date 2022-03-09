@@ -10,29 +10,14 @@ export class ApiCepService extends CepService {
 		this.baseUrl = "https://ws.apicep.com/cep.json";
 	}
 	handler = async (cep: string): Promise<Cep> => {
-		try {
-			const requestData = await axios.get(this.baseUrl, {
-				params: {
-					code: cep,
-				},
-			});
+		const requestData = await axios.get(this.baseUrl, {
+			params: {
+				code: cep,
+			},
+		});
 
-			const data = await requestData.data;
+		const data = await requestData.data;
 
-			return responseToCep(data);
-		} catch (error) {
-			if (typeof error == "string") {
-				throw new Error(error);
-			} else {
-				if (
-					error instanceof Error &&
-					error?.message == "Request failed with status code 404"
-				) {
-					throw new RequestError("not found", this.api);
-				} else {
-					throw new RequestError("unknow error", this.api);
-				}
-			}
-		}
+		return responseToCep(data);
 	};
 }

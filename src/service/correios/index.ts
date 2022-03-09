@@ -11,33 +11,18 @@ export class CorreiosService extends CepService {
 	}
 
 	handler = async (cep: string): Promise<Cep> => {
-		try {
-			const requestData = await axios.post(
-				`${this.baseUrl}/SigepMasterJPA/AtendeClienteService/AtendeCliente`,
-				parseParamsToXML(cep),
-				{
-					headers: {
-						"Content-Type": "application/xml",
-					},
-				}
-			);
-
-			const data = await requestData.data;
-
-			return responseToCep(data);
-		} catch (error) {
-			if (typeof error == "string") {
-				throw new Error(error);
-			} else {
-				if (
-					error instanceof Error &&
-					error?.message == "Request failed with status code 404"
-				) {
-					throw new RequestError("not found", this.api);
-				} else {
-					throw new RequestError("unknow error", this.api);
-				}
+		const requestData = await axios.post(
+			`${this.baseUrl}/SigepMasterJPA/AtendeClienteService/AtendeCliente`,
+			parseParamsToXML(cep),
+			{
+				headers: {
+					"Content-Type": "application/xml",
+				},
 			}
-		}
+		);
+
+		const data = await requestData.data;
+
+		return responseToCep(data);
 	};
 }

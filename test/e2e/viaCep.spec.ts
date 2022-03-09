@@ -13,10 +13,4 @@ describe("ViaCepService", () => {
 		expect(result.state).toStrictEqual("BA");
 		expect(result.city).toStrictEqual("Salvador");
 	});
-
-	test.skip("should be not a valid cep", () => {
-		expect(stub.execute("00000000")).rejects.toThrowError(
-			new RequestError("not valid request", stub.api)
-		);
-	});
 });
