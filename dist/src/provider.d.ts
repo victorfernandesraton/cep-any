@@ -1,5 +1,5 @@
-import { Cep } from "./entity/cep.js";
-import { CepService } from "./service/index.js";
+import { Cep } from "./entity/cep";
+import { CepService } from "./service/index";
 export declare class Provider {
     services: CepService[];
     constructor(services: CepService[]);

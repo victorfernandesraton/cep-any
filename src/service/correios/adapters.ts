@@ -1,5 +1,5 @@
-import { Cep } from "../../entity/cep.js";
-import { ParserError } from "../../errors/parserError.js";
+import { Cep } from "../../entity/cep";
+import { ParserError } from "../../errors/parserError";
 
 interface ParseXML {
 	bairro?: string;

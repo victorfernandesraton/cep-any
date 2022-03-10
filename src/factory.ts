@@ -1,9 +1,9 @@
-import { Provider } from "./provider.js";
-import { CepService } from "./service/index.js";
-import { ApiCepService } from "./service/apicep/index.js";
-import { BrasilAPIService } from "./service/brasilAPI/index.js";
-import { CorreiosService } from "./service/correios/index.js";
-import { ViaCepService } from "./service/viacep/index.js";
+import { Provider } from "./provider";
+import { CepService } from "./service/index";
+import { ApiCepService } from "./service/apicep/index";
+import { BrasilAPIService } from "./service/brasilAPI/index";
+import { CorreiosService } from "./service/correios/index";
+import { ViaCepService } from "./service/viacep/index";
 
 interface FactoryOptions {
 	useDefaultProviders?: boolean;

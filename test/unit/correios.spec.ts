@@ -1,9 +1,12 @@
-import { responseToCep } from "../../src/service/correios/adapters.js";
+import { describe, it } from "mocha";
+import assert from "assert";
+
+import { responseToCep } from "../../src/service/correios/adapters";
 
 describe("correios", () => {
 	describe("adapters", () => {
 		describe("responseToCep", () => {
-			test("should be a valid cep xml to parse", () => {
+			it("should be a valid cep xml to parse", () => {
 				const data = `<soap:Envelope
 								xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
 								<soap:Body>
@@ -22,9 +25,9 @@ describe("correios", () => {
 						</soap:Envelope>`;
 
 				const response = responseToCep(data);
-				expect(response.cep).toStrictEqual("41342320");
-				expect(response.state).toStrictEqual("BA");
-				expect(response.city).toStrictEqual("Salvador");
+				assert.strictEqual(response.cep, "41342320");
+				assert.strictEqual(response.state, "BA");
+				assert.strictEqual(response.city, "Salvador");
 			});
 		});
 	});

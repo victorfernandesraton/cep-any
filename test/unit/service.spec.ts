@@ -1,6 +1,8 @@
-import { Cep } from "../../src/entity/cep.js";
-import { ParamError } from "../../src/errors/paramError.js";
-import { CepService } from "../../src/service/index.js";
+import { describe, it } from "mocha";
+import assert from "assert";
+
+import { Cep } from "../../src/entity/cep";
+import { CepService } from "../../src/service/index";
 
 describe("CepService", () => {
 	class CepServiceTest extends CepService {
@@ -13,9 +15,7 @@ describe("CepService", () => {
 	}
 	const stub = new CepServiceTest();
 
-	test("should be a invalid cep", async () => {
-		expect(async () => {
-			await stub.execute("abc");
-		}).rejects.toThrow(new ParamError("abc"));
+	it("should be a invalid cep", async () => {
+		assert.rejects(stub.execute("abc"));
 	});
 });

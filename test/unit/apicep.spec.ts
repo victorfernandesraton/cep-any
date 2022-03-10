@@ -1,8 +1,10 @@
-import { responseToCep } from "../../src/service/apicep/adapters.js";
+import { describe, it } from "mocha";
+import assert from "assert";
+import { responseToCep } from "../../src/service/apicep/adapters";
 
 describe("apicep", () => {
 	describe("responseToCep", () => {
-		test("should be a validcep", () => {
+		it("should be a validcep", () => {
 			const input = {
 				status: "200",
 				code: "06233-030",
@@ -13,8 +15,8 @@ describe("apicep", () => {
 			};
 
 			const reuslt = responseToCep(input);
-			expect(reuslt.cep).toBe("06233030");
-			expect(reuslt.state).toBe("SP");
+			assert.strictEqual(reuslt.cep, "06233030");
+			assert.strictEqual(reuslt.state, "SP");
 		});
 	});
 });

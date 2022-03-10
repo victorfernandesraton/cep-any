@@ -1,16 +1,19 @@
-import { ApiCepService } from "../../src/service/apicep/index.js";
+import assert from "assert";
+import { describe, it } from "mocha";
+
+import { ApiCepService } from "../../src/service/apicep/index";
 
 describe("ApiCepService", () => {
 	const stub = new ApiCepService();
 
-	test("should be a valid cep", async () => {
+	it("should be a valid cep", async () => {
 		const result = await stub.execute("41342320");
-		expect(result.state).toStrictEqual("BA");
-		expect(result.city).toStrictEqual("Salvador");
+		assert.strictEqual(result.state, "BA");
+		assert.strictEqual(result.city, "Salvador");
 	});
-	test("should be a valid cep with -", async () => {
+	it("should be a valid cep with -", async () => {
 		const result = await stub.execute("41342-320");
-		expect(result.state).toStrictEqual("BA");
-		expect(result.city).toStrictEqual("Salvador");
+		assert.strictEqual(result.state, "BA");
+		assert.strictEqual(result.city, "Salvador");
 	});
 });

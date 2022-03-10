@@ -134,29 +134,6 @@ var BasicError = (function (_super) {
     return BasicError;
 }(Error));
 
-var RequestError = (function (_super) {
-    __extends(RequestError, _super);
-    function RequestError(message, api, request) {
-        var _this = _super.call(this, message) || this;
-        Object.defineProperty(_this, "api", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(_this, "response", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        _this.api = api;
-        _this.response = request;
-        return _this;
-    }
-    return RequestError;
-}(BasicError));
-
 var ParamError = (function (_super) {
     __extends(ParamError, _super);
     function ParamError(args) {
@@ -242,37 +219,20 @@ var ApiCepService = (function (_super) {
             configurable: true,
             writable: true,
             value: function (cep) { return __awaiter(_this, void 0, void 0, function () {
-                var requestData, data, error_1;
+                var requestData, data;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0:
-                            _a.trys.push([0, 3, , 4]);
-                            return [4, axios.get(this.baseUrl, {
-                                    params: {
-                                        code: cep,
-                                    },
-                                })];
+                        case 0: return [4, axios.get(this.baseUrl, {
+                                params: {
+                                    code: cep,
+                                },
+                            })];
                         case 1:
                             requestData = _a.sent();
                             return [4, requestData.data];
                         case 2:
                             data = _a.sent();
                             return [2, responseToCep$3(data)];
-                        case 3:
-                            error_1 = _a.sent();
-                            if (typeof error_1 == "string") {
-                                throw new Error(error_1);
-                            }
-                            else {
-                                if (error_1 instanceof Error &&
-                                    (error_1 === null || error_1 === void 0 ? void 0 : error_1.message) == "Request failed with status code 404") {
-                                    throw new RequestError("not found", this.api);
-                                }
-                                else {
-                                    throw new RequestError("unknow error", this.api);
-                                }
-                            }
-                        case 4: return [2];
                     }
                 });
             }); }
@@ -296,41 +256,16 @@ var BrasilAPIService = (function (_super) {
             configurable: true,
             writable: true,
             value: function (cep) { return __awaiter(_this, void 0, void 0, function () {
-                var requestData, data, error_1;
+                var requestData, data;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0:
-                            _a.trys.push([0, 3, , 4]);
-                            return [4, axios.get("".concat(this.baseUrl).concat(cep))];
+                        case 0: return [4, axios.get("".concat(this.baseUrl).concat(cep))];
                         case 1:
                             requestData = _a.sent();
-                            if (requestData.status != 200) {
-                                if (requestData.status >= 400 && requestData.status <= 499) {
-                                    throw new RequestError("not found", this.api, requestData);
-                                }
-                                else {
-                                    throw new RequestError("invalid request", this.api, requestData);
-                                }
-                            }
                             return [4, requestData.data];
                         case 2:
                             data = _a.sent();
                             return [2, responseToCep$2(data)];
-                        case 3:
-                            error_1 = _a.sent();
-                            if (typeof error_1 == "string") {
-                                throw new Error(error_1);
-                            }
-                            else {
-                                if (error_1 instanceof Error &&
-                                    (error_1 === null || error_1 === void 0 ? void 0 : error_1.message) == "Request failed with status code 404") {
-                                    throw new RequestError("not found", this.api);
-                                }
-                                else {
-                                    throw error_1;
-                                }
-                            }
-                        case 4: return [2];
                     }
                 });
             }); }
@@ -404,37 +339,20 @@ var CorreiosService = (function (_super) {
             configurable: true,
             writable: true,
             value: function (cep) { return __awaiter(_this, void 0, void 0, function () {
-                var requestData, data, error_1;
+                var requestData, data;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0:
-                            _a.trys.push([0, 3, , 4]);
-                            return [4, axios.post("".concat(this.baseUrl, "/SigepMasterJPA/AtendeClienteService/AtendeCliente"), parseParamsToXML(cep), {
-                                    headers: {
-                                        "Content-Type": "application/xml",
-                                    },
-                                })];
+                        case 0: return [4, axios.post("".concat(this.baseUrl, "/SigepMasterJPA/AtendeClienteService/AtendeCliente"), parseParamsToXML(cep), {
+                                headers: {
+                                    "Content-Type": "application/xml",
+                                },
+                            })];
                         case 1:
                             requestData = _a.sent();
                             return [4, requestData.data];
                         case 2:
                             data = _a.sent();
                             return [2, responseToCep$1(data)];
-                        case 3:
-                            error_1 = _a.sent();
-                            if (typeof error_1 == "string") {
-                                throw new Error(error_1);
-                            }
-                            else {
-                                if (error_1 instanceof Error &&
-                                    (error_1 === null || error_1 === void 0 ? void 0 : error_1.message) == "Request failed with status code 404") {
-                                    throw new RequestError("not found", this.api);
-                                }
-                                else {
-                                    throw new RequestError("unknow error", this.api);
-                                }
-                            }
-                        case 4: return [2];
                     }
                 });
             }); }
@@ -471,34 +389,16 @@ var ViaCepService = (function (_super) {
             configurable: true,
             writable: true,
             value: function (cep) { return __awaiter(_this, void 0, void 0, function () {
-                var requestData, data, result, error_1;
+                var requestData, data;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0:
-                            _a.trys.push([0, 2, , 3]);
-                            return [4, axios.get("".concat(this.baseUrl, "/ws/").concat(cep, "/json"), {
-                                    method: "GET",
-                                })];
+                        case 0: return [4, axios.get("".concat(this.baseUrl, "/ws/").concat(cep, "/json"), {
+                                method: "GET",
+                            })];
                         case 1:
                             requestData = _a.sent();
                             data = requestData.data;
-                            result = responseToCep(data);
-                            return [2, result];
-                        case 2:
-                            error_1 = _a.sent();
-                            if (typeof error_1 == "string") {
-                                throw new Error(error_1);
-                            }
-                            else {
-                                if (error_1 instanceof Error &&
-                                    (error_1 === null || error_1 === void 0 ? void 0 : error_1.message) == "Request failed with status code 404") {
-                                    throw new RequestError("not found", this.api);
-                                }
-                                else {
-                                    throw error_1;
-                                }
-                            }
-                        case 3: return [2];
+                            return [2, responseToCep(data)];
                     }
                 });
             }); }

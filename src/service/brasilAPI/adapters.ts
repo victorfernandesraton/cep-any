@@ -1,4 +1,4 @@
-import { Cep } from "../../entity/cep.js";
+import { Cep } from "../../entity/cep";
 
 export function responseToCep(data: any): Cep {
 	return { ...data };

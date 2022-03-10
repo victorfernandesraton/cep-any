@@ -1,5 +1,5 @@
-import { Provider } from "./provider.js";
-import { CepService } from "./service/index.js";
+import { Provider } from "./provider";
+import { CepService } from "./service/index";
 interface FactoryOptions {
     useDefaultProviders?: boolean;
     custonProviders?: CepService[];

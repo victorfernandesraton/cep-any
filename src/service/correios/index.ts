@@ -1,7 +1,7 @@
 import axios from "axios";
-import { CepService } from "../index.js";
-import { Cep } from "../../entity/cep.js";
-import { parseParamsToXML, responseToCep } from "./adapters.js";
+import { CepService } from "../index";
+import { Cep } from "../../entity/cep";
+import { parseParamsToXML, responseToCep } from "./adapters";
 
 export class CorreiosService extends CepService {
 	constructor() {
