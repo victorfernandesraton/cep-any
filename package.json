@@ -7,8 +7,8 @@
 		"url": "https://github.com/victorfernandesraton/cep-any"
 	},
 	"scripts": {
-		"test:unit": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' npx mocha -r ts-node/register 'test/unit/*.ts'",
-		"test:e2e": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' npx mocha -r ts-node/register 'test/e2e/*.ts'",
+		"test:unit": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' npx mocha --parallel -r ts-node/register 'test/unit/*.ts'",
+		"test:e2e": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' npx mocha  --parallel --timeout 100000 -r ts-node/register 'test/e2e/*.ts'",
 		"test": "npm run test:unit && npm run test:e2e",
 		"lint": "npx eslint ./src",
 		"build": "npx rollup -c",
