@@ -1,4 +1,3 @@
-import { RequestError } from "../../src/errors/requestError.js";
 import { CorreiosService } from "../../src/service/correios/index.js";
 
 describe("CorreiosService", () => {

@@ -1,4 +1,3 @@
-import { RequestError } from "../../src/errors/requestError.js";
 import { ApiCepService } from "../../src/service/apicep/index.js";
 
 describe("ApiCepService", () => {

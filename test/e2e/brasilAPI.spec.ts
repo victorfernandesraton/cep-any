@@ -1,4 +1,3 @@
-import { RequestError } from "../../src/errors/requestError.js";
 import { BrasilAPIService } from "../../src/service/brasilAPI/index.js";
 
 describe("BrasilAPIService", () => {

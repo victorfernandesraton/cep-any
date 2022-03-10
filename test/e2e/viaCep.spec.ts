@@ -1,4 +1,3 @@
-import { RequestError } from "../../src/errors/requestError.js";
 import { ViaCepService } from "../../src/service/viacep/index.js";
 
 describe("ViaCepService", () => {

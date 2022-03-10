@@ -1,6 +1,5 @@
 import axios from "axios";
 import { Cep } from "../../entity/cep.js";
-import { RequestError } from "../../errors/requestError.js";
 import { CepService } from "../index.js";
 import { responseToCep } from "./adapters.js";
 
