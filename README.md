@@ -1,6 +1,6 @@
 # cep-any
 
-![build](https://github.com/github/docs/actions/workflows/node.js.yml/badge.svg)
+![build](https://github.com/victorfernandesraton/cep-any/actions/workflows/node.js.yml/badge.svg?branch=main)
 ![version](https://img.shields.io/npm/v/cep-any)
 
 A low dependency CEP lib
