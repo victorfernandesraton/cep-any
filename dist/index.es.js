@@ -426,11 +426,11 @@ function Factory(_a) {
     return new Provider(services);
 }
 
-function cep(cep) {
+var cep = function (cep) {
     var facotry = Factory({
         useDefaultProviders: true,
     });
     return facotry.execute(cep);
-}
+};
 
-export { cep };
+export { CepService, Factory, Provider, cep };
