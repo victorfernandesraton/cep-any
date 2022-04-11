@@ -9,7 +9,7 @@ export class CorreiosService extends CepService {
 		this.baseUrl = "https://apps.correios.com.br";
 	}
 
-	handler = async (cep: string): Promise<Cep> => {
+	async handler(cep: string): Promise<Cep> {
 		const requestData = await axios.post(
 			`${this.baseUrl}/SigepMasterJPA/AtendeClienteService/AtendeCliente`,
 			parseParamsToXML(cep),
@@ -23,5 +23,5 @@ export class CorreiosService extends CepService {
 		const data = await requestData.data;
 
 		return responseToCep(data);
-	};
+	}
 }

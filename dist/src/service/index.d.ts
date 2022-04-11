@@ -5,6 +5,6 @@ export declare abstract class CepService {
     constructor(api: string);
     generalParse(cep: string): string;
     validateCep(cep: string): void;
-    execute: (cep: string) => Promise<Cep>;
+    execute(cep: string): Promise<Cep>;
     abstract handler(cep: string): Promise<Cep>;
 }

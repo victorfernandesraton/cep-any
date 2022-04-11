@@ -7,7 +7,7 @@ export class Provider {
 		this.services = services;
 	}
 
-	execute = async (cep: string): Promise<Cep> => {
+	async execute(cep: string): Promise<Cep> {
 		try {
 			const result = await Promise.any(
 				this.services.map((item) => item.execute(cep))
@@ -16,5 +16,5 @@ export class Provider {
 		} catch (error) {
 			throw new Error("error in execute cep");
 		}
-	};
+	}
 }

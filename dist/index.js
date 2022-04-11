@@ -22,33 +22,6 @@ LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
 OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
-/* global Reflect, Promise */
-
-var extendStatics = function(d, b) {
-    extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-    return extendStatics(d, b);
-};
-
-function __extends(d, b) {
-    if (typeof b !== "function" && b !== null)
-        throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-    extendStatics(d, b);
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-}
-
-var __assign = function() {
-    __assign = Object.assign || function __assign(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 
 function __awaiter(thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -60,99 +33,40 @@ function __awaiter(thisArg, _arguments, P, generator) {
     });
 }
 
-function __generator(thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-}
-
-function __spreadArray(to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-}
-
-var Provider = (function () {
-    function Provider(services) {
-        var _this = this;
+class Provider {
+    constructor(services) {
         Object.defineProperty(this, "services", {
             enumerable: true,
             configurable: true,
             writable: true,
             value: void 0
         });
-        Object.defineProperty(this, "execute", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: function (cep) { return __awaiter(_this, void 0, void 0, function () {
-                var result;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            _a.trys.push([0, 2, , 3]);
-                            return [4, Promise.any(this.services.map(function (item) { return item.execute(cep); }))];
-                        case 1:
-                            result = _a.sent();
-                            return [2, result];
-                        case 2:
-                            _a.sent();
-                            throw new Error("error in execute cep");
-                        case 3: return [2];
-                    }
-                });
-            }); }
-        });
         this.services = services;
     }
-    return Provider;
-}());
-
-var BasicError = (function (_super) {
-    __extends(BasicError, _super);
-    function BasicError() {
-        return _super !== null && _super.apply(this, arguments) || this;
+    execute(cep) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const result = yield Promise.any(this.services.map((item) => item.execute(cep)));
+                return result;
+            }
+            catch (error) {
+                throw new Error("error in execute cep");
+            }
+        });
     }
-    return BasicError;
-}(Error));
+}
 
-var ParamError = (function (_super) {
-    __extends(ParamError, _super);
-    function ParamError(args) {
-        return _super.call(this, "invalid params ".concat(args)) || this;
+class BasicError extends Error {
+}
+
+class ParamError extends BasicError {
+    constructor(args) {
+        super(`invalid params ${args}`);
     }
-    return ParamError;
-}(BasicError));
+}
 
-var CepService = (function () {
-    function CepService(api) {
-        var _this = this;
+class CepService {
+    constructor(api) {
         Object.defineProperty(this, "api", {
             enumerable: true,
             configurable: true,
@@ -165,47 +79,25 @@ var CepService = (function () {
             writable: true,
             value: ""
         });
-        Object.defineProperty(this, "execute", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: function (cep) { return __awaiter(_this, void 0, void 0, function () {
-                var value, response;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            value = this.generalParse(cep);
-                            this.validateCep(value);
-                            return [4, this.handler(cep)];
-                        case 1:
-                            response = _a.sent();
-                            return [2, response];
-                    }
-                });
-            }); }
-        });
         this.api = api;
     }
-    Object.defineProperty(CepService.prototype, "generalParse", {
-        enumerable: false,
-        configurable: true,
-        writable: true,
-        value: function (cep) {
-            return cep.replaceAll("-", "");
+    generalParse(cep) {
+        return cep.replaceAll("-", "");
+    }
+    validateCep(cep) {
+        if (!/[0-9]{8}/.test(cep)) {
+            throw new ParamError(cep);
         }
-    });
-    Object.defineProperty(CepService.prototype, "validateCep", {
-        enumerable: false,
-        configurable: true,
-        writable: true,
-        value: function (cep) {
-            if (!/[0-9]{8}/.test(cep)) {
-                throw new ParamError(cep);
-            }
-        }
-    });
-    return CepService;
-}());
+    }
+    execute(cep) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const value = this.generalParse(cep);
+            this.validateCep(value);
+            const response = yield this.handler(cep);
+            return response;
+        });
+    }
+}
 
 function responseToCep$3(data) {
     var _a;
@@ -218,105 +110,72 @@ function responseToCep$3(data) {
     };
 }
 
-var ApiCepService = (function (_super) {
-    __extends(ApiCepService, _super);
-    function ApiCepService() {
-        var _this = _super.call(this, "apicep") || this;
-        Object.defineProperty(_this, "handler", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: function (cep) { return __awaiter(_this, void 0, void 0, function () {
-                var requestData, data;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4, axios__default["default"].get(this.baseUrl, {
-                                params: {
-                                    code: cep,
-                                },
-                            })];
-                        case 1:
-                            requestData = _a.sent();
-                            return [4, requestData.data];
-                        case 2:
-                            data = _a.sent();
-                            return [2, responseToCep$3(data)];
-                    }
-                });
-            }); }
-        });
-        _this.baseUrl = "https://ws.apicep.com/cep.json";
-        return _this;
+class ApiCepService extends CepService {
+    constructor() {
+        super("apicep");
+        this.baseUrl = "https://ws.apicep.com/cep.json";
     }
-    return ApiCepService;
-}(CepService));
-
-function responseToCep$2(data) {
-    return __assign({}, data);
+    handler(cep) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestData = yield axios__default["default"].get(this.baseUrl, {
+                params: {
+                    code: cep,
+                },
+            });
+            const data = yield requestData.data;
+            return responseToCep$3(data);
+        });
+    }
 }
 
-var BrasilAPIService = (function (_super) {
-    __extends(BrasilAPIService, _super);
-    function BrasilAPIService() {
-        var _this = _super.call(this, "brasilAPI") || this;
-        Object.defineProperty(_this, "handler", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: function (cep) { return __awaiter(_this, void 0, void 0, function () {
-                var requestData, data;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4, axios__default["default"].get("".concat(this.baseUrl).concat(cep))];
-                        case 1:
-                            requestData = _a.sent();
-                            return [4, requestData.data];
-                        case 2:
-                            data = _a.sent();
-                            return [2, responseToCep$2(data)];
-                    }
-                });
-            }); }
-        });
-        _this.baseUrl = "https://brasilapi.com.br/api/cep/v1/";
-        return _this;
-    }
-    return BrasilAPIService;
-}(CepService));
+function responseToCep$2(data) {
+    return Object.assign({}, data);
+}
 
-var ParserError = (function (_super) {
-    __extends(ParserError, _super);
-    function ParserError(message, api) {
-        var _this = _super.call(this, message) || this;
-        Object.defineProperty(_this, "api", {
+class BrasilAPIService extends CepService {
+    constructor() {
+        super("brasilAPI");
+        this.baseUrl = "https://brasilapi.com.br/api/cep/v1/";
+    }
+    handler(cep) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestData = yield axios__default["default"].get(`${this.baseUrl}${cep}`);
+            const data = yield requestData.data;
+            return responseToCep$2(data);
+        });
+    }
+}
+
+class ParserError extends Error {
+    constructor(message, api) {
+        super(message);
+        Object.defineProperty(this, "api", {
             enumerable: true,
             configurable: true,
             writable: true,
             value: void 0
         });
-        _this.api = api;
-        return _this;
+        this.api = api;
     }
-    return ParserError;
-}(Error));
+}
 
 function parseParamsToXML(data) {
-    return "<?xml version=\"1.0\"?>\n\t<soapenv:Envelope \t\txmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:cli=\"http://cliente.bean.master.sigep.bsb.correios.com.br/\">  <soapenv:Header />  <soapenv:Body>    <cli:consultaCEP>      <cep>".concat(data, "</cep>    </cli:consultaCEP>  </soapenv:Body></soapenv:Envelope>");
+    return `<?xml version="1.0"?>\n	<soapenv:Envelope 		xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cli="http://cliente.bean.master.sigep.bsb.correios.com.br/">  <soapenv:Header />  <soapenv:Body>    <cli:consultaCEP>      <cep>${data}</cep>    </cli:consultaCEP>  </soapenv:Body></soapenv:Envelope>`;
 }
 function responseToCep$1(data) {
     var _a, _b, _c, _d, _e, _f, _g;
     try {
-        var returnStatement = (_b = (_a = data.replace(/\r?\n|\r/g, "").match(/<return>(.*)<\/return>/)) === null || _a === void 0 ? void 0 : _a[0]) !== null && _b !== void 0 ? _b : "";
+        const returnStatement = (_b = (_a = data.replace(/\r?\n|\r/g, "").match(/<return>(.*)<\/return>/)) === null || _a === void 0 ? void 0 : _a[0]) !== null && _b !== void 0 ? _b : "";
         if (returnStatement == "") {
-            throw new ParserError("invalid regex got ".concat(data), "correios");
+            throw new ParserError(`invalid regex got ${data}`, "correios");
         }
-        var cleanReturnStatement = returnStatement
+        const cleanReturnStatement = returnStatement
             .replace("<return>", "")
             .replace("</return>", "");
-        var parsedReturnStatement = cleanReturnStatement
+        const parsedReturnStatement = cleanReturnStatement
             .split(/</)
-            .reduce(function (result, exp) {
-            var splittenExp = exp.split(">");
+            .reduce((result, exp) => {
+            const splittenExp = exp.split(">");
             if (splittenExp.length > 1 && splittenExp[1].trim().length) {
                 result[splittenExp === null || splittenExp === void 0 ? void 0 : splittenExp[0]] = splittenExp[1];
             }
@@ -338,38 +197,23 @@ function responseToCep$1(data) {
     }
 }
 
-var CorreiosService = (function (_super) {
-    __extends(CorreiosService, _super);
-    function CorreiosService() {
-        var _this = _super.call(this, "correios") || this;
-        Object.defineProperty(_this, "handler", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: function (cep) { return __awaiter(_this, void 0, void 0, function () {
-                var requestData, data;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4, axios__default["default"].post("".concat(this.baseUrl, "/SigepMasterJPA/AtendeClienteService/AtendeCliente"), parseParamsToXML(cep), {
-                                headers: {
-                                    "Content-Type": "application/xml",
-                                },
-                            })];
-                        case 1:
-                            requestData = _a.sent();
-                            return [4, requestData.data];
-                        case 2:
-                            data = _a.sent();
-                            return [2, responseToCep$1(data)];
-                    }
-                });
-            }); }
-        });
-        _this.baseUrl = "https://apps.correios.com.br";
-        return _this;
+class CorreiosService extends CepService {
+    constructor() {
+        super("correios");
+        this.baseUrl = "https://apps.correios.com.br";
     }
-    return CorreiosService;
-}(CepService));
+    handler(cep) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestData = yield axios__default["default"].post(`${this.baseUrl}/SigepMasterJPA/AtendeClienteService/AtendeCliente`, parseParamsToXML(cep), {
+                headers: {
+                    "Content-Type": "application/xml",
+                },
+            });
+            const data = yield requestData.data;
+            return responseToCep$1(data);
+        });
+    }
+}
 
 function responseToCep(data) {
     var _a, _b, _c, _d, _e, _f;
@@ -382,44 +226,30 @@ function responseToCep(data) {
     };
 }
 
-var ViaCepService = (function (_super) {
-    __extends(ViaCepService, _super);
-    function ViaCepService() {
-        var _this = _super.call(this, "viacep") || this;
-        Object.defineProperty(_this, "baseUrl", {
+class ViaCepService extends CepService {
+    constructor() {
+        super("viacep");
+        Object.defineProperty(this, "baseUrl", {
             enumerable: true,
             configurable: true,
             writable: true,
             value: void 0
         });
-        Object.defineProperty(_this, "handler", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: function (cep) { return __awaiter(_this, void 0, void 0, function () {
-                var requestData, data;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4, axios__default["default"].get("".concat(this.baseUrl, "/ws/").concat(cep, "/json"), {
-                                method: "GET",
-                            })];
-                        case 1:
-                            requestData = _a.sent();
-                            data = requestData.data;
-                            return [2, responseToCep(data)];
-                    }
-                });
-            }); }
-        });
-        _this.baseUrl = "https://viacep.com.br";
-        return _this;
+        this.baseUrl = "https://viacep.com.br";
     }
-    return ViaCepService;
-}(CepService));
+    handler(cep) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestData = yield axios__default["default"].get(`${this.baseUrl}/ws/${cep}/json`, {
+                method: "GET",
+            });
+            const data = requestData.data;
+            return responseToCep(data);
+        });
+    }
+}
 
-function Factory(_a) {
-    var _b = _a.useDefaultProviders, useDefaultProviders = _b === void 0 ? true : _b, custonProviders = _a.custonProviders;
-    var services = [];
+function Factory({ useDefaultProviders = true, custonProviders, }) {
+    let services = [];
     if (useDefaultProviders) {
         services = [
             new ViaCepService(),
@@ -429,19 +259,19 @@ function Factory(_a) {
         ];
     }
     if (custonProviders === null || custonProviders === void 0 ? void 0 : custonProviders.length) {
-        services = __spreadArray(__spreadArray([], services, true), custonProviders, true);
+        services = [...services, ...custonProviders];
     }
     return new Provider(services);
 }
 
-var cep = function (cep) {
-    var facotry = Factory({
+function CepAny(cep) {
+    const facotry = Factory({
         useDefaultProviders: true,
     });
     return facotry.execute(cep);
-};
+}
 
+exports.CepAny = CepAny;
 exports.CepService = CepService;
 exports.Factory = Factory;
 exports.Provider = Provider;
-exports.cep = cep;
