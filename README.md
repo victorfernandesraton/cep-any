@@ -8,12 +8,12 @@ A low dependency CEP lib
 ## Simple use
 
 ```js
-const { cep } = require("cep-any");
+const { CepAny as cep } = require("cep-any");
 
 cep("41342315").them(console.log);
 ```
 
-## Using factry and create a custonservice
+## Using factory and create a custonservice
 
 ```js
 const { Factory, CepService } = require("cep-any");

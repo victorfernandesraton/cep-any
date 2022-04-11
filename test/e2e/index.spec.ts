@@ -1,11 +1,11 @@
 import { describe, it } from "mocha";
 
 import assert from "assert";
-import { cep, Factory, CepService } from "../../src";
+import { CepAny, Factory, CepService } from "../../src";
 
 describe("Index", () => {
 	it("shoud be export a cep promise", () => {
-		assert.ok(typeof cep === "function");
+		assert.ok(typeof CepAny === "function");
 	});
 	it("shoud be export a Factory", () => {
 		assert.ok(typeof Factory === "function");

@@ -1,6 +1,6 @@
 {
 	"name": "cep-any",
-	"version": "1.1.1",
+	"version": "1.2.1",
 	"description": "A modern and low dependency cep consult lib",
 	"repository": {
 		"type": "git",
@@ -18,11 +18,14 @@
 	"keywords": [
 		"cep",
 		"cep-any",
-		"promise-any",
 		"promisse.any",
 		"zip",
 		"zipcode",
-		"zio-br"
+		"zipcode-brasil",
+		"correios",
+		"zip-br",
+		"CEP",
+		"cep-promise"
 	],
 	"author": {
 		"name": "Victor Fernandes Raton",
