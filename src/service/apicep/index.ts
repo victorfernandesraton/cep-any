@@ -8,7 +8,7 @@ export class ApiCepService extends CepService {
 		super("apicep");
 		this.baseUrl = "https://ws.apicep.com/cep.json";
 	}
-	handler = async (cep: string): Promise<Cep> => {
+	async handler(cep: string): Promise<Cep> {
 		const requestData = await axios.get(this.baseUrl, {
 			params: {
 				code: cep,
@@ -18,5 +18,5 @@ export class ApiCepService extends CepService {
 		const data = await requestData.data;
 
 		return responseToCep(data);
-	};
+	}
 }

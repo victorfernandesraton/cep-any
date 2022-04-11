@@ -9,11 +9,9 @@ export class BrasilAPIService extends CepService {
 		this.baseUrl = "https://brasilapi.com.br/api/cep/v1/";
 	}
 
-	handler = async (cep: string): Promise<Cep> => {
+	async handler(cep: string): Promise<Cep> {
 		const requestData = await axios.get(`${this.baseUrl}${cep}`);
-
 		const data = await requestData.data;
-
 		return responseToCep(data);
-	};
+	}
 }

@@ -18,11 +18,11 @@ export abstract class CepService {
 		}
 	}
 
-	execute = async (cep: string): Promise<Cep> => {
+	async execute(cep: string): Promise<Cep> {
 		const value = this.generalParse(cep);
 		this.validateCep(value);
 		const response = await this.handler(cep);
 		return response;
-	};
+	}
 	abstract handler(cep: string): Promise<Cep>;
 }
