@@ -1,5 +1,3 @@
-import { describe, it } from "mocha";
-import assert from "assert";
 import { responseToCep } from "../../src/service/apicep/adapters";
 
 describe("apicep", () => {
@@ -15,8 +13,8 @@ describe("apicep", () => {
 			};
 
 			const reuslt = responseToCep(input);
-			assert.strictEqual(reuslt.cep, "06233030");
-			assert.strictEqual(reuslt.state, "SP");
+			expect(reuslt.cep).toEqual("06233030");
+			expect(reuslt.state).toBe("SP");
 		});
 	});
 });

@@ -25,9 +25,9 @@ describe("correios", () => {
 						</soap:Envelope>`;
 
 				const response = responseToCep(data);
-				assert.strictEqual(response.cep, "41342320");
-				assert.strictEqual(response.state, "BA");
-				assert.strictEqual(response.city, "Salvador");
+				expect(response.cep).toEqual("41342320");
+				expect(response.state).toEqual("BA");
+				expect(response.city).toEqual("Salvador");
 			});
 		});
 	});
