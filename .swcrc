@@ -7,7 +7,7 @@
 			"dynamicImport": false
 		},
 		"keepClassNames": false,
-		"target": "es2015",
+
 		"loose": false,
 		"minify": {
 			"compress": {
@@ -61,5 +61,13 @@
 		"type": "umd",
 		"noInterop": true
 	},
-	"minify": true
+	"minify": true,
+	"env": {
+		"targets": {
+			"chrome": "70",
+			"node": "12"
+		},
+		"mode": "usage",
+		"coreJs": 3
+	}
 }
