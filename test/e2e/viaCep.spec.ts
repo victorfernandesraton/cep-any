@@ -1,5 +1,3 @@
-import assert from "assert";
-
 import { ViaCepService } from "../../src/service/viacep/index";
 
 describe("ViaCepService", () => {
@@ -7,11 +5,11 @@ describe("ViaCepService", () => {
 
 	it("should be a valid cep", async () => {
 		const result = await stub.execute("41342320");
-		assert.strictEqual(result.state, "BA");
+		expect(result.state).toEqual("BA");
 	});
 	it("should be a valid cep with -", async () => {
 		const result = await stub.execute("41342-320");
-		assert.strictEqual(result.state, "BA");
-		assert.strictEqual(result.city, "Salvador");
+		expect(result.state).toEqual("BA");
+		expect(result.city).toEqual("Salvador");
 	});
 });

@@ -1,14 +1,11 @@
-import { describe, it } from "mocha";
-
-import assert from "assert";
 import { CepAny, Factory, CepService } from "../../src";
 
 describe("Index", () => {
 	it("shoud be export a cep promise", () => {
-		assert.ok(typeof CepAny === "function");
+		expect(typeof CepAny).toBe("function");
 	});
 	it("shoud be export a Factory", () => {
-		assert.ok(typeof Factory === "function");
+		expect(typeof Factory).toBe("function");
 	});
 
 	it("shoud be using a handler", async () => {
@@ -31,6 +28,6 @@ describe("Index", () => {
 
 		const result = await facotry.execute("41342315");
 
-		assert.strictEqual(result.cep, "88888888");
+		expect(result.cep).toBe("88888888");
 	});
 });
