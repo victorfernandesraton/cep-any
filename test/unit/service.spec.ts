@@ -1,21 +1,21 @@
-import { describe, it } from "mocha";
-import assert from "assert";
-
 import { Cep } from "../../src/entity/cep";
 import { CepService } from "../../src/service/index";
+import { ParamError } from "../../src/errors/paramError";
 
-describe("CepService", () => {
-	class CepServiceTest extends CepService {
-		constructor() {
-			super("testLib");
-		}
-		handler(cep: string): Promise<Cep> {
-			throw new Error("not implemented");
-		}
+class CepServiceTest extends CepService {
+	constructor() {
+		super("testLib");
 	}
+	handler(cep: string): Promise<Cep> {
+		throw new Error("not implemented");
+	}
+}
+describe("CepService", () => {
 	const stub = new CepServiceTest();
-
-	it("should be a invalid cep", async () => {
-		assert.rejects(stub.execute("abc"));
+	it("test", () => {
+		expect(2).toBe(2);
 	});
+	// it("should be a invalid cep", async () => {
+	expect(() => stub.execute("abc")).toThrowError(ParamError);
+	// });
 });

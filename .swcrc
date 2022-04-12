@@ -6,12 +6,13 @@
 			"decorators": false,
 			"dynamicImport": false
 		},
+		"keepClassNames": false,
 		"target": "es3",
 		"loose": false,
 		"minify": {
 			"compress": {
-				"arguments": false,
-				"arrows": true,
+				"arguments": true,
+				"arrows": false,
 				"booleans": true,
 				"booleans_as_integers": false,
 				"collapse_vars": true,
@@ -19,13 +20,13 @@
 				"computed_props": false,
 				"conditionals": true,
 				"dead_code": false,
-				"directives": true,
+				"directives": false,
 				"drop_console": false,
-				"drop_debugger": true,
+				"drop_debugger": false,
 				"evaluate": true,
 				"expression": true,
 				"hoist_funs": false,
-				"hoist_props": true,
+				"hoist_props": false,
 				"hoist_vars": false,
 				"if_return": true,
 				"join_vars": true,
@@ -38,9 +39,9 @@
 				"properties": true,
 				"reduce_funcs": false,
 				"reduce_vars": false,
-				"side_effects": true,
+				"side_effects": false,
 				"switches": false,
-				"typeofs": true,
+				"typeofs": false,
 				"unsafe": false,
 				"unsafe_arrows": false,
 				"unsafe_comps": false,
@@ -59,5 +60,5 @@
 	"module": {
 		"type": "umd"
 	},
-	"minify": false
+	"minify": true
 }
