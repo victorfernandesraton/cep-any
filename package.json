@@ -11,7 +11,7 @@
 		"test:e2e": "npm run test test/e2e/*.ts",
 		"test": "jest --maxWorkers=75%",
 		"lint": "npx eslint ./src",
-		"build": "npx swc ./src -o ./dist/index.js",
+		"build": "rm -rf ./dist && npx tsc && npx swc ./src -o ./dist/index.js",
 		"prepublishOnly": "npm run build"
 	},
 	"keywords": [
@@ -57,6 +57,7 @@
 	"files": [
 		"dist"
 	],
+	"types": "./dist/index.d.ts",
 	"contributors": [
 		{
 			"name": "Victor Raton",
