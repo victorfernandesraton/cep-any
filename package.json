@@ -9,7 +9,7 @@
 	"scripts": {
 		"test:unit": "npm run test test/unit/*.ts",
 		"test:e2e": "npm run test test/e2e/*.ts",
-		"test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
+		"test": "jest --maxWorkers=75%",
 		"lint": "npx eslint ./src",
 		"build": "rm -r ./dist && npx swc ./src -o ./dist/index.js",
 		"prepublishOnly": "npm run build"

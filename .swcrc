@@ -7,7 +7,7 @@
 			"dynamicImport": false
 		},
 		"keepClassNames": false,
-		"target": "es3",
+		"target": "es2015",
 		"loose": false,
 		"minify": {
 			"compress": {
@@ -58,7 +58,8 @@
 		}
 	},
 	"module": {
-		"type": "umd"
+		"type": "umd",
+		"noInterop": true
 	},
 	"minify": true
 }

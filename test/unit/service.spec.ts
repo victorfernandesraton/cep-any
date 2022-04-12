@@ -16,6 +16,8 @@ describe("CepService", () => {
 		expect(2).toBe(2);
 	});
 	// it("should be a invalid cep", async () => {
-	expect(() => stub.execute("abc")).toThrowError(ParamError);
+	stub.execute("abc").catch((error) => {
+		expect(error).toBeInstanceOf(ParamError);
+	});
 	// });
 });
