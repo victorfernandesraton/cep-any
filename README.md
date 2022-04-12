@@ -8,9 +8,9 @@ A low dependency CEP lib
 ## Simple use
 
 ```js
-const { CepAny as cep } = require("cep-any");
+const cep = require("cep-any");
 
-cep("41342315").them(console.log);
+cep.CepAny("41342315").them(console.log);
 ```
 
 ## Using factory and create a custonservice
@@ -19,7 +19,7 @@ cep("41342315").them(console.log);
 const { Factory, CepService } = require("cep-any");
 
 class NewService extends CepService {
-	handler = async (cep: string) => {
+	handler = async (cep) => {
 		return {
 			cep: "88888888",
 			city: "something",
