@@ -15,9 +15,9 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 15.x, 16.x, 17.x]
+        node-version: [16.x, 17.x, 18.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-        ci_node_total: [4]
+        ci_node_total: [3]
         # Indexes for parallel jobs (starting from zero).
         # E.g. use [0, 1] for 2 parallel jobs, [0, 1, 2] for 3 parallel jobs, etc.
         ci_node_index: [0]
