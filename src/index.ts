@@ -11,3 +11,4 @@ function CepAny(cep: string): Promise<Cep> {
 }
 
 export { Factory, Provider, CepAny, CepService };
+export default CepAny;

@@ -1,11 +1,11 @@
 import { CepAny, Factory, CepService } from "../../src";
-
+import CepAnyDefualt from "../../src/";
 describe("Index", () => {
 	it("shoud be export a cep promise", () => {
-		expect(typeof CepAny).toBe("function");
+		expect(typeof CepAny).toEqual("function");
 	});
 	it("shoud be export a Factory", () => {
-		expect(typeof Factory).toBe("function");
+		expect(typeof Factory).toEqual("function");
 	});
 
 	it("shoud be using a handler", async () => {
@@ -28,6 +28,10 @@ describe("Index", () => {
 
 		const result = await facotry.execute("41342315");
 
-		expect(result.cep).toBe("88888888");
+		expect(result.cep).toEqual("88888888");
+	});
+
+	it("should be a default export", () => {
+		expect(typeof CepAnyDefualt).toEqual("function");
 	});
 });
