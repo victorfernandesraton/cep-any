@@ -12,6 +12,7 @@ export class BrasilAPIService extends CepService {
 	async handler(cep: string): Promise<Cep> {
 		const request = await Requester({ url: `${this.baseUrl}/${cep}` });
 		const data = await request.json();
+
 		if (request.status !== 200) {
 			throw new Error(data);
 		}
