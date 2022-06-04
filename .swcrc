@@ -12,7 +12,7 @@
 		"minify": {
 			"compress": {
 				"arguments": true,
-				"arrows": false,
+				"arrows": true,
 				"booleans": true,
 				"booleans_as_integers": false,
 				"collapse_vars": true,
