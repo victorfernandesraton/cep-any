@@ -13,7 +13,7 @@ export class BrasilAPIService extends CepService {
 		const request = await Requester({ url: `${this.baseUrl}/${cep}` });
 		const data = await request.json();
 
-		if (request.status !== 200) {
+		if (!request.ok) {
 			throw new Error(data);
 		}
 		return responseToCep(data);

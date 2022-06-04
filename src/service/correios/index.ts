@@ -20,7 +20,7 @@ export class CorreiosService extends CepService {
 		});
 		const data = await request.json();
 
-		if (request.status !== 200) {
+		if (!request.ok) {
 			throw new Error(data);
 		}
 

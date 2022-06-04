@@ -11,13 +11,13 @@ export class ViaCepService extends CepService {
 	}
 
 	async handler(cep: string): Promise<Cep> {
-		const request = Requester({
+		const request = await Requester({
 			url: `${this.baseUrl}/ws/${cep}/json`,
 			method: "GET",
 		});
 		const data = await request.json();
 
-		if (request.status !== 200) {
+		if (!request.ok) {
 			throw new Error(data);
 		}
 
