@@ -1,7 +1,7 @@
 # cep-any
 
-![build](https://github.com/victorfernandesraton/cep-any/actions/workflows/node.js.yml/badge.svg?branch=main)
-![version](https://img.shields.io/npm/v/cep-any)
+[![build](https://github.com/victorfernandesraton/cep-any/actions/workflows/node.js.yml/badge.svg?branch=main)](https://github.com/victorfernandesraton/cep-any)
+[![version](https://img.shields.io/npm/v/cep-any)](https://www.npmjs.com/package/cep-any)
 
 A low dependency CEP lib
 
