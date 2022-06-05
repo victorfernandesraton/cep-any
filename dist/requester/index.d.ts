@@ -9,6 +9,7 @@
  * }}
  * @returns {Promise<{
  * json(): Promise<any>
+ * text(): Promise<string>
  * ok: boolean
  * status: number
  * }>}
@@ -21,6 +22,7 @@ export function Requester({ url, method, body, params, headers, }: {
     headers?: any;
 }): Promise<{
     json(): Promise<any>;
+    text(): Promise<string>;
     ok: boolean;
     status: number;
 }>;
