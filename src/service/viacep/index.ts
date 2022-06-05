@@ -1,4 +1,4 @@
-import axios from "axios";
+import { Requester } from "../../requester";
 import { CepService } from "../index";
 import { Cep } from "../../entity/cep";
 import { responseToCep } from "./adapters";
@@ -11,11 +11,15 @@ export class ViaCepService extends CepService {
 	}
 
 	async handler(cep: string): Promise<Cep> {
-		const requestData = await axios.get(`${this.baseUrl}/ws/${cep}/json`, {
+		const request = await Requester({
+			url: `${this.baseUrl}/ws/${cep}/json`,
 			method: "GET",
 		});
+		const data = await request.json();
 
-		const data = requestData.data;
+		if (!request.ok) {
+			throw new Error(data);
+		}
 
 		return responseToCep(data);
 	}

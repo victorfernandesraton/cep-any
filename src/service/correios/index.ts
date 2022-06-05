@@ -1,4 +1,4 @@
-import axios from "axios";
+import { Requester } from "../../requester";
 import { CepService } from "../index";
 import { Cep } from "../../entity/cep";
 import { parseParamsToXML, responseToCep } from "./adapters";
@@ -10,17 +10,19 @@ export class CorreiosService extends CepService {
 	}
 
 	async handler(cep: string): Promise<Cep> {
-		const requestData = await axios.post(
-			`${this.baseUrl}/SigepMasterJPA/AtendeClienteService/AtendeCliente`,
-			parseParamsToXML(cep),
-			{
-				headers: {
-					"Content-Type": "application/xml",
-				},
-			}
-		);
+		const request = await Requester({
+			url: `${this.baseUrl}/SigepMasterJPA/AtendeClienteService/AtendeCliente`,
+			body: parseParamsToXML(cep),
+			method: "POST",
+			headers: {
+				"Content-Type": "application/xml",
+			},
+		});
+		const data = await request.json();
 
-		const data = await requestData.data;
+		if (!request.ok) {
+			throw new Error(data);
+		}
 
 		return responseToCep(data);
 	}

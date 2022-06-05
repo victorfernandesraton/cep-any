@@ -12,7 +12,7 @@
 		"minify": {
 			"compress": {
 				"arguments": true,
-				"arrows": false,
+				"arrows": true,
 				"booleans": true,
 				"booleans_as_integers": false,
 				"collapse_vars": true,
@@ -59,13 +59,13 @@
 	},
 	"module": {
 		"type": "umd",
-		"noInterop": true
+		"noInterop": false
 	},
 	"minify": true,
 	"env": {
 		"targets": {
-			"chrome": "70",
-			"node": "12"
+			"chrome": "90",
+			"node": "18"
 		},
 		"mode": "usage",
 		"coreJs": 3
