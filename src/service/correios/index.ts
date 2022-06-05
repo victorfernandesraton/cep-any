@@ -18,7 +18,7 @@ export class CorreiosService extends CepService {
 				"Content-Type": "application/xml",
 			},
 		});
-		const data = await request.json();
+		const data = await request.text();
 
 		if (!request.ok) {
 			throw new Error(data);

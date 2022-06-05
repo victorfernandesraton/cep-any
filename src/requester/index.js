@@ -9,6 +9,7 @@
  * }}
  * @returns {Promise<{
  * json(): Promise<any>
+ * text(): Promise<string>
  * ok: boolean
  * status: number
  * }>}
@@ -33,7 +34,7 @@ export function Requester({
 	if (headers) {
 		options.headers = headers;
 	}
-	const URL = `${url}${searchParams.toString()}`;
+	const URL = `${url}?${searchParams.toString()}`;
 
 	return fetch(URL, options);
 }
