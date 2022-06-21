@@ -5,7 +5,9 @@
 
 A low dependency CEP lib
 
-# WARNING: if you use node.js 17 or lower, see 1.3.0 version, 2.0.0 version breaking changes because fetch native has been in use
+# WARNING
+
+if you use node.js 17 or lower, see 1.3.0 version, 2.0.0 version breaking changes because fetch native has been in use
 
 ## Simple use
 

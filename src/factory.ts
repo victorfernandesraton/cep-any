@@ -5,10 +5,10 @@ import { BrasilAPIService } from "./service/brasilAPI/index";
 import { CorreiosService } from "./service/correios/index";
 import { ViaCepService } from "./service/viacep/index";
 
-interface FactoryOptions {
+type FactoryOptions = {
 	useDefaultProviders?: boolean;
 	custonProviders?: CepService[];
-}
+};
 
 export function Factory({
 	useDefaultProviders = true,
