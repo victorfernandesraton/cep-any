@@ -1,6 +1,6 @@
 {
 	"name": "cep-any",
-	"version": "2.0.0",
+	"version": "2.0.2",
 	"description": "A modern and low dependency cep consult lib",
 	"repository": {
 		"type": "git",
@@ -32,9 +32,6 @@
 		"url": "https://github.com/victorfernandesraton"
 	},
 	"license": "MIT",
-	"dependencies": {
-		"core-js": "^3.22.4"
-	},
 	"devDependencies": {
 		"@swc/cli": "0.1.57",
 		"@swc/core": "^1.2.178",
@@ -49,7 +46,7 @@
 		"typescript": "^4.6.4"
 	},
 	"engines": {
-		"node": ">= 18.0.0"
+		"node": ">= 16.0.0"
 	},
 	"main": "dist/index.js",
 	"module": "dist/index.js",
