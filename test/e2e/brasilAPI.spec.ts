@@ -1,3 +1,5 @@
+import { describe, test, expect } from "@jest/globals";
+
 import { BrasilAPIService } from "../../src/service/brasilAPI/index";
 
 describe("BrasilAPIService", () => {

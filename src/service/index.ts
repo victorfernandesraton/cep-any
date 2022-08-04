@@ -1,4 +1,3 @@
-import { Cep } from "../entity/cep";
 import { ParamError } from "../errors/paramError";
 
 export abstract class CepService {

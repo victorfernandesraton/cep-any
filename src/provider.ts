@@ -1,4 +1,3 @@
-import { Cep } from "./entity/cep";
 import { CepService } from "./service/index";
 
 export class Provider {

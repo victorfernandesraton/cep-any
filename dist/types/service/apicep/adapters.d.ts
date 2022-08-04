@@ -1,4 +1,3 @@
-import { Cep } from "../../entity/cep";
 interface CepResponse {
     code: string;
     state: string;
