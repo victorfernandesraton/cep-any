@@ -1,4 +1,3 @@
-import { Cep } from "../../entity/cep";
 import { ParserError } from "../../errors/parserError";
 
 interface ParseXML {

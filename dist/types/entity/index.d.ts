@@ -1,4 +1,4 @@
-export interface Cep {
+declare interface Cep {
     cep: string;
     street: string;
     city: string;

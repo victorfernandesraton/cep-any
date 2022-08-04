@@ -1,6 +1,5 @@
-import { Requester } from "../../requester";
+import { Requester } from "../../requester/index";
 import { CepService } from "../index";
-import { Cep } from "../../entity/cep";
 import { responseToCep } from "./adapters";
 
 export class ViaCepService extends CepService {

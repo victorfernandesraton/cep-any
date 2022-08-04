@@ -1,4 +1,3 @@
-import { Cep } from "../entity/cep";
 export declare abstract class CepService {
     readonly api: string;
     protected baseUrl: string;

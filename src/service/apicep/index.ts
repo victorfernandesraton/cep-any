@@ -1,5 +1,4 @@
-import { Cep } from "../../entity/cep";
-import { Requester } from "../../requester";
+import { Requester } from "../../requester/index";
 import { CepService } from "../index";
 import { responseToCep } from "./adapters";
 

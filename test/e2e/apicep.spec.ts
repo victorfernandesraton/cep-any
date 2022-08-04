@@ -1,3 +1,5 @@
+import { describe, test, expect } from "@jest/globals";
+
 import { ApiCepService } from "../../src/service/apicep/index";
 
 describe("ApiCepService", () => {
