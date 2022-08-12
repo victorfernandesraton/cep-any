@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/errors/basicError.mjs"],"sourcesContent":["export class BasicError extends Error {}\n"],"names":["BasicError","Error"],"mappings":"AAAA,8VAAaA,YAAU,0BAAVA,UAAU,EAAhB,OAAMA,UAAU,SAASC,KAAK,EAAG,EAAA"}
