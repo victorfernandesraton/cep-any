@@ -1,2 +1,37 @@
-(function(global,factory){if(typeof module==="object"&& typeof module.exports==="object")factory(exports,require("./entity/index.mjs"),require("./factory.mjs"),require("./provider.mjs"),require("./service/index.mjs"));else if(typeof define==="function"&&define.amd)define(["exports","./entity/index.mjs","./factory.mjs","./provider.mjs","./service/index.mjs"],factory);else if(global=typeof globalThis!=="undefined"?globalThis:global||self)factory(global.index={},global.indexMjs,global.factoryMjs,global.providerMjs,global.indexMjs)})(this,function(exports,_indexMjs,_factoryMjs,_providerMjs,_indexMjs1){"use strict";function _export(target,all){for(var name in all)Object.defineProperty(target,name,{enumerable:true,get:all[name]})}_export(exports,{Factory:()=>_factoryMjs.Factory,Provider:()=>_providerMjs.Provider,CepAny:()=>CepAny,CepService:()=>_indexMjs1.CepService,default:()=>_default});function CepAny(cep){const facotry=(0,_factoryMjs.Factory)({useDefaultProviders:true});return facotry.execute(cep)}const _default=CepAny})
-//# sourceMappingURL=index.js.map
+(function(global, factory) {
+    if (typeof module === "object" && typeof module.exports === "object") factory(exports, require("./entity/index.js"), require("./service/index.js"), require("./cep.js"), require("./factory.js"), require("./provider.js"));
+    else if (typeof define === "function" && define.amd) define([
+        "exports",
+        "./entity/index.js",
+        "./service/index.js",
+        "./cep.js",
+        "./factory.js",
+        "./provider.js"
+    ], factory);
+    else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory(global.index = {}, global.indexJs, global.indexJs, global.cepJs, global.factoryJs, global.providerJs);
+})(this, function(exports, _indexJs, _indexJs1, _cepJs, _factoryJs, _providerJs) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    function _export(target, all) {
+        for(var name in all)Object.defineProperty(target, name, {
+            enumerable: true,
+            get: all[name]
+        });
+    }
+    _export(exports, {
+        Cep: ()=>_indexJs.Cep,
+        cep: ()=>_cepJs.cep,
+        CepService: ()=>_indexJs1.CepService,
+        Provider: ()=>_providerJs.Provider,
+        factory: ()=>_factoryJs.default,
+        default: ()=>_cepJs.cep
+    });
+    _factoryJs = /*#__PURE__*/ _interopRequireDefault(_factoryJs);
+    function _interopRequireDefault(obj) {
+        return obj && obj.__esModule ? obj : {
+            default: obj
+        };
+    }
+});

@@ -1,6 +1,6 @@
 {
 	"name": "cep-any",
-	"version": "3.0.0",
+	"version": "3.0.1",
 	"description": "A modern and low dependency cep consult lib",
 	"repository": {
 		"type": "git",
@@ -46,6 +46,12 @@
 	},
 	"main": "dist/index.js",
 	"module": "dist/index.js",
+	"exports": {
+			".": {
+					"import": "./dist/index.js",
+					"require": "./dist/index.js"
+			}
+	},
 	"types": "./dist/types.d.ts",
 	"contributors": [
 		{

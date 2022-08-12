@@ -1,0 +1,11 @@
+{
+	"name": "cjs",
+	"description": "description",
+	"authors": "author",
+	"version": "1.0.0",
+	"main": "pathToMain",
+	"type": "commonjs",
+	"dependencies": {
+		"cep-any": "^3.0.1"
+	}
+}

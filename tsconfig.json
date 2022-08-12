@@ -101,6 +101,7 @@
 		"./test/**",
 		"./github/**",
 		"./coverage/**",
-		"jest.config.js",
+		"jest.config.cjs",
+		"**/examples/**",
 	]
 }

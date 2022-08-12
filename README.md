@@ -14,13 +14,19 @@ if you use node.js 15 or lower, see 1.3.0 version, 2.0.0 version breaking change
 ```js
 const cep = require("cep-any");
 
-cep.CepAny("41342315").them(console.log);
+cep("41342315").them(console.log);
+```
+
+```js
+import cepAny from "cep-any";
+const {cep} = cepAny;
+
 ```
 
 ## Using factory and create a custonservice
 
 ```js
-const { Factory, CepService } = require("cep-any");
+const { factory, CepService } = require("cep-any");
 
 class NewService extends CepService {
 	handler = async (cep) => {
@@ -34,10 +40,10 @@ class NewService extends CepService {
 	};
 }
 const instanceService = new NewService("newService");
-const facotry = Factory({
+const handler = factory({
 	useDefaultProviders: false,
 	custonProviders: [instanceService],
 });
 
-facotry.execute("41342315").them(console.log);
+handler.execute("41342315").them(console.log);
 ```

@@ -1,2 +1,22 @@
-(function(global,factory){if(typeof module==="object"&& typeof module.exports==="object")factory(exports,require("../../entity/index.mjs"));else if(typeof define==="function"&&define.amd)define(["exports","../../entity/index.mjs"],factory);else if(global=typeof globalThis!=="undefined"?globalThis:global||self)factory(global.adapters={},global.indexMjs)})(this,function(exports,_indexMjs){"use strict";Object.defineProperty(exports,"responseToCep",{enumerable:true,get:()=>responseToCep});function responseToCep(data){return _indexMjs.Cep.create({...data})}})
-//# sourceMappingURL=adapters.js.map
+(function(global, factory) {
+    if (typeof module === "object" && typeof module.exports === "object") factory(exports, require("../../entity/index.js"));
+    else if (typeof define === "function" && define.amd) define([
+        "exports",
+        "../../entity/index.js"
+    ], factory);
+    else if (global = typeof globalThis !== "undefined" ? globalThis : global || self) factory(global.adapters = {}, global.indexJs);
+})(this, function(exports, _indexJs) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    Object.defineProperty(exports, "responseToCep", {
+        enumerable: true,
+        get: ()=>responseToCep
+    });
+    function responseToCep(data) {
+        return _indexJs.Cep.create({
+            ...data
+        });
+    }
+});

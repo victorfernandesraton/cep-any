@@ -5,7 +5,7 @@
 		"node": true
 	},
 	"ignorePatterns": [
-		"**/*/dist/**",
+		"./dist/**",
 		"tsconfig.json"
 	],
 	"extends": "eslint:recommended",
