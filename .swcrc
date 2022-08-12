@@ -1,26 +1,32 @@
 {
+	"$schema": "https://json.schemastore.org/swcrc",
 	"jsc": {
+		"target": "es2022",
 		"parser": {
 			"syntax": "ecmascript",
-			"tsx": false,
 			"decorators": false,
-			"dynamicImport": true
+			"importAssertions": true,
+			"dynamicImport": true,
+			"exportNamespaceFrom": false
 		},
 		"keepClassNames": false,
 		"loose": true
 	},
 	"module": {
+		"strict": true,
+		"strictMode": true,
 		"type": "umd",
-		"noInterop": true
+		"noInterop": false
 	},
-	"minify": true,
-	"sourceMaps": true,
+	"minify": false,
 	"env": {
 		"targets": {
-			"chrome": "90",
+			"chrome": "86",
+			"firefox": "86",
 			"node": "16"
 		},
 		"mode": "usage",
 		"coreJs": 3.12
-	}
+	},
+	"isModule": true
 }
