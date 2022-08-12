@@ -31,7 +31,7 @@ jobs:
           cache: "npm"
       - run: npm ci
       - run: npm run lint
-
+      
       - uses: actions/checkout@v2
       - name: Run test
         uses: actions/setup-node@v2
