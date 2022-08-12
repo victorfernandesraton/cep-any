@@ -1,7 +1,7 @@
 {
 	"jsc": {
 		"parser": {
-			"syntax": "typescript",
+			"syntax": "ecmascript",
 			"tsx": false,
 			"decorators": false,
 			"dynamicImport": true
@@ -14,6 +14,7 @@
 		"noInterop": true
 	},
 	"minify": true,
+	"sourceMaps": true,
 	"env": {
 		"targets": {
 			"chrome": "90",
