@@ -1,5 +1,4 @@
 {
-	"$schema": "https://json.schemastore.org/swcrc",
 	"jsc": {
 		"target": "es2022",
 		"parser": {
@@ -9,14 +8,16 @@
 			"dynamicImport": true,
 			"exportNamespaceFrom": false
 		},
-		"keepClassNames": false,
+		"keepClassNames": true,
 		"loose": true
 	},
 	"module": {
 		"strict": true,
 		"strictMode": true,
-		"type": "umd",
-		"noInterop": false
+		"type": "es6",
+		"noInterop": true,
+		"lazy": true,
+		"ignoreDynamic": true
 	},
 	"minify": false,
 	"env": {

@@ -1,11 +1,7 @@
-import CepAny , {factory, CepService}from "../../src/index.js"
-import CepAnyDefualt from "../../src/index.js"
+import { cep, factory, CepService}from "../../src/index.js"
 
 import {describe, it, expect} from "@jest/globals"
 describe("Index", () => {
-	it("shoud be export a cep promise", () => {
-		expect(typeof CepAny).toEqual("function")
-	})
 	it("shoud be export a Factory", () => {
 		expect(typeof factory).toEqual("function")
 	})
@@ -35,6 +31,6 @@ describe("Index", () => {
 	})
 
 	it("should be a default export", () => {
-		expect(typeof CepAnyDefualt).toEqual("function")
+		expect(typeof cep).toEqual("function")
 	})
 })

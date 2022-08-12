@@ -103,5 +103,6 @@
 		"./coverage/**",
 		"jest.config.cjs",
 		"**/examples/**",
+		"rollup.config.cjs",
 	]
 }

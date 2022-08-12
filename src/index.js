@@ -1,14 +1,7 @@
-import { Cep } from "./entity/index.js"
-import { CepService } from "./service/index.js"
-import { cep } from "./cep.js"
-import factory from "./factory.js"
-import { Provider } from "./provider.js"
+import lib from "./lib"
 
-export {
-	Cep,
-	cep,
-	CepService,
-	Provider,
-	factory,
-	cep as default
-}
+export const cep = lib.cep
+export const Provider = lib.Provider
+export const Cep = lib.Cep
+export const CepService = lib.CepService
+export const factory = lib.factory

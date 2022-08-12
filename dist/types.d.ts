@@ -132,12 +132,26 @@ declare module "cep" {
     export function cep(cep: string): Promise<Cep>;
     import { Cep } from "entity";
 }
-declare module "index" {
+declare module "lib" {
+    namespace _default {
+        export { Cep };
+        export { cep };
+        export { CepService };
+        export { Provider };
+        export { factory };
+    }
+    export default _default;
     import { Cep } from "entity";
     import { cep } from "cep";
     import { CepService } from "service";
     import { Provider } from "provider";
     import factory from "factory";
-    export { Cep, cep, CepService, Provider, factory, cep as default };
+}
+declare module "index" {
+    export const cep: (cep: string) => Promise<import("entity").Cep>;
+    export const Provider: typeof import("provider").Provider;
+    export const Cep: typeof import("entity").Cep;
+    export const CepService: typeof import("service").CepService;
+    export const factory: typeof import("factory").default;
 }
 //# sourceMappingURL=types.d.ts.map
