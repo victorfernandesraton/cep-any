@@ -6,7 +6,7 @@
 			"decorators": false,
 			"importAssertions": true,
 			"dynamicImport": true,
-			"exportNamespaceFrom": false
+			"exportNamespaceFrom": true
 		},
 		"keepClassNames": true,
 		"loose": true
@@ -14,7 +14,7 @@
 	"module": {
 		"strict": true,
 		"strictMode": true,
-		"type": "es6",
+		"type": "commonjs",
 		"noInterop": true,
 		"lazy": true,
 		"ignoreDynamic": true
