@@ -1,3 +1,3 @@
-import {cep, Provider, factory , Cep, CepService} from "cep-any"
-console.log( cep, Provider, factory, Cep, CepService )
+import {cep, Provider, factory} from "cep-any"
+console.log( cep, Provider, factory )
 cep("41342315").then(console.log)

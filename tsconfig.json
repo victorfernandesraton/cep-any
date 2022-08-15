@@ -104,5 +104,6 @@
 		"jest.config.cjs",
 		"**/examples/**",
 		"rollup.config.js",
+		"./script/**"
 	]
 }

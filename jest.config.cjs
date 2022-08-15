@@ -2,9 +2,7 @@
  * For a detailed explanation regarding each configuration property, visit:
  * https://jestjs.io/docs/configuration
  */
-const fs = require("fs")
 
-const config = JSON.parse(fs.readFileSync(`${__dirname}/.swcrc`, "utf-8"))
 module.exports = {
 	// All imported modules in your tests should be mocked automatically
 	// automock: false,
@@ -162,8 +160,13 @@ module.exports = {
 	],
 
 	transform: {
-		"^.+\\.(t|j)sx?$": ["@swc/jest", { ...config, /* custom configuration in Jest */ }],
+		"^.+\\.js?$": [
+			"esbuild-jest",
+			{
+				sourcemap: true,
 
+			}
+		]
 	},
 	testTimeout: 60 * 1000,
 

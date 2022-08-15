@@ -1,4 +1,4 @@
-import lib from "./lib"
+import lib from "./lib.js"
 
 export const cep = lib.cep
 export const Provider = lib.Provider
