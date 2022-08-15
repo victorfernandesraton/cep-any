@@ -1,6 +1,6 @@
 {
 	"name": "cep-any",
-	"version": "3.0.1",
+	"version": "3.1.0",
 	"description": "A modern and low dependency cep consult lib",
 	"repository": {
 		"type": "git",
@@ -11,7 +11,9 @@
 		"test:e2e": "npm run test test/e2e/*.ts",
 		"test": "NODE_OPTIONS=--experimental-vm-modules npx jest --maxWorkers=75%",
 		"lint": "npx eslint ./src",
-		"build": "rm -rf ./dist && npx tsc && npx swc ./src -d ./dist",
+		"build:source": "node ./script/build/build.cjs && node ./script/build/build.js",
+		"build:types": "npx tsc",
+		"build": "rm -rf ./dist && npm run build:types && npm run build:source",
 		"prepublishOnly": "npm run build"
 	},
 	"keywords": [
@@ -33,24 +35,20 @@
 	},
 	"license": "MIT",
 	"devDependencies": {
-		"@swc/cli": "0.1.57",
-		"@swc/core": "^1.2.223",
-		"@swc/jest": "0.2.22",
-		"cross-env": "7.0.3",
-		"eslint": "^8.21.0",
+		"esbuild": "0.15.3",
+		"esbuild-jest": "0.5.0",
+		"eslint": "8.21.0",
 		"jest": "28.1.3",
 		"typescript": "4.7.4"
 	},
 	"engines": {
 		"node": ">= 16.0.0"
 	},
-	"main": "dist/index.js",
-	"module": "dist/index.js",
 	"exports": {
-			".": {
-					"import": "./dist/index.js",
-					"require": "./dist/index.js"
-			}
+		".": {
+			"import": "./dist/esm/index.mjs",
+			"require": "./dist/cjs/index.js"
+		}
 	},
 	"types": "./dist/types.d.ts",
 	"contributors": [
@@ -58,6 +56,10 @@
 			"name": "Victor Raton",
 			"url": "https://github.com/victorfernandesraton"
 		}
+	],
+	"files": [
+		"./dist",
+		"README.md"
 	],
 	"homepage": "https://github.com/victorfernandesraton/cep-any"
 }

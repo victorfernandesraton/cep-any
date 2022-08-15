@@ -5,8 +5,9 @@
 		"node": true
 	},
 	"ignorePatterns": [
-		"./dist/**",
-		"tsconfig.json"
+		"**/*/node_modules/**/*",
+		"tsconfig.json",
+		"/dist**"
 	],
 	"extends": "eslint:recommended",
 	"parserOptions": {

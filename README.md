@@ -12,14 +12,13 @@ if you use node.js 15 or lower, see 1.3.0 version, 2.0.0 version breaking change
 ## Simple use
 
 ```js
-const cep = require("cep-any");
+const {cep} = require("cep-any");
 
 cep("41342315").them(console.log);
 ```
 
 ```js
-import cepAny from "cep-any";
-const {cep} = cepAny;
+import {cep} from "cep-any";
 
 ```
 

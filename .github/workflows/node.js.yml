@@ -23,14 +23,14 @@ jobs:
         ci_node_index: [0]
 
     steps:
-      # - uses: actions/checkout@v2
-      # - name: Run Lint
-      #   uses: actions/setup-node@v2
-      #   with:
-      #     node-version: ${{ matrix.node-version }}
-      #     cache: "npm"
-      # - run: npm ci
-      # - run: npm run lint
+      - uses: actions/checkout@v2
+      - name: Run Lint
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - run: npm ci
+      - run: npm run lint
 
       - uses: actions/checkout@v2
       - name: Run test
