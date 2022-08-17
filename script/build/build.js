@@ -4,7 +4,7 @@ require("esbuild").buildSync({
 	minify: true,
 	platform: "neutral",
 	target: "esnext",
-	sourcemap: true,
+	sourcemap: false,
 	// target: ["chrome58", "firefox57", "safari11", "edge16"],
 	outfile: "./dist/esm/index.mjs",
 })

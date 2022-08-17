@@ -11,10 +11,11 @@ declare module "entity/index" {
             street: string;
             state: string;
             neighborhood: string;
+            city: string;
         });
         cep: string;
         street: string;
-        city: any;
+        city: string;
         state: string;
         neighborhood: string;
     }
@@ -154,4 +155,3 @@ declare module "index" {
     export const CepService: typeof import("service").CepService;
     export const factory: typeof import("factory").default;
 }
-//# sourceMappingURL=types.d.ts.map
