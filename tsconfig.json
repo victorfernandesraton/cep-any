@@ -24,11 +24,11 @@
 		"noLib": false /* Disable including any library files, including the default lib.d.ts. */,
 		"useDefineForClassFields": true /* Emit ECMAScript-standard-compliant class fields. */,
 		"declaration": true /* Generate .d.ts files from TypeScript and JavaScript files in your project. */,
-		"declarationMap": true,
+		"declarationMap": false,
 		/* Modules */
 		"module": "UMD" /* Specify what module code is generated. */,
 		"rootDir": "./src" /* Specify the root folder within your source files. */,
-		"moduleResolution": "classic" /* Specify how TypeScript looks up a file from a given module specifier. */,
+		"moduleResolution": "NodeNext" /* Specify how TypeScript looks up a file from a given module specifier. */,
 		// "baseUrl": "." /* Specify the base directory to resolve non-relative module names. */,
 		// "paths": {
 		//   "service": ["./src/service"],
@@ -94,7 +94,7 @@
 		// "allowUnreachableCode": true,                     /* Disable error reporting for unreachable code. */
 		/* Completeness */
 		// "skipDefaultLibCheck": true /* Skip type checking .d.ts files that are included with TypeScript. */,
-		"skipLibCheck": true /* Skip type checking all .d.ts files. */
+		"skipLibCheck": false /* Skip type checking all .d.ts files. */
 	},
 	"exclude": [
 		"!**/node_modules/**",

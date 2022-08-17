@@ -3,7 +3,7 @@ require("esbuild").buildSync({
 	bundle: true,
 	minify: true,
 	platform: "node",
-	sourcemap: true,
+	sourcemap: false,
 	target: ["node10.4"],
 	outfile: "./dist/cjs/index.js",
 })
