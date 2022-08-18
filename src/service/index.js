@@ -1,10 +1,30 @@
 import { ParamError } from "../errors/paramError.js"
+import { Requester } from "../requester/index.js"
 
 export class CepService {
 	static api
 	baseUrl = ""
-	constructor(api) {
+	/**
+	 *
+	 * @param {string} api
+	 * @param {
+	 * ({
+	 * url: string,
+	 * method?: "GET"| "POST"| "PUT",
+	 * body?: any,
+	 * params?: any,
+	 * headers?: any
+	 * }) => Promise<{
+	 * json: () =>Promise<any>
+	 * text: () =>Promise<string>
+	 * ok: boolean,
+	 * status: number
+	 *}>
+	 * } requester
+	 */
+	constructor(api, requester = Requester) {
 		this.api = api
+		this.requester = requester
 	}
 
 	generalParse(cep) {

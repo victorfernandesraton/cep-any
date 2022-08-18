@@ -1,4 +1,3 @@
-import { Requester } from "../../requester/index.js"
 import { CepService } from "../index.js"
 import { parseParamsToXML, responseToCep } from "./adapters.js"
 
@@ -9,7 +8,7 @@ export class CorreiosService extends CepService {
 	}
 
 	async handler(cep) {
-		const request = await Requester({
+		const request = await this.requester({
 			url: `${this.baseUrl}/SigepMasterJPA/AtendeClienteService/AtendeCliente`,
 			body: parseParamsToXML(cep),
 			method: "POST",
