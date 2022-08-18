@@ -25,9 +25,13 @@ import {cep} from "cep-any";
 ## Using factory and create a custonservice
 
 ```js
-const { factory, CepService } = require("cep-any");
+const { factory, CepService , Requester} = require("cep-any");
 
 class NewService extends CepService {
+	// Requester is a http client using fetch api, but you shuld be replace for another lib
+	constructor() {
+		super('custonapi', Requester)
+	}
 	handler = async (cep) => {
 		return {
 			cep: "88888888",
