@@ -3,6 +3,8 @@ import { Requester } from "./requester/index.js"
 import { ApiCepService } from "./service/apicep/index.js"
 import { BrasilAPIService } from "./service/brasilAPI/index.js"
 import { CorreiosService } from "./service/correios/index.js"
+// eslint-disable-next-line no-unused-vars
+import { CepService } from "./service/index.js"
 import { ViaCepService } from "./service/viacep/index.js"
 
 
@@ -10,7 +12,7 @@ import { ViaCepService } from "./service/viacep/index.js"
  *
  * @param {{
  * useDefaultProviders?: boolean,
- * custonProviders?: CepService,
+ * custonProviders?: CepService[],
  * requester?: Requester
  * }} param0
  * @returns

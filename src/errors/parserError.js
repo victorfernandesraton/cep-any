@@ -6,7 +6,11 @@ export class ParserError extends Error {
 	 * @param {string?} message
 	 */
 	constructor(api, message) {
-		super(message)
+		if (message) {
+			super(message)
+		} else {
+			super()
+		}
 		this.api = api
 	}
 }

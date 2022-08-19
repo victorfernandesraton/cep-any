@@ -26,7 +26,7 @@
 		"declaration": true /* Generate .d.ts files from TypeScript and JavaScript files in your project. */,
 		"declarationMap": false,
 		/* Modules */
-		"module": "UMD" /* Specify what module code is generated. */,
+		"module": "ESNext" /* Specify what module code is generated. */,
 		"rootDir": "./src" /* Specify the root folder within your source files. */,
 		"moduleResolution": "NodeNext" /* Specify how TypeScript looks up a file from a given module specifier. */,
 		// "baseUrl": "." /* Specify the base directory to resolve non-relative module names. */,
@@ -42,7 +42,7 @@
 		// "noResolve": true,                                /* Disallow `import`s, `require`s or `<reference>`s from expanding the number of files TypeScript should add to a project. */
 		/* JavaScript Support */
 		"allowJs": true /* Allow JavaScript files to be a part of your program. Use the `checkJS` option to get errors from these files. */,
-		// "checkJs": true,                                  /* Enable error reporting in type-checked JavaScript files. */
+		"checkJs": true, /* Enable error reporting in type-checked JavaScript files. */
 		// "maxNodeModuleJsDepth": 1,                        /* Specify the maximum folder depth used for checking JavaScript files from `node_modules`. Only applicable with `allowJs`. */
 		/* Emit */
 		// "declarationMap": true,                           /* Create sourcemaps for d.ts files. */
@@ -50,9 +50,9 @@
 		"sourceMap": true /* Create source map files for emitted JavaScript files. */,
 		"outFile": "./dist/types.d.ts", /* Specify a file that bundles all outputs into one JavaScript file. If `declaration` is true, also designates a file that bundles all .d.ts output. */
 		// "outDir": "./dist" /* Specify an output folder for all emitted files. */,
-		"removeComments": true /* Disable emitting comments. */,
+		"removeComments": false /* Disable emitting comments. */,
 		// "noEmit": true,                                   /* Disable emitting files from a compilation. */
-		// "importsNotUsedAsValues": "remove",               /* Specify emit/checking behavior for imports that are only used for types */
+		"importsNotUsedAsValues": "preserve", /* Specify emit/checking behavior for imports that are only used for types */
 		// "downlevelIteration": true,                       /* Emit more compliant, but verbose and less performant JavaScript for iteration. */
 		// "sourceRoot": "",                                 /* Specify the root path for debuggers to find the reference source code. */
 		// "mapRoot": "",                                    /* Specify the location where debugger should locate map files instead of generated locations. */
@@ -73,7 +73,7 @@
 		"preserveSymlinks": true /* Disable resolving symlinks to their realpath. This correlates to the same flag in node. */,
 		"forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
 		/* Type Checking */
-		"strict": false /* Enable all strict type-checking options. */,
+		"strict": true /* Enable all strict type-checking options. */,
 		"noImplicitAny": false /* Enable error reporting for expressions and declarations with an implied `any` type.. */,
 		// "strictNullChecks": true,                         /* When type checking, take into account `null` and `undefined`. */
 		// "strictFunctionTypes": true,                      /* When assigning functions, check to ensure parameters and the return values are subtype-compatible. */
@@ -104,6 +104,7 @@
 		"jest.config.cjs",
 		"**/examples/**",
 		"rollup.config.js",
-		"./script/**"
+		"./script/**",
+		"./dist/**"
 	]
 }

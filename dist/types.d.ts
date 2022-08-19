@@ -1,5 +1,15 @@
 declare module "entity/index" {
     export class Cep {
+        /**
+         * @param {{
+         * cep: string,
+         * street: string,
+         * state: string,
+         * neighborhood: string
+         * city: string
+         * }} param0
+         * @returns {Cep}
+         */
         static create({ cep, street, city, state, neighborhood, }: {
             cep: string;
             street: string;
@@ -7,6 +17,15 @@ declare module "entity/index" {
             neighborhood: string;
             city: string;
         }): Cep;
+        /**
+         * @param {{
+         * cep: string,
+         * street: string,
+         * state: string,
+         * neighborhood: string
+         * city: string
+         * }} param0
+         */
         constructor({ cep, street, city, state, neighborhood, }: {
             cep: string;
             street: string;
@@ -32,6 +51,21 @@ declare module "errors/paramError" {
     import { BasicError } from "errors/basicError";
 }
 declare module "requester/index" {
+    /**
+     * @param {{
+     * url: string,
+     * method?: "GET"| "POST"| "PUT",
+     * body?: any,
+     * params?: any,
+     * headers?: any
+     * }} param0
+     * @returns {{
+        * json: () =>Promise<any>
+        * text: () =>Promise<string>
+        * ok: boolean,
+        * status: number
+        *}}
+     */
     export function Requester({ url, method, body, params, headers, }: {
         url: string;
         method?: "GET" | "POST" | "PUT";
@@ -48,26 +82,76 @@ declare module "requester/index" {
 declare module "service/index" {
     export class CepService {
         static api: any;
+        /**
+         *
+         * @param {string} api
+         * @param {
+         * ({
+         * url: string,
+         * method?: "GET"| "POST"| "PUT",
+         * body?: any,
+         * params?: any,
+         * headers?: any
+         * }) => Promise<{
+         * json: () =>Promise<any>
+         * text: () =>Promise<string>
+         * ok: boolean,
+         * status: number
+         *}>
+         * } requester
+         */
         constructor(api: string, requester?: typeof Requester);
         baseUrl: string;
         api: string;
         requester: typeof Requester;
         generalParse(cep: any): any;
         validateCep(cep: any): void;
-        execute(cep: any): Promise<void>;
-        handler(cep: any): Promise<void>;
+        /**
+         *
+         * @param {string} cep
+         * @returns {Promise<Cep>}
+         */
+        execute(cep: string): Promise<Cep>;
+        /**
+         *
+         * @param {string} cep
+         * @returns {Promise<Cep>}
+         */
+        handler(cep: string): Promise<Cep>;
     }
     import { Requester } from "requester";
+    import { Cep } from "entity";
 }
 declare module "provider" {
     export class Provider {
+        /**
+         *
+         * @param {CepService[]} services
+         */
         constructor(services: CepService[]);
         services: CepService[];
-        execute(cep: any): Promise<void>;
+        /**
+         *
+         * @param {string} cep
+         * @returns {Promise<Cep>}
+         */
+        execute(cep: string): Promise<Cep>;
     }
     import { CepService } from "service";
+    import { Cep } from "entity";
 }
 declare module "service/apicep/adapters" {
+    /**
+     *
+     * @param {{
+     * code: string;
+     * state: string;
+     * city: string;
+     * district?: string;
+     * address: string;
+    * }} data
+     * @returns {Cep}
+     */
     export function responseToCep(data: {
         code: string;
         state: string;
@@ -97,6 +181,10 @@ declare module "service/brasilAPI/index" {
 }
 declare module "errors/parserError" {
     export class ParserError extends Error {
+        /**
+         * @param {string} api
+         * @param {string?} message
+         */
         constructor(api: string, message: string | null);
         api: string;
     }
@@ -126,11 +214,21 @@ declare module "service/viacep/index" {
     import { CepService } from "service";
 }
 declare module "factory" {
+    /**
+     *
+     * @param {{
+     * useDefaultProviders?: boolean,
+     * custonProviders?: CepService[],
+     * requester?: Requester
+     * }} param0
+     * @returns
+     */
     export default function _default({ useDefaultProviders, custonProviders, requester }: {
         useDefaultProviders?: boolean;
-        custonProviders?: CepService;
+        custonProviders?: CepService[];
         requester?: typeof Requester;
     }): Provider;
+    import { CepService } from "service";
     import { Requester } from "requester";
     import { Provider } from "provider";
 }
