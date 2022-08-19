@@ -5,6 +5,7 @@ declare module "entity/index" {
             street: string;
             state: string;
             neighborhood: string;
+            city: string;
         }): Cep;
         constructor({ cep, street, city, state, neighborhood, }: {
             cep: string;
@@ -30,26 +31,6 @@ declare module "errors/paramError" {
     }
     import { BasicError } from "errors/basicError";
 }
-declare module "service/index" {
-    export class CepService {
-        static api: any;
-        constructor(api: any);
-        baseUrl: string;
-        api: any;
-        generalParse(cep: any): any;
-        validateCep(cep: any): void;
-        execute(cep: any): Promise<void>;
-        handler(cep: any): Promise<void>;
-    }
-}
-declare module "provider" {
-    export class Provider {
-        constructor(services: CepService[]);
-        services: CepService[];
-        execute(cep: any): Promise<void>;
-    }
-    import { CepService } from "service";
-}
 declare module "requester/index" {
     export function Requester({ url, method, body, params, headers, }: {
         url: string;
@@ -63,6 +44,28 @@ declare module "requester/index" {
         ok: boolean;
         status: number;
     };
+}
+declare module "service/index" {
+    export class CepService {
+        static api: any;
+        constructor(api: string, requester?: typeof Requester);
+        baseUrl: string;
+        api: string;
+        requester: typeof Requester;
+        generalParse(cep: any): any;
+        validateCep(cep: any): void;
+        execute(cep: any): Promise<void>;
+        handler(cep: any): Promise<void>;
+    }
+    import { Requester } from "requester";
+}
+declare module "provider" {
+    export class Provider {
+        constructor(services: CepService[]);
+        services: CepService[];
+        execute(cep: any): Promise<void>;
+    }
+    import { CepService } from "service";
 }
 declare module "service/apicep/adapters" {
     export function responseToCep(data: {
@@ -123,10 +126,12 @@ declare module "service/viacep/index" {
     import { CepService } from "service";
 }
 declare module "factory" {
-    export default function _default({ useDefaultProviders, custonProviders, }: {
+    export default function _default({ useDefaultProviders, custonProviders, requester }: {
         useDefaultProviders?: boolean;
-        custonProviders: any;
+        custonProviders?: CepService;
+        requester?: typeof Requester;
     }): Provider;
+    import { Requester } from "requester";
     import { Provider } from "provider";
 }
 declare module "cep" {
@@ -140,6 +145,7 @@ declare module "lib" {
         export { CepService };
         export { Provider };
         export { factory };
+        export { Requester };
     }
     export default _default;
     import { Cep } from "entity";
@@ -147,6 +153,7 @@ declare module "lib" {
     import { CepService } from "service";
     import { Provider } from "provider";
     import factory from "factory";
+    import { Requester } from "requester";
 }
 declare module "index" {
     export const cep: (cep: string) => Promise<import("entity").Cep>;
@@ -154,4 +161,5 @@ declare module "index" {
     export const Cep: typeof import("entity").Cep;
     export const CepService: typeof import("service").CepService;
     export const factory: typeof import("factory").default;
+    export const Requester: typeof import("requester").Requester;
 }

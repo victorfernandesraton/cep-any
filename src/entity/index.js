@@ -27,6 +27,7 @@ export class Cep {
 	 * street: string,
 	 * state: string,
 	 * neighborhood: string
+	 * city: string
 	 * }} param0
 	 * @returns {Cep}
 	 */
