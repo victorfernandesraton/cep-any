@@ -62,7 +62,7 @@
 		"README.md"
 	],
 	"publishConfig": {
-		"registry": "https://npm.pkg.github.com"
+		"@YOUR-USERNAME:registry": "https://npm.pkg.github.com"
 	},
 	"homepage": "https://github.com/victorfernandesraton/cep-any"
 }
