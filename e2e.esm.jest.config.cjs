@@ -154,29 +154,14 @@ module.exports = {
 
 	// The glob patterns Jest uses to detect test files
 	testMatch: [
-		"**/__tests__/**/*.[jt]s?(x)",
-		"**/?(*.)+(spec|test).[tj]s?(x)",
-		"**/?(*.)+(spec|test).mjs"
+		"**.spec.mjs"
 	],
-
-	transform: {
-		"^.+\\.js?$": [
-			"esbuild-jest",
-			{
-				sourcemap: true,
-
-			}
-		]
-	},
 	testTimeout: 60 * 1000,
 
 	// An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-	testPathIgnorePatterns: [
-		"/node_modules/",
-		"^.+\\.e2e.spec.js?$",
-		"^.+\\.e2e.spec.mjs?$"
-
-	],
+	// testPathIgnorePatterns: [
+	//   "/node_modules/"
+	// ],
 
 	// The regexp pattern or array of patterns that Jest uses to detect test files
 	// testRegex: [],

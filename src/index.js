@@ -5,3 +5,4 @@ export const Provider = lib.Provider
 export const Cep = lib.Cep
 export const CepService = lib.CepService
 export const factory = lib.factory
+export const Requester = lib.Requester

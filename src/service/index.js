@@ -1,10 +1,33 @@
+// @ts-nocheck
+// eslint-disable-next-line no-unused-vars
+import { Cep } from "../entity/index.js"
 import { ParamError } from "../errors/paramError.js"
+import { Requester } from "../requester/index.js"
 
 export class CepService {
 	static api
 	baseUrl = ""
-	constructor(api) {
+	/**
+	 *
+	 * @param {string} api
+	 * @param {
+	 * ({
+	 * url: string,
+	 * method?: "GET"| "POST"| "PUT",
+	 * body?: any,
+	 * params?: any,
+	 * headers?: any
+	 * }) => Promise<{
+	 * json: () =>Promise<any>
+	 * text: () =>Promise<string>
+	 * ok: boolean,
+	 * status: number
+	 *}>
+	 * } requester
+	 */
+	constructor(api, requester = Requester) {
 		this.api = api
+		this.requester = requester
 	}
 
 	generalParse(cep) {
@@ -17,12 +40,22 @@ export class CepService {
 		}
 	}
 
+	/**
+	 *
+	 * @param {string} cep
+	 * @returns {Promise<Cep>}
+	 */
 	async execute(cep) {
 		const value = this.generalParse(cep)
 		this.validateCep(value)
 		const response = await this.handler(cep)
 		return response
 	}
+	/**
+	 *
+	 * @param {string} cep
+	 * @returns {Promise<Cep>}
+	 */
 	// eslint-disable-next-line no-unused-vars
 	async handler(cep) {
 		throw new Error("not implemented")

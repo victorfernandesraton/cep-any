@@ -1,4 +1,3 @@
-import { Requester } from "../../requester/index.js"
 import { CepService } from "../index.js"
 import { responseToCep } from "./adapters.js"
 
@@ -10,7 +9,7 @@ export class ViaCepService extends CepService {
 	}
 
 	async handler(cep) {
-		const request = await Requester({
+		const request = await this.requester({
 			url: `${this.baseUrl}/ws/${cep}/json`,
 			method: "GET",
 		})

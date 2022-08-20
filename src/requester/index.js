@@ -34,5 +34,6 @@ export function Requester({
 
 	const URL = `${url}?${searchParams.toString()}`
 
+	// @ts-ignore
 	return fetch(URL, options)
 }

@@ -3,6 +3,7 @@ import { CepService } from "./service/index.js"
 import { cep } from "./cep.js"
 import factory from "./factory.js"
 import { Provider } from "./provider.js"
+import { Requester } from "./requester/index"
 
 export default {
 	Cep,
@@ -10,4 +11,5 @@ export default {
 	CepService,
 	Provider,
 	factory,
+	Requester,
 }
