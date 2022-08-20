@@ -19,13 +19,9 @@ export class Provider {
 	 * @returns {Promise<Cep>}
 	 */
 	async execute(cep) {
-		try {
-			const result = await Promise.any(
-				this.services.map((item) => item.execute(cep))
-			)
-			return result
-		} catch (error) {
-			throw new Error("error in execute cep")
-		}
+		const result = await Promise.any(
+			this.services.map((item) => item.execute(cep))
+		)
+		return result
 	}
 }

@@ -101,7 +101,7 @@
 		"./test/**",
 		"./github/**",
 		"./coverage/**",
-		"jest.config.cjs",
+		"**jest.config.cjs",
 		"**/examples/**",
 		"rollup.config.js",
 		"./script/**",
