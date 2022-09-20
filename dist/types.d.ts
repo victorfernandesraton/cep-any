@@ -1,4 +1,4 @@
-declare module "entity/index" {
+﻿declare module "entity/index" {
     export class Cep {
         /**
          * @param {{
@@ -115,12 +115,11 @@ declare module "service/index" {
         /**
          *
          * @param {string} cep
-         * @returns {Promise<Cep>}
+         * @returns {Promise}
          */
-        handler(cep: string): Promise<Cep>;
+        handler(cep: string): Promise<any>;
     }
     import { Requester } from "requester";
-    import { Cep } from "entity";
 }
 declare module "provider" {
     export class Provider {
