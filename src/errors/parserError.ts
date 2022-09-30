@@ -1,5 +1,5 @@
 export class ParserError extends Error {
-	api = ""
+	api = ''
 
 	/**
 	 * @param {string} api
