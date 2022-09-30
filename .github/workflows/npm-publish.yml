@@ -1,18 +1,17 @@
-# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
 name: npm-publish
-on:
-  release:
-    types: [created]
-jobs:
+	on:
+		release:
+			types: [created]
+	jobs:
 	build:
-		runs-on: ubuntu-latest
-		steps:
-			- uses: actions/checkout@v2
-			- uses: actions/setup-node@v2
-				with:
-					node-version: 18
-			- run: npm ci
-			- run: npm test
+			runs-on: ubuntu-latest
+			steps:
+				- uses: actions/checkout@v2
+				- uses: actions/setup-node@v2
+					with:
+						node-version: 18
+				- run: npm ci
+				- run: npm test
   npm-publish:
     name: npm-publish
     runs-on: ubuntu-latest
