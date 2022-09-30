@@ -7,8 +7,8 @@
 		"url": "https://github.com/victorfernandesraton/cep-any"
 	},
 	"scripts": {
-		"test": "npm run test:unit && npm run test:e2e:esm",
-		"test:unit": "NODE_OPTIONS=--experimental-vm-modules npx jest --maxWorkers=75%",
+		"test": "jest",
+		"test:unit": "npx jest --maxWorkers=75%",
 		"test:e2e:esm": "NODE_OPTIONS=--experimental-vm-modules npx jest --maxWorkers=75% -c e2e.esm.jest.config.cjs",
 		"lint": "npx eslint ./src",
 		"build:source": "node ./script/build/build.cjs && node ./script/build/build.js",
@@ -35,10 +35,14 @@
 	},
 	"license": "MIT",
 	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^5.38.1",
+		"@typescript-eslint/parser": "^5.38.1",
 		"esbuild": "0.15.8",
 		"esbuild-jest": "0.5.0",
 		"eslint": "8.22.0",
 		"jest": "29.0.2",
+		"ts-jest": "^29.0.3",
+		"ts-node": "^10.9.1",
 		"typescript": "4.8.3"
 	},
 	"engines": {

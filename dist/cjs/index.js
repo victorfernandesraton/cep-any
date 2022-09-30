@@ -1,2 +1,299 @@
-"use strict";var f=Object.defineProperty;var $=Object.getOwnPropertyDescriptor;var A=Object.getOwnPropertyNames;var j=Object.prototype.hasOwnProperty;var k=(r,e,t)=>e in r?f(r,e,{enumerable:!0,configurable:!0,writable:!0,value:t}):r[e]=t;var L=(r,e)=>{for(var t in e)f(r,t,{get:e[t],enumerable:!0})},M=(r,e,t,o)=>{if(e&&typeof e=="object"||typeof e=="function")for(let s of A(e))!j.call(r,s)&&s!==t&&f(r,s,{get:()=>e[s],enumerable:!(o=$(e,s))||o.enumerable});return r};var B=r=>M(f({},"__esModule",{value:!0}),r);var d=(r,e,t)=>(k(r,typeof e!="symbol"?e+"":e,t),t);var O={};L(O,{Cep:()=>D,CepService:()=>H,Provider:()=>X,Requester:()=>J,cep:()=>G,factory:()=>I});module.exports=B(O);var n=class{constructor({cep:e,street:t,city:o,state:s,neighborhood:i}){this.cep=e,this.street=t,this.city=o,this.state=s,this.neighborhood=i}static create({cep:e,street:t,city:o,state:s,neighborhood:i}){return new n({cep:e,street:t,city:o,state:s,neighborhood:i})}};var x=class extends Error{};var w=class extends x{constructor(e){super(`invalid params ${e}`)}};function c({url:r,method:e="GET",body:t,params:o,headers:s}){let i=new URLSearchParams,m={method:e,body:t,headers:s};if(o)for(let g in o)i.set(g,o[g]);let U=`${r}?${i.toString()}`;return fetch(U,m)}var p=class{baseUrl="";constructor(e,t=c){this.api=e,this.requester=t}generalParse(e){return e.replaceAll("-","")}validateCep(e){if(!/[0-9]{8}/.test(e))throw new w(e)}async execute(e){let t=this.generalParse(e);return this.validateCep(t),await this.handler(e)}async handler(e){throw new Error("not implemented")}};d(p,"api");var l=class{services;constructor(e){this.services=e}async execute(e){return await Promise.any(this.services.map(o=>o.execute(e)))}};function q(r){return n.create({cep:r.code.replaceAll("-",""),city:r.city,state:r.state,neighborhood:r.district??"",street:r.address})}var v=class extends p{constructor(){super("apicep"),this.baseUrl="https://ws.apicep.com/cep.json"}async handler(e){let t=await c({url:this.baseUrl,params:{code:e}}),o=await t.json();if(!t.ok)throw new Error(o);return q(o)}};function P(r){return n.create({...r})}var C=class extends p{constructor(){super("brasilAPI"),this.baseUrl="https://brasilapi.com.br/api/cep/v1/"}async handler(e){let t=await this.requester({url:`${this.baseUrl}/${e}`}),o=await t.json();if(!t.ok)throw new Error(o);return P(o)}};var u=class extends Error{api="";constructor(e,t){t?super(t):super(),this.api=e}};function S(r){return`<?xml version="1.0"?>
-	<soapenv:Envelope 		xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cli="http://cliente.bean.master.sigep.bsb.correios.com.br/">  <soapenv:Header />  <soapenv:Body>    <cli:consultaCEP>      <cep>${r}</cep>    </cli:consultaCEP>  </soapenv:Body></soapenv:Envelope>`}function E(r){try{let e=r.replace(/\r?\n|\r/g,"").match(/<return>(.*)<\/return>/)?.[0]??"";if(e=="")throw new u(`invalid regex got ${r}`,"correios");let o=e.replace("<return>","").replace("</return>","").split(/</).reduce((s,i)=>{let m=i.split(">");return m.length>1&&m[1].trim().length&&(s[m?.[0]]=m[1]),s},{});if(o?.cep===""||!o?.cep)throw new u("not returnd a cep to parse","correios");return n.create({cep:o.cep??"",state:o.uf??"",city:o.cidade??"",street:o.bairro??"",neighborhood:o.end??""})}catch{throw new u("not implement xml","correios")}}var b=class extends p{constructor(){super("correios"),this.baseUrl="https://apps.correios.com.br"}async handler(e){let t=await this.requester({url:`${this.baseUrl}/SigepMasterJPA/AtendeClienteService/AtendeCliente`,body:S(e),method:"POST",headers:{"Content-Type":"application/xml"}}),o=await t.text();if(!t.ok)throw new Error(o);return E(o)}};function T(r){return n.create({cep:r?.cep?.replace("-","")??"",state:r?.uf??"",city:r?.localidade??"",street:r?.logradouro??"",neighborhood:r?.bairro??""})}var h=class extends p{constructor(){super("viacep"),this.baseUrl="https://viacep.com.br"}async handler(e){let t=await this.requester({url:`${this.baseUrl}/ws/${e}/json`,method:"GET"}),o=await t.json();if(!t.ok)throw new Error(o);return T(o)}};d(h,"baseUrl");function y({useDefaultProviders:r=!0,custonProviders:e,requester:t=c}){let o=[];return r&&(o=[new h,new C,new v,new b]),e?.length&&(o=[...o,...e]),t&&(o=[...o.map(s=>(s.requester=t,s))]),new l(o)}var R=r=>y({useDefaultProviders:!0}).execute(r);var a={Cep:n,cep:R,CepService:p,Provider:l,factory:y,Requester:c};var G=a.cep,X=a.Provider,D=a.Cep,H=a.CepService,I=a.factory,J=a.Requester;0&&(module.exports={Cep,CepService,Provider,Requester,cep,factory});
+"use strict";
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+var __publicField = (obj, key, value) => {
+  __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
+  return value;
+};
+
+// src/index.ts
+var src_exports = {};
+__export(src_exports, {
+  CepService: () => CepService,
+  Provider: () => Provider,
+  Requester: () => Requester,
+  cep: () => cep,
+  factory: () => factory_default
+});
+module.exports = __toCommonJS(src_exports);
+
+// src/errors/basicError.ts
+var BasicError = class extends Error {
+  constructor(message) {
+    super(message);
+  }
+};
+
+// src/errors/paramError.ts
+var ParamError = class extends BasicError {
+  constructor(args) {
+    super(`invalid params ${args}`);
+  }
+};
+
+// src/requester/index.ts
+function Requester({
+  url,
+  method = "GET",
+  body,
+  params,
+  headers
+}) {
+  const searchParams = new URLSearchParams();
+  const options = {
+    method,
+    body,
+    headers
+  };
+  if (params) {
+    for (const key in params) {
+      searchParams.set(key, params[key]);
+    }
+  }
+  const URL = `${url}?${searchParams.toString()}`;
+  return fetch(URL, options);
+}
+
+// src/service/index.ts
+var CepService = class {
+  api;
+  requester;
+  baseUrl = "";
+  constructor(api, requester = Requester) {
+    this.api = api;
+    this.requester = requester;
+  }
+  overrideRequest(requester) {
+    this.requester = requester;
+  }
+  generalParse(cep2) {
+    return cep2.replaceAll("-", "");
+  }
+  validateCep(cep2) {
+    if (!/[0-9]{8}/.test(cep2)) {
+      throw new ParamError(cep2);
+    }
+  }
+  async execute(cep2) {
+    const value = this.generalParse(cep2);
+    this.validateCep(value);
+    const response = await this.handler(cep2);
+    return response;
+  }
+};
+
+// src/provider.ts
+var Provider = class {
+  services;
+  constructor(services) {
+    this.services = services;
+  }
+  async execute(cep2) {
+    const result = await Promise.any(
+      this.services.map((item) => item.execute(cep2))
+    );
+    return result;
+  }
+};
+
+// src/service/apicep/index.ts
+var ApiCepService = class extends CepService {
+  constructor() {
+    super("apicep");
+    this.baseUrl = "https://ws.apicep.com/cep.json";
+  }
+  async handler(cep2) {
+    const request = await Requester({
+      url: this.baseUrl,
+      params: {
+        code: cep2
+      }
+    });
+    const data = await request.json();
+    if (!request.ok) {
+      throw new Error(data);
+    }
+    return {
+      cep: data.code.replaceAll("-", ""),
+      city: data.city,
+      state: data.state,
+      neighborhood: data.district ?? "",
+      street: data.address
+    };
+  }
+};
+
+// src/service/brasilAPI/index.ts
+var BrasilAPIService = class extends CepService {
+  constructor() {
+    super("brasilAPI");
+    this.baseUrl = "https://brasilapi.com.br/api/cep/v1/";
+  }
+  async handler(cep2) {
+    const request = await this.requester({ url: `${this.baseUrl}/${cep2}` });
+    const data = await request.json();
+    if (!request.ok) {
+      throw new Error(data);
+    }
+    return {
+      ...data
+    };
+  }
+};
+
+// src/errors/parserError.ts
+var ParserError = class extends Error {
+  api = "";
+  constructor(api, message) {
+    if (message) {
+      super(message);
+    } else {
+      super();
+    }
+    this.api = api;
+  }
+};
+
+// src/service/correios/adapters.ts
+function parseParamsToXML(data) {
+  return `<?xml version="1.0"?>
+	<soapenv:Envelope 		xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cli="http://cliente.bean.master.sigep.bsb.correios.com.br/">  <soapenv:Header />  <soapenv:Body>    <cli:consultaCEP>      <cep>${data}</cep>    </cli:consultaCEP>  </soapenv:Body></soapenv:Envelope>`;
+}
+function responseToCep(data) {
+  try {
+    const returnStatement = data.replace(/\r?\n|\r/g, "").match(/<return>(.*)<\/return>/)?.[0] ?? "";
+    if (returnStatement == "") {
+      throw new ParserError(`invalid regex got ${data}`, "correios");
+    }
+    const cleanReturnStatement = returnStatement.replace("<return>", "").replace("</return>", "");
+    const parsedReturnStatement = cleanReturnStatement.split(/</).reduce((result, exp) => {
+      const splittenExp = exp.split(">");
+      if (splittenExp.length > 1 && splittenExp[1].trim().length) {
+        result[splittenExp?.[0]] = splittenExp[1];
+      }
+      return result;
+    }, {});
+    if (parsedReturnStatement?.cep === "" || !parsedReturnStatement?.cep) {
+      throw new ParserError("not returnd a cep to parse", "correios");
+    }
+    return {
+      cep: parsedReturnStatement.cep ?? "",
+      state: parsedReturnStatement.uf ?? "",
+      city: parsedReturnStatement.cidade ?? "",
+      street: parsedReturnStatement.bairro ?? "",
+      neighborhood: parsedReturnStatement.end ?? ""
+    };
+  } catch (e) {
+    throw new ParserError("not implement xml", "correios");
+  }
+}
+
+// src/service/correios/index.ts
+var CorreiosService = class extends CepService {
+  constructor() {
+    super("correios");
+    this.baseUrl = "https://apps.correios.com.br";
+  }
+  async handler(cep2) {
+    const request = await this.requester({
+      url: `${this.baseUrl}/SigepMasterJPA/AtendeClienteService/AtendeCliente`,
+      body: parseParamsToXML(cep2),
+      method: "POST",
+      headers: {
+        "Content-Type": "application/xml"
+      }
+    });
+    const data = await request.text();
+    if (!request.ok) {
+      throw new Error(data);
+    }
+    return responseToCep(data);
+  }
+};
+
+// src/service/viacep/index.ts
+var ViaCepService = class extends CepService {
+  constructor() {
+    super("viacep");
+    this.baseUrl = "https://viacep.com.br";
+  }
+  async handler(cep2) {
+    const request = await this.requester({
+      url: `${this.baseUrl}/ws/${cep2}/json`,
+      method: "GET"
+    });
+    const data = await request.json();
+    if (!request.ok) {
+      throw new Error(data);
+    }
+    return {
+      cep: data?.cep?.replace("-", "") ?? "",
+      state: data?.uf ?? "",
+      city: data?.localidade ?? "",
+      street: data?.logradouro ?? "",
+      neighborhood: data?.bairro ?? ""
+    };
+  }
+};
+__publicField(ViaCepService, "baseUrl");
+
+// src/factory.ts
+function factory_default({
+  useDefaultProviders = true,
+  custonProviders,
+  requester = Requester
+}) {
+  let services = [];
+  if (useDefaultProviders) {
+    services = [
+      new ViaCepService(),
+      new BrasilAPIService(),
+      new ApiCepService(),
+      new CorreiosService()
+    ];
+  }
+  if (custonProviders?.length) {
+    services = [...services, ...custonProviders];
+  }
+  if (requester) {
+    services = [
+      ...services.map((service) => {
+        service.overrideRequest(requester);
+        return service;
+      })
+    ];
+  }
+  return new Provider(services);
+}
+
+// src/cep.ts
+var cep = (cep2) => {
+  const handler = factory_default({
+    useDefaultProviders: true
+  });
+  return handler.execute(cep2);
+};
+// Annotate the CommonJS export names for ESM import in node:
+0 && (module.exports = {
+  CepService,
+  Provider,
+  Requester,
+  cep,
+  factory
+});

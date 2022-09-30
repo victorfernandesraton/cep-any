@@ -1,9 +1,9 @@
 /*
- * For a detailed explanation regarding each configuration property, visit:
+ * For a detailed explanation regarding each configuration property and type check, visit:
  * https://jestjs.io/docs/configuration
  */
 
-module.exports = {
+export default {
 	// All imported modules in your tests should be mocked automatically
 	// automock: false,
 
@@ -23,7 +23,7 @@ module.exports = {
 	// collectCoverageFrom: undefined,
 
 	// The directory where Jest should output its coverage files
-	coverageDirectory: "coverage",
+	coverageDirectory: 'coverage',
 
 	// An array of regexp pattern strings used to skip coverage collection
 	// coveragePathIgnorePatterns: [
@@ -31,7 +31,7 @@ module.exports = {
 	// ],
 
 	// Indicates which provider should be used to instrument code for coverage
-	coverageProvider: "v8",
+	coverageProvider: 'v8',
 
 	// A list of reporter names that Jest uses when writing coverage reports
 	// coverageReporters: [
@@ -100,7 +100,7 @@ module.exports = {
 	// notifyMode: "failure-change",
 
 	// A preset that is used as a base for Jest's configuration
-	// preset: undefined,
+	preset: 'ts-jest',
 
 	// Run tests from one or more projects
 	// projects: undefined,
@@ -153,30 +153,15 @@ module.exports = {
 	// testLocationInResults: false,
 
 	// The glob patterns Jest uses to detect test files
-	testMatch: [
-		"**/__tests__/**/*.[jt]s?(x)",
-		"**/?(*.)+(spec|test).[tj]s?(x)",
-		"**/?(*.)+(spec|test).mjs"
-	],
-
-	transform: {
-		"^.+\\.js?$": [
-			"esbuild-jest",
-			{
-				sourcemap: true,
-
-			}
-		]
-	},
-	testTimeout: 60 * 1000,
+	// testMatch: [
+	//   "**/__tests__/**/*.[jt]s?(x)",
+	//   "**/?(*.)+(spec|test).[tj]s?(x)"
+	// ],
 
 	// An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-	testPathIgnorePatterns: [
-		"/node_modules/",
-		"^.+\\.e2e.spec.js?$",
-		"^.+\\.e2e.spec.mjs?$"
-
-	],
+	// testPathIgnorePatterns: [
+	//   "/node_modules/"
+	// ],
 
 	// The regexp pattern or array of patterns that Jest uses to detect test files
 	// testRegex: [],
