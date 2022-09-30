@@ -1,6 +1,6 @@
 name: npm-publish
-	on:
-		release:
+  on:
+	release:
 			types: [created]
 	jobs:
 	build:
