@@ -1,5 +1,5 @@
-import { Cep } from './entity/index'
-import { CepService } from './service/index'
+import { Cep } from './entity/'
+import { CepService } from './service/'
 
 export class Provider {
 	private readonly services

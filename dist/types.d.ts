@@ -1,4 +1,4 @@
-﻿declare module "entity/index" {
+﻿declare module "entity/cep" {
     export type Cep = {
         cep: string;
         street: string;
@@ -6,6 +6,10 @@
         neighborhood: string;
         city: string;
     };
+}
+declare module "entity/index" {
+    import { Cep } from "entity/cep";
+    export { Cep };
 }
 declare module "errors/basicError" {
     export class BasicError extends Error {
@@ -132,7 +136,8 @@ declare module "factory" {
     export default function ({ useDefaultProviders, custonProviders, requester }: Params): Provider;
 }
 declare module "cep" {
-    export const cep: (cep: string) => Promise<import("entity").Cep>;
+    import { Cep } from "entity/index";
+    export const cep: (cep: string) => Promise<Cep>;
 }
 declare module "index" {
     import { CepService } from "service/index";
@@ -141,18 +146,4 @@ declare module "index" {
     import { Provider } from "provider";
     import { Requester } from "requester/index";
     export { cep, CepService, Provider, factory, Requester, };
-}
-declare module "lib" {
-    import { CepService } from "service/index";
-    import factory from "factory";
-    import { Provider } from "provider";
-    import { Requester } from "requester/index";
-    const _default: {
-        cep: (cep: string) => Promise<import("entity").Cep>;
-        CepService: typeof CepService;
-        Provider: typeof Provider;
-        factory: typeof factory;
-        Requester: typeof Requester;
-    };
-    export default _default;
 }
