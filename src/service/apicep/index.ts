@@ -1,4 +1,4 @@
-import { Requester } from '../../requester/index'
+import { Requester } from '../../requester/'
 import { CepService } from '../index'
 
 export class ApiCepService extends CepService {
