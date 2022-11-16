@@ -1,34 +1,28 @@
-type RequesterParams = {
+export type RequesterParams = {
 	url: string,
 	method?: 'POST' | 'GET',
-	body?: unknown,
-	params?: unknown,
-	headers?: unknown
+	body?: BodyInit | null | undefined,
+	params?: any,
+	headers?: HeadersInit
 }
 
-export type RequestType = (params: RequesterParams) => Promise<unknown>
+export type RequestType = (params: RequesterParams) => Promise<Response>
 export function Requester({
 	url,
-	method = 'GET',
 	body,
-	params,
 	headers,
+	method,
+	params
 }: RequesterParams) {
-	const searchParams = new URLSearchParams()
+	const searchParams = new URLSearchParams(params)
 	const options = {
 		method,
 		body,
 		headers
 	}
-	if (params) {
-		for (const key in params) {
-			searchParams.set(key, params[key])
-		}
-	}
 
 	const URL = `${url}?${searchParams.toString()}`
 
-	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-	// @ts-ignore
+
 	return fetch(URL, options)
 }

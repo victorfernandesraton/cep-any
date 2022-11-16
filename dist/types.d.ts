@@ -23,25 +23,25 @@ declare module "errors/paramError" {
     }
 }
 declare module "requester/index" {
-    type RequesterParams = {
+    export type RequesterParams = {
         url: string;
         method?: 'POST' | 'GET';
-        body?: unknown;
-        params?: unknown;
-        headers?: unknown;
+        body?: BodyInit | null | undefined;
+        params?: any;
+        headers?: HeadersInit;
     };
-    export type RequestType = (params: RequesterParams) => Promise<unknown>;
-    export function Requester({ url, method, body, params, headers, }: RequesterParams): any;
+    export type RequestType = (params: RequesterParams) => Promise<Response>;
+    export function Requester({ url, body, headers, method, params }: RequesterParams): Promise<Response>;
 }
 declare module "service/index" {
     import { Cep } from "entity/index";
-    import { Requester, RequestType } from "requester/index";
+    import { RequesterParams } from "requester/index";
     export abstract class CepService {
         private readonly api;
-        protected requester: any;
         protected baseUrl: string;
-        constructor(api: string, requester?: typeof Requester);
-        overrideRequest(requester: RequestType): void;
+        protected requester: (params: RequesterParams) => Promise<Response>;
+        constructor(api: string);
+        overrideRequest(requester: (params: RequesterParams) => Promise<Response>): void;
         generalParse(cep: string): string;
         validateCep(cep: string): void;
         execute(cep: string): Promise<Cep>;
