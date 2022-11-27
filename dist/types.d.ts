@@ -42,9 +42,9 @@ declare module "service/index" {
         protected requester: (params: RequesterParams) => Promise<Response>;
         constructor(api: string);
         overrideRequest(requester: (params: RequesterParams) => Promise<Response>): void;
-        generalParse(cep: string): string;
-        validateCep(cep: string): void;
-        execute(cep: string): Promise<Cep>;
+        static generalParse(cep: string): string;
+        static validateCep(cep: string): boolean;
+        execute(cep: string | number): Promise<Cep>;
         abstract handler(cep: string): Promise<Cep>;
     }
 }
