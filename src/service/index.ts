@@ -19,22 +19,30 @@ export abstract class CepService {
 		this.requester = requester
 	}
 
-	generalParse(cep: string) {
-		return cep.replaceAll('-', '')
+	static generalParse(cep: string) {
+		return cep.replaceAll('-', '').replaceAll('.', '')
 	}
 
-	validateCep(cep: string) {
-		if (!/[0-9]{8}/.test(cep)) {
-			throw new ParamError(cep)
+	static validateCep(cep: string) {
+		return /[0-9]{8}/.test(cep)
+	}
+
+
+	async execute(cep: string | number): Promise<Cep> {
+		let data = ''
+		if (typeof cep === 'number') {
+			data = cep.toString()
+		} else {
+			data = cep
 		}
-	}
 
+		const value = CepService.generalParse(data)
 
-	async execute(cep: string) {
-		const value = this.generalParse(cep)
-		this.validateCep(value)
-		const response = await this.handler(cep)
-		return response
+		if (!CepService.validateCep(value)) {
+			throw new ParamError(value)
+		}
+
+		return this.handler(value)
 	}
 
 	abstract handler(cep: string): Promise<Cep>
