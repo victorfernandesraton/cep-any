@@ -2,7 +2,8 @@ export type RequesterParams = {
 	url: string,
 	method?: 'POST' | 'GET',
 	body?: BodyInit | null | undefined,
-	params?: any,
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	params?: unknown & any,
 	headers?: HeadersInit
 }
 
@@ -15,6 +16,7 @@ export function Requester({
 	params
 }: RequesterParams) {
 	const searchParams = new URLSearchParams(params)
+
 	const options = {
 		method,
 		body,

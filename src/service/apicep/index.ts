@@ -6,7 +6,7 @@ export class ApiCepService extends CepService {
 		super('apicep')
 		this.baseUrl = 'https://ws.apicep.com/cep.json'
 	}
-	async handler(cep) {
+	async handler(cep: string) {
 		const request = await Requester({
 			url: this.baseUrl,
 			params: {
