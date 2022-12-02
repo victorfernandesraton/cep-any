@@ -27,7 +27,7 @@ declare module "requester/index" {
         url: string;
         method?: 'POST' | 'GET';
         body?: BodyInit | null | undefined;
-        params?: any;
+        params?: unknown & any;
         headers?: HeadersInit;
     };
     export type RequestType = (params: RequesterParams) => Promise<Response>;
@@ -61,7 +61,7 @@ declare module "service/apicep/index" {
     import { CepService } from "service/index";
     export class ApiCepService extends CepService {
         constructor();
-        handler(cep: any): Promise<{
+        handler(cep: string): Promise<{
             cep: any;
             city: any;
             state: any;
