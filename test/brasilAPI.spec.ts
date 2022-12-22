@@ -1,9 +1,10 @@
 import { describe, test, expect } from '@jest/globals'
 
-import { CorreiosService } from './index'
+import { BrasilAPIService } from '../src/service/brasilAPI/index'
 
-describe('CorreiosService', () => {
-	const stub = new CorreiosService()
+describe('BrasilAPIService', () => {
+	const stub = new BrasilAPIService()
+
 	test('should be a valid cep', async () => {
 		const result = await stub.execute('41342320')
 		expect(result.state).toBe('BA')

@@ -1,7 +1,7 @@
 import { describe, it, expect } from '@jest/globals'
-import { Cep } from '../entity'
-import { ParamError } from '../errors/paramError'
-import { CepService } from './index'
+import { Cep } from '../src/entity'
+import { ParamError } from '../src/errors/paramError'
+import { CepService } from '../src/service/index'
 
 
 

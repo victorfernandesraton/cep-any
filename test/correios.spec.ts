@@ -1,10 +1,9 @@
 import { describe, test, expect } from '@jest/globals'
 
-import { ApiCepService } from './index'
+import { CorreiosService } from '../src/service/correios/index'
 
-describe('ApiCepService', () => {
-	const stub = new ApiCepService()
-
+describe('CorreiosService', () => {
+	const stub = new CorreiosService()
 	test('should be a valid cep', async () => {
 		const result = await stub.execute('41342320')
 		expect(result.state).toBe('BA')

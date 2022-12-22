@@ -1,11 +1,7 @@
 export class ParserError extends Error {
-	api = ''
+	private readonly api: string
 
-	/**
-	 * @param {string} api
-	 * @param {string?} message
-	 */
-	constructor(api, message) {
+	constructor(api: string, message: string) {
 		if (message) {
 			super(message)
 		} else {

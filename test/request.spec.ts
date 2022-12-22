@@ -1,4 +1,4 @@
-import { Requester } from '.'
+import { Requester } from '../src/requester'
 import { describe, test, expect } from '@jest/globals'
 
 describe('request', () => {
