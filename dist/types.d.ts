@@ -80,10 +80,6 @@ declare module "service/brasilAPI/index" {
 declare module "errors/parserError" {
     export class ParserError extends Error {
         api: string;
-        /**
-         * @param {string} api
-         * @param {string?} message
-         */
         constructor(api: any, message: any);
     }
 }
