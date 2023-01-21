@@ -1,6 +1,6 @@
 {
 	"name": "cep-any",
-	"version": "3.3.5",
+	"version": "3.4.0",
 	"description": "A modern and low dependency cep consult lib",
 	"repository": {
 		"type": "git",
