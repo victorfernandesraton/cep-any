@@ -1,14 +1,15 @@
+import { Request } from '../../requester/index'
 import { CepService } from '../index'
 
 export class ViaCepService extends CepService {
 	static baseUrl
-	constructor() {
-		super('viacep')
+	constructor(requester: Request) {
+		super('viacep', requester)
 		this.baseUrl = 'https://viacep.com.br'
 	}
 
 	async handler(cep) {
-		const request = await this.requester({
+		const request = await this.requester.execute({
 			url: `${this.baseUrl}/ws/${cep}/json`,
 			method: 'GET',
 		})

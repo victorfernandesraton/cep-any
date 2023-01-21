@@ -9,7 +9,6 @@ export function responseToCep(data) {
 		const returnStatement =
 			data.replace(/\r?\n|\r/g, '').match(/<return>(.*)<\/return>/)?.[0] ?? ''
 		if (returnStatement == '') {
-			// TODO: create api enuns
 			throw new ParserError(`invalid regex got ${data}`, 'correios')
 		}
 		const cleanReturnStatement = returnStatement

@@ -23,6 +23,9 @@ declare module "errors/paramError" {
     }
 }
 declare module "requester/index" {
+    export interface Request {
+        execute(params: RequesterParams): Promise<Response>;
+    }
     export type RequesterParams = {
         url: string;
         method?: 'POST' | 'GET';
@@ -30,18 +33,19 @@ declare module "requester/index" {
         params?: unknown & any;
         headers?: HeadersInit;
     };
-    export type RequestType = (params: RequesterParams) => Promise<Response>;
-    export function Requester({ url, body, headers, method, params }: RequesterParams): Promise<Response>;
+    export class RequestWIthFetch {
+        execute({ url, body, headers, method, params }: RequesterParams): Promise<Response>;
+    }
 }
 declare module "service/index" {
     import { Cep } from "entity/index";
-    import { RequesterParams } from "requester/index";
+    import { Request } from "requester/index";
     export abstract class CepService {
         private readonly api;
+        protected requester: Request;
         protected baseUrl: string;
-        protected requester: (params: RequesterParams) => Promise<Response>;
-        constructor(api: string);
-        overrideRequest(requester: (params: RequesterParams) => Promise<Response>): void;
+        constructor(api: string, requester: Request);
+        overrideRequest(requester: Request): void;
         static generalParse(cep: string): string;
         static validateCep(cep: string): boolean;
         execute(cep: string | number): Promise<Cep>;
@@ -58,9 +62,10 @@ declare module "provider" {
     }
 }
 declare module "service/apicep/index" {
+    import { Request } from "requester/index";
     import { CepService } from "service/index";
     export class ApiCepService extends CepService {
-        constructor();
+        constructor(request: Request);
         handler(cep: string): Promise<{
             cep: any;
             city: any;
@@ -71,19 +76,16 @@ declare module "service/apicep/index" {
     }
 }
 declare module "service/brasilAPI/index" {
+    import { Request } from "requester/index";
     import { CepService } from "service/index";
     export class BrasilAPIService extends CepService {
-        constructor();
+        constructor(request: Request);
         handler(cep: any): Promise<any>;
     }
 }
 declare module "errors/parserError" {
     export class ParserError extends Error {
         api: string;
-        /**
-         * @param {string} api
-         * @param {string?} message
-         */
         constructor(api: any, message: any);
     }
 }
@@ -98,9 +100,10 @@ declare module "service/correios/adapters" {
     };
 }
 declare module "service/correios/index" {
+    import { Request } from "requester/index";
     import { CepService } from "service/index";
     export class CorreiosService extends CepService {
-        constructor();
+        constructor(requester: Request);
         handler(cep: any): Promise<{
             cep: any;
             state: any;
@@ -111,10 +114,11 @@ declare module "service/correios/index" {
     }
 }
 declare module "service/viacep/index" {
+    import { Request } from "requester/index";
     import { CepService } from "service/index";
     export class ViaCepService extends CepService {
         static baseUrl: any;
-        constructor();
+        constructor(requester: Request);
         handler(cep: any): Promise<{
             cep: any;
             state: any;
@@ -126,14 +130,14 @@ declare module "service/viacep/index" {
 }
 declare module "factory" {
     import { Provider } from "provider";
-    import { RequestType } from "requester/index";
+    import { Request } from "requester/index";
     import { CepService } from "service/index";
     type Params = {
         useDefaultProviders?: boolean;
         custonProviders?: CepService[];
-        requester?: RequestType;
+        requester?: Request;
     };
-    export default function ({ useDefaultProviders, custonProviders, requester }: Params): Provider;
+    export default function ({ useDefaultProviders, custonProviders, requester, }: Params): Provider;
 }
 declare module "cep" {
     import { Cep } from "entity/index";
@@ -144,6 +148,6 @@ declare module "index" {
     import { cep } from "cep";
     import factory from "factory";
     import { Provider } from "provider";
-    import { Requester } from "requester/index";
-    export { cep, CepService, Provider, factory, Requester, };
+    import { RequestWIthFetch, Request } from "requester/index";
+    export { cep, CepService, Provider, factory, RequestWIthFetch, Request };
 }
