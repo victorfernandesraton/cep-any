@@ -1,9 +1,8 @@
 import { describe, it, expect } from '@jest/globals'
 import { Cep } from '../entity'
 import { ParamError } from '../errors/paramError'
+import { RequestWIthFetch } from '../requester'
 import { CepService } from './index'
-
-
 
 describe('index.ts', () => {
 	const invalidCases = [['555'], ['text'], ['']]
@@ -34,10 +33,9 @@ describe('index.ts', () => {
 				}
 			}
 		}
-		const stub = new CepServiceInstance('test')
+		const stub = new CepServiceInstance('test', new RequestWIthFetch())
 		it.each(invalidCases)('validate error emition with %p as params', (arg) => {
 			expect(stub.execute(arg)).rejects.toThrowError(new ParamError(arg))
 		})
-
 	})
 })

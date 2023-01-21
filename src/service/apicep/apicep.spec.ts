@@ -1,9 +1,10 @@
 import { describe, test, expect } from '@jest/globals'
+import { RequestWIthFetch } from '../../requester'
 
 import { ApiCepService } from './index'
 
 describe('ApiCepService', () => {
-	const stub = new ApiCepService()
+	const stub = new ApiCepService(new RequestWIthFetch())
 
 	test('should be a valid cep', async () => {
 		const result = await stub.execute('41342320')

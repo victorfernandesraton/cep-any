@@ -1,9 +1,10 @@
-import { Requester } from '.'
 import { describe, test, expect } from '@jest/globals'
+import { RequestWIthFetch } from '.'
 
 describe('request', () => {
 	test('should be make a simple request', async () => {
-		const result = await Requester({ url: 'http://www.google.com' })
+		const stub = new RequestWIthFetch()
+		const result = await stub.execute({ url: 'http://www.google.com' })
 		expect(result.status).toEqual(200)
 	})
 })

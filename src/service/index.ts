@@ -1,21 +1,17 @@
 
 import { Cep } from '../entity/index'
 import { ParamError } from '../errors/paramError'
-import { Requester, RequesterParams } from '../requester/index'
+import { Request } from '../requester/index'
 
 export abstract class CepService {
 	protected baseUrl = ''
-	protected requester: (params: RequesterParams) => Promise<Response>
 
 	constructor(
-		private readonly api: string) {
+		private readonly api: string, protected requester: Request) {
 		this.api = api
-
-		this.requester = Requester
-
 	}
 
-	overrideRequest(requester: (params: RequesterParams) => Promise<Response>) {
+	overrideRequest(requester: Request) {
 		this.requester = requester
 	}
 

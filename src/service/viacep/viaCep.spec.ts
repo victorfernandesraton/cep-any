@@ -1,9 +1,10 @@
 import { describe, test, expect } from '@jest/globals'
+import { RequestWIthFetch } from '../../requester'
 
 import { ViaCepService } from './index'
 
 describe('ViaCepService', () => {
-	const stub = new ViaCepService()
+	const stub = new ViaCepService(new RequestWIthFetch())
 
 	test('should be a valid cep', async () => {
 		const result = await stub.execute('41342320')

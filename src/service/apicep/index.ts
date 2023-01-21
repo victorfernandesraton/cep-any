@@ -1,13 +1,13 @@
-import { Requester } from '../../requester/'
+import { Request } from '../../requester/index'
 import { CepService } from '../index'
 
 export class ApiCepService extends CepService {
-	constructor() {
-		super('apicep')
+	constructor(request: Request) {
+		super('apicep', request)
 		this.baseUrl = 'https://ws.apicep.com/cep.json'
 	}
 	async handler(cep: string) {
-		const request = await Requester({
+		const request = await this.requester.execute({
 			url: this.baseUrl,
 			params: {
 				code: cep,
