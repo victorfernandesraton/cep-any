@@ -1,7 +1,7 @@
 {
 	"name": "cep-any",
-	"version": "3.4.0",
-	"description": "A modern and low dependency cep consult lib",
+	"version": "3.5.0",
+	"description": "A modern and zero dependency cep consult lib",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/victorfernandesraton/cep-any"
@@ -60,8 +60,10 @@
 		}
 	],
 	"files": [
-		"./dist",
-		"README.md"
+		"bin",
+		"dist",
+		"README.md",
+		"LICENSE"
 	],
 	"homepage": "https://github.com/victorfernandesraton/cep-any"
 }
