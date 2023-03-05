@@ -1,6 +1,6 @@
 {
 	"name": "cep-any",
-	"version": "3.5.2",
+	"version": "3.5.3",
 	"description": "A modern and zero dependency cep consult lib",
 	"repository": {
 		"type": "git",
@@ -59,7 +59,9 @@
 			"url": "https://github.com/victorfernandesraton"
 		}
 	],
-	"bin": "./bin/index.mjs",
+	"bin": {
+		"cep-any": "./bin/cep-any"
+	},
 	"files": [
 		"bin",
 		"dist",
