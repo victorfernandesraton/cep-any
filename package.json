@@ -1,6 +1,6 @@
 {
 	"name": "cep-any",
-	"version": "3.5.3",
+	"version": "3.6.0",
 	"description": "A modern and zero dependency cep consult lib",
 	"repository": {
 		"type": "git",
@@ -60,7 +60,7 @@
 		}
 	],
 	"bin": {
-		"cep-any": "./bin/cep-any"
+		"cep-any": "/bin/cep-any.js"
 	},
 	"files": [
 		"bin",

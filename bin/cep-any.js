@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const { argv, exit } = require('node:process')
 const { cep } = require('../dist/cjs/index.js');
 
