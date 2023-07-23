@@ -7,9 +7,9 @@
 		"url": "https://github.com/victorfernandesraton/cep-any"
 	},
 	"scripts": {
-		"test": "jest",
+	    "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js",	
 		"lint": "npx eslint ./src",
-		"build:source": "node ./script/build/build.cjs && node ./script/build/build.js",
+		"build:source": "node esbuild.config.js",
 		"build:types": "npx tsc",
 		"build": "rm -rf ./dist && npm run build:types && npm run build:source",
 		"prepublishOnly": "npm run build"
@@ -48,8 +48,8 @@
 	},
 	"exports": {
 		".": {
-			"import": "./dist/esm/index.mjs",
-			"require": "./dist/cjs/index.js"
+			"import": "./dist/esm.mjs",
+			"require": "./dist/index.js"
 		}
 	},
 	"types": "./dist/types.d.ts",

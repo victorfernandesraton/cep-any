@@ -1,11 +1,9 @@
-import { Request } from '../../requester/index'
-import { CepService } from '../index'
-import { parseParamsToXML, responseToCep } from './adapters'
+import { CepService } from '../index.mjs'
+import { parseParamsToXML, responseToCep } from './adapters.mjs'
 
 export class CorreiosService extends CepService {
-	constructor(requester: Request) {
-		super('correios', requester)
-		this.baseUrl = 'https://apps.correios.com.br'
+	constructor(requester) {
+		super('correios', requester,'https://apps.correios.com.br')
 	}
 
 	async handler(cep) {

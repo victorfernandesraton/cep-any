@@ -1,5 +1,5 @@
 import { describe, test, expect } from '@jest/globals'
-import { RequestWIthFetch } from '../../src/requester'
+import { RequestWIthFetch } from '../../src/requester/index.mjs'
 
 import { ViaCepService } from '../../src/service/viacep'
 

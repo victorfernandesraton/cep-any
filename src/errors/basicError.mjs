@@ -1,5 +1,5 @@
 export class BasicError extends Error {
-	constructor(message: string) {
+	constructor(message) {
 		super(message)
 	}
 }

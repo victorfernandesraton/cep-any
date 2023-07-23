@@ -1,5 +1,4 @@
 import { describe, it, expect } from '@jest/globals'
-import { Cep } from '../src/entity'
 import { ParamError } from '../src/errors/paramError'
 import { RequestWIthFetch } from '../src/requester'
 import { CepService } from '../src/service/index'
@@ -22,8 +21,7 @@ describe('index.ts', () => {
 	})
 	describe('validate instances', () => {
 		class CepServiceInstance extends CepService {
-			// eslint-disable-next-line @typescript-eslint/no-unused-vars
-			async handler(_cep: string | number): Promise<Cep> {
+			async handler(_cep) {
 				return {
 					cep: '88888888',
 					city: 'something',

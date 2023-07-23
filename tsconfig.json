@@ -29,7 +29,6 @@
 		"declaration": true /* Generate .d.ts files from TypeScript and JavaScript files in your project. */,
 		/* Modules */
 		"module": "ESNext" /* Specify what module code is generated. */,
-		"rootDir": "./src" /* Specify the root folder within your source files. */,
 		"moduleResolution": "NodeNext" /* Specify how TypeScript looks up a file from a given module specifier. */,
 		// "baseUrl": "." /* Specify the base directory to resolve non-relative module names. */,
 		// "paths": {
@@ -98,17 +97,7 @@
 		// "skipDefaultLibCheck": true /* Skip type checking .d.ts files that are included with TypeScript. */,
 		"skipLibCheck": false /* Skip type checking all .d.ts files. */
 	},
-	"exclude": [
-		"!**/node_modules/**",
-		"./test/**",
-		"./github/**",
-		"./coverage/**",
-		"./examples",
-		"./jest.config.ts",
-		"rollup.config.js",
-		"./script/**",
-		"./dist/**",
-		"src/**/*.spec.ts",
-		"./bin/**"
+	"include": [
+		"src"
 	]
 }

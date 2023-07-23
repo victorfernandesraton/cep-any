@@ -1,4 +1,4 @@
-import { ParserError } from '../../errors/parserError'
+import { ParserError } from '../../errors/parserError.mjs'
 
 export function parseParamsToXML(data) {
 	return `<?xml version="1.0"?>\n	<soapenv:Envelope 		xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cli="http://cliente.bean.master.sigep.bsb.correios.com.br/">  <soapenv:Header />  <soapenv:Body>    <cli:consultaCEP>      <cep>${data}</cep>    </cli:consultaCEP>  </soapenv:Body></soapenv:Envelope>`

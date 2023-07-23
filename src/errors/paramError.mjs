@@ -1,4 +1,4 @@
-import { BasicError } from './basicError'
+import { BasicError } from './basicError.mjs'
 
 export class ParamError extends BasicError {
 	constructor(args) {
