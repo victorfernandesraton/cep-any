@@ -18,11 +18,11 @@ export class ApiCepService extends CepService {
 
 
 		if (!request.ok) {
-			throw new Error(data)
+			throw new Error(...data)
 		}
 
 		return {
-			cep: data.code.replaceAll('-', ''),
+			cep: data.code.replace('-', ''),
 			city: data.city,
 			state: data.state,
 			neighborhood: data.district ?? '',

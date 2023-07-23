@@ -1,8 +1,8 @@
 import { describe, it, expect } from '@jest/globals'
-import { Cep } from '../entity'
-import { ParamError } from '../errors/paramError'
-import { RequestWIthFetch } from '../requester'
-import { CepService } from './index'
+import { Cep } from '../src/entity'
+import { ParamError } from '../src/errors/paramError'
+import { RequestWIthFetch } from '../src/requester'
+import { CepService } from '../src/service/index'
 
 describe('index.ts', () => {
 	const invalidCases = [['555'], ['text'], ['']]
