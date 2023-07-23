@@ -14,9 +14,9 @@ export class Provider {
 	/**
 	 * @returns {Promise<Cep>}
 	 */
-	async execute(cep) {
+	async execute(zipcode) {
 		const result = await Promise.any(
-			this.#services.map((item) => item.execute(cep))
+			this.#services.map((item) => item.execute(zipcode))
 		)
 		return result
 	}

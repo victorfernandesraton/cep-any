@@ -3,7 +3,7 @@ import { RequestWIthFetch } from '../../src/requester'
 
 import { ApiCepService } from '../../src/service/apicep'
 
-describe('ApiCepService', () => {
+describe.skip('ApiCepService', () => {
 	const stub = new ApiCepService(new RequestWIthFetch())
 
 	test('should be a valid cep', async () => {

@@ -23,31 +23,31 @@ export class CepService {
 	}
 
 	/**
-	 * @param {string} cep
+	 * @param {string} zipcode
 	 */
-	static generalParse(cep) {
-		return cep.split('-').join('').split('.').join('')
+	static generalParse(zipcode) {
+		return zipcode.split('-').join('').split('.').join('')
 	}
 
 	/**
-	 * @param {string} cep
+	 * @param {string} zipcode
 	 * @returns {boolean}
 	 */
-	static validateCep(cep) {
-		return /[0-9]{8}/.test(cep)
+	static validateCep(zipcode) {
+		return /[0-9]{8}/.test(zipcode)
 	}
 
 
 	/**
-	 * @param {string | number} cep
+	 * @param {string | number} zipcode
 	 * @returns {Promise<Cep>}
 	 */
-	async execute(cep) {
+	async execute(zipcode) {
 		let data = ''
-		if (typeof cep === 'number') {
-			data = cep.toString()
+		if (typeof zipcode === 'number') {
+			data = zipcode.toString()
 		} else {
-			data = cep
+			data = zipcode
 		}
 
 		const value = CepService.generalParse(data)
@@ -59,11 +59,11 @@ export class CepService {
 		return this.handler(value)
 	}
 	/**
-	 * @param {string | number} _cep
+	 * @param {string | number} _zipcode
 	 * @returns {Promise<Cep>}
 	 */
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	handler(_cep) {
+	handler(_zipcode) {
 		throw new Error('Not implemented')
 	}
 

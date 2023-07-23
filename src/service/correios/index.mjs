@@ -8,7 +8,7 @@ export class CorreiosService extends CepService {
 	}
 
 	/**
-	 * @typedef {import("../../types.js".Cep)} Cep
+	 * @typedef {import("../../types.js").Cep} Cep
 	 * @param {string} cep
 	 * @returns {Promise<Cep>}
 	 */
