@@ -1,3 +1,7 @@
+/**
+ * @typedef {import('./types.js').Cep} Cep
+ */
+
 
 export class Provider {
 	#services
@@ -7,6 +11,9 @@ export class Provider {
 	}
 
 
+	/**
+	 * @returns {Promise<Cep>}
+	 */
 	async execute(cep) {
 		const result = await Promise.any(
 			this.#services.map((item) => item.execute(cep))

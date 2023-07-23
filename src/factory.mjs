@@ -5,12 +5,12 @@ import { BrasilAPIService } from './service/brasilAPI/index.mjs'
 import { CorreiosService } from './service/correios/index.mjs'
 import { ViaCepService } from './service/viacep/index.mjs'
 
-
 /**
  * 
+ * @typedef {import('./service/index.mjs').CepService} CepService
  * @typedef {Object} Params
  * @property {boolean} [useDefaultProviders]
- * @property {Array} [custonProviders]
+ * @property {Array<CepService>} [custonProviders]
  * @property {any} [requester]
  *  
  * @returns {Provider} 
