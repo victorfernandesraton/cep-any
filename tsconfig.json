@@ -29,7 +29,6 @@
 		"declaration": true /* Generate .d.ts files from TypeScript and JavaScript files in your project. */,
 		/* Modules */
 		"module": "ESNext" /* Specify what module code is generated. */,
-		"rootDir": "./src" /* Specify the root folder within your source files. */,
 		"moduleResolution": "NodeNext" /* Specify how TypeScript looks up a file from a given module specifier. */,
 		// "baseUrl": "." /* Specify the base directory to resolve non-relative module names. */,
 		// "paths": {
@@ -54,7 +53,7 @@
 		// "outDir": "./dist" /* Specify an output folder for all emitted files. */,
 		"removeComments": false /* Disable emitting comments. */,
 		// "noEmit": true,                                   /* Disable emitting files from a compilation. */
-		"importsNotUsedAsValues": "preserve", /* Specify emit/checking behavior for imports that are only used for types */
+		"verbatimModuleSyntax": false, /* Specify emit/checking behavior for imports that are only used for types */
 		// "downlevelIteration": true,                       /* Emit more compliant, but verbose and less performant JavaScript for iteration. */
 		// "sourceRoot": "",                                 /* Specify the root path for debuggers to find the reference source code. */
 		"mapRoot": "", /* Specify the location where debugger should locate map files instead of generated locations. */
@@ -98,17 +97,7 @@
 		// "skipDefaultLibCheck": true /* Skip type checking .d.ts files that are included with TypeScript. */,
 		"skipLibCheck": false /* Skip type checking all .d.ts files. */
 	},
-	"exclude": [
-		"!**/node_modules/**",
-		"./test/**",
-		"./github/**",
-		"./coverage/**",
-		"./examples",
-		"./jest.config.ts",
-		"rollup.config.js",
-		"./script/**",
-		"./dist/**",
-		"src/**/*.spec.ts",
-		"./bin/**"
+	"include": [
+		"src"
 	]
 }

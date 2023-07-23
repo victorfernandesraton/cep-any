@@ -1,5 +1,5 @@
 import { describe, test, expect } from '@jest/globals'
-import { RequestWIthFetch } from '.'
+import { RequestWIthFetch } from '../src/requester'
 
 describe('request', () => {
 	test('should be make a simple request', async () => {

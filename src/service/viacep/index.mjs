@@ -1,11 +1,9 @@
-import { Request } from '../../requester/index'
-import { CepService } from '../index'
+import { CepService } from '../index.mjs'
 
 export class ViaCepService extends CepService {
 	static baseUrl
-	constructor(requester: Request) {
-		super('viacep', requester)
-		this.baseUrl = 'https://viacep.com.br'
+	constructor(requester) {
+		super('viacep', requester,'https://viacep.com.br')
 	}
 
 	async handler(cep) {
