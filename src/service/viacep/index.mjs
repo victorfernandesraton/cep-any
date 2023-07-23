@@ -1,11 +1,14 @@
 import { CepService } from '../index.mjs'
 
 export class ViaCepService extends CepService {
-	static baseUrl
 	constructor(requester) {
 		super('viacep', requester,'https://viacep.com.br')
 	}
-
+	/**
+	 * @typedef {import("../../types.js").Cep} Cep
+	 * @param {string} cep
+	 * @returns {Promise<Cep>}
+	 */
 	async handler(cep) {
 		const request = await this.requester.execute({
 			url: `${this.baseUrl}/ws/${cep}/json`,

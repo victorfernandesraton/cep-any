@@ -1,6 +1,5 @@
 import { Provider } from './provider.mjs'
 import { RequestWIthFetch } from './requester/index.mjs'
-import { ApiCepService } from './service/apicep/index.mjs'
 import { BrasilAPIService } from './service/brasilAPI/index.mjs'
 import { CorreiosService } from './service/correios/index.mjs'
 import { ViaCepService } from './service/viacep/index.mjs'
@@ -25,7 +24,6 @@ export default function ({
 		services = [
 			new ViaCepService(requester),
 			new BrasilAPIService(requester),
-			new ApiCepService(requester),
 			new CorreiosService(requester),
 		]
 	}
