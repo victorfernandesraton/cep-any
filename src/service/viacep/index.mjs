@@ -1,8 +1,13 @@
 import { CepService } from '../index.mjs'
 
 export class ViaCepService extends CepService {
+
+	/**
+	 * @typedef {import('../../requester/index.mjs').RequestWIthFetch} RequestWIthFetch
+	 * @param {RequestWIthFetch} requester
+	 */
 	constructor(requester) {
-		super('viacep', requester,'https://viacep.com.br')
+		super('viacep', requester, 'https://viacep.com.br')
 	}
 	/**
 	 * @typedef {import("../../types.js").Cep} Cep

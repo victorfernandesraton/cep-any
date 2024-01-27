@@ -1,5 +1,13 @@
 export class RequestWIthFetch {
-	async execute({url, body, headers,  method, params}) {
+	/**
+	 * @param {Object} param
+	 * @param {string | URL} param.url
+	 * @param {BodyInit} [param.body]
+	 * @param {Object} [param.headers]
+	 * @param {string} [param.method]
+	 * @param {Object} [param.params]
+	*/
+	async execute({ url, body, headers, method, params }) {
 		const searchParams = new URLSearchParams(params)
 
 		const options = {

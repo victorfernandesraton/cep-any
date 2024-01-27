@@ -1,13 +1,15 @@
 
 /**
- * @typedef {import('../types.js').Cep} Cep
+ * @typedef {import('../types.ts').Cep} Cep
+ * @typedef {import('../requester/index.mjs').RequestWIthFetch} RequestWIthFetch
  */
 
 import { ParamError } from '../errors/paramError.mjs'
 export class CepService {
 	/**
-	 * @param {any} api
-	 * @param {any} requester
+	 * @param {string} api
+	 * @param {RequestWIthFetch} requester
+	 * @param {string} [baseUrl='']
 	 */
 	constructor(api, requester, baseUrl = '') {
 		this.api = api
@@ -15,9 +17,11 @@ export class CepService {
 		this.baseUrl = baseUrl
 	}
 
+
 	/**
-	 * @param {any} requester
+	 * @param {RequestWIthFetch} requester
 	 */
+
 	overrideRequest(requester) {
 		this.requester = requester
 	}

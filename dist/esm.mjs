@@ -1,5 +1,8 @@
 // src/errors/basicError.mjs
 var BasicError = class extends Error {
+  /**
+   * @param {string} [message]
+  */
   constructor(message) {
     super(message);
   }
@@ -15,8 +18,9 @@ var ParamError = class extends BasicError {
 // src/service/index.mjs
 var CepService = class _CepService {
   /**
-   * @param {any} api
-   * @param {any} requester
+   * @param {string} api
+   * @param {RequestWIthFetch} requester
+   * @param {string} [baseUrl='']
    */
   constructor(api, requester, baseUrl = "") {
     this.api = api;
@@ -24,7 +28,7 @@ var CepService = class _CepService {
     this.baseUrl = baseUrl;
   }
   /**
-   * @param {any} requester
+   * @param {RequestWIthFetch} requester
    */
   overrideRequest(requester) {
     this.requester = requester;
@@ -72,10 +76,14 @@ var CepService = class _CepService {
 // src/provider.mjs
 var Provider = class {
   #services;
+  /**
+   * @param {CepService[]} services
+  */
   constructor(services) {
     this.#services = services;
   }
   /**
+   * @param {string | number} zipcode
    * @returns {Promise<Cep>}
    */
   async execute(zipcode) {
@@ -88,6 +96,14 @@ var Provider = class {
 
 // src/requester/index.mjs
 var RequestWIthFetch = class {
+  /**
+   * @param {Object} param
+   * @param {string | URL} param.url
+   * @param {BodyInit} [param.body]
+   * @param {Object} [param.headers]
+   * @param {string} [param.method]
+   * @param {Object} [param.params]
+  */
   async execute({ url, body, headers, method, params }) {
     const searchParams = new URLSearchParams(params);
     const options = {
@@ -102,11 +118,15 @@ var RequestWIthFetch = class {
 
 // src/service/brasilAPI/index.mjs
 var BrasilAPIService = class extends CepService {
+  /**
+   * @typedef {import('../../requester/index.mjs').RequestWIthFetch} RequestWIthFetch
+   * @param {RequestWIthFetch} request
+   */
   constructor(request) {
     super("brasilAPI", request, "https://brasilapi.com.br/api/cep/v1");
   }
   /**
-   * @typedef {import('../../types.js').Cep} Cep
+   * @typedef {import('../../types.ts').Cep} Cep
    * @param {string} cep
    * @returns {Promise<Cep>}
    */
@@ -171,6 +191,10 @@ function responseToCep(data) {
 
 // src/service/correios/index.mjs
 var CorreiosService = class extends CepService {
+  /**
+   * @typedef {import('../../requester/index.mjs').RequestWIthFetch} RequestWIthFetch
+   * @param {RequestWIthFetch} requester
+   */
   constructor(requester) {
     super("correios", requester, "https://apps.correios.com.br");
   }
@@ -198,6 +222,10 @@ var CorreiosService = class extends CepService {
 
 // src/service/viacep/index.mjs
 var ViaCepService = class extends CepService {
+  /**
+   * @typedef {import('../../requester/index.mjs').RequestWIthFetch} RequestWIthFetch
+   * @param {RequestWIthFetch} requester
+   */
   constructor(requester) {
     super("viacep", requester, "https://viacep.com.br");
   }

@@ -1,6 +1,9 @@
 import { CepService } from '../index.mjs'
 
 export class ApiCepService extends CepService {
+	/**
+	 * @param {import('../index.mjs').RequestWIthFetch} request
+	 */
 	constructor(request) {
 		super('apicep', request, 'https://ws.apicep.com/cep.json')
 	}
