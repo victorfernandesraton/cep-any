@@ -1,37 +1,31 @@
-﻿declare module "provider" {
-    /**
-     * @typedef {import('./types.js').Cep} Cep
-     */
-    export class Provider {
-        constructor(services: any);
-        /**
-         * @returns {Promise<Cep>}
-         */
-        execute(zipcode: any): Promise<Cep>;
-        #private;
-    }
-    export type Cep = import("types").Cep;
-}
-declare module "requester/index" {
-    export class RequestWIthFetch {
-        execute({ url, body, headers, method, params }: {
-            url: any;
-            body: any;
-            headers: any;
-            method: any;
-            params: any;
-        }): Promise<Response>;
-    }
-}
-declare module "errors/basicError" {
+﻿declare module "errors/basicError" {
     export class BasicError extends Error {
-        constructor(message: any);
     }
 }
 declare module "errors/paramError" {
     export class ParamError extends BasicError {
+        constructor(args: any);
     }
     import { BasicError } from "errors/basicError.mjs";
+}
+declare module "requester/index" {
+    export class RequestWIthFetch {
+        /**
+         * @param {Object} param
+         * @param {string | URL} param.url
+         * @param {BodyInit} [param.body]
+         * @param {Object} [param.headers]
+         * @param {string} [param.method]
+         * @param {Object} [param.params]
+        */
+        execute({ url, body, headers, method, params }: {
+            url: string | URL;
+            body?: BodyInit | undefined;
+            headers?: any;
+            method?: string | undefined;
+            params?: any;
+        }): Promise<Response>;
+    }
 }
 declare module "service/index" {
     export class CepService {
@@ -45,17 +39,18 @@ declare module "service/index" {
          */
         static validateCep(zipcode: string): boolean;
         /**
-         * @param {any} api
-         * @param {any} requester
+         * @param {string} api
+         * @param {RequestWIthFetch} requester
+         * @param {string} [baseUrl='']
          */
-        constructor(api: any, requester: any, baseUrl?: string);
-        api: any;
-        requester: any;
+        constructor(api: string, requester: RequestWIthFetch, baseUrl?: string | undefined);
+        api: string;
+        requester: import("requester/index.mjs").RequestWIthFetch;
         baseUrl: string;
         /**
-         * @param {any} requester
+         * @param {RequestWIthFetch} requester
          */
-        overrideRequest(requester: any): void;
+        overrideRequest(requester: RequestWIthFetch): void;
         /**
          * @param {string | number} zipcode
          * @returns {Promise<Cep>}
@@ -68,12 +63,37 @@ declare module "service/index" {
         handler(_zipcode: string | number): Promise<Cep>;
     }
     export type Cep = import("types").Cep;
+    export type RequestWIthFetch = import("requester/index").RequestWIthFetch;
+}
+declare module "provider" {
+    /**
+     * @typedef {import('./types.ts').Cep} Cep
+     * @typedef {import('./service/index.mjs').CepService} CepService
+     */
+    export class Provider {
+        /**
+         * @param {CepService[]} services
+        */
+        constructor(services: CepService[]);
+        /**
+         * @param {string | number} zipcode
+         * @returns {Promise<Cep>}
+         */
+        execute(zipcode: string | number): Promise<Cep>;
+        #private;
+    }
+    export type Cep = import("types").Cep;
+    export type CepService = import("service/index").CepService;
 }
 declare module "service/brasilAPI/index" {
     export class BrasilAPIService extends CepService {
-        constructor(request: any);
         /**
-         * @typedef {import('../../types.js').Cep} Cep
+         * @typedef {import('../../requester/index.mjs').RequestWIthFetch} RequestWIthFetch
+         * @param {RequestWIthFetch} request
+         */
+        constructor(request: import("requester/index.mjs").RequestWIthFetch);
+        /**
+         * @typedef {import('../../types.ts').Cep} Cep
          * @param {string} cep
          * @returns {Promise<Cep>}
          */
@@ -99,7 +119,11 @@ declare module "service/correios/adapters" {
 }
 declare module "service/correios/index" {
     export class CorreiosService extends CepService {
-        constructor(requester: any);
+        /**
+         * @typedef {import('../../requester/index.mjs').RequestWIthFetch} RequestWIthFetch
+         * @param {RequestWIthFetch} requester
+         */
+        constructor(requester: import("requester/index.mjs").RequestWIthFetch);
         /**
          * @typedef {import("../../types.js").Cep} Cep
          * @param {string} cep
@@ -111,7 +135,11 @@ declare module "service/correios/index" {
 }
 declare module "service/viacep/index" {
     export class ViaCepService extends CepService {
-        constructor(requester: any);
+        /**
+         * @typedef {import('../../requester/index.mjs').RequestWIthFetch} RequestWIthFetch
+         * @param {RequestWIthFetch} requester
+         */
+        constructor(requester: import("requester/index.mjs").RequestWIthFetch);
         /**
          * @typedef {import("../../types.js").Cep} Cep
          * @param {string} cep
@@ -161,7 +189,10 @@ declare module "index" {
 }
 declare module "service/apicep/index" {
     export class ApiCepService extends CepService {
-        constructor(request: any);
+        /**
+         * @param {import('../index.mjs').RequestWIthFetch} request
+         */
+        constructor(request: import('../index.mjs').RequestWIthFetch);
         /**
          * @typedef {import('../../types.js').Cep} Cep
          * @param {string} cep

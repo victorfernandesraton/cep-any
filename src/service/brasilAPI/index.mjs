@@ -1,12 +1,16 @@
 import { CepService } from '../index.mjs'
 
 export class BrasilAPIService extends CepService {
+	/**
+	 * @typedef {import('../../requester/index.mjs').RequestWIthFetch} RequestWIthFetch
+	 * @param {RequestWIthFetch} request
+	 */
 	constructor(request) {
 		super('brasilAPI', request, 'https://brasilapi.com.br/api/cep/v1')
 	}
 
 	/**
-	 * @typedef {import('../../types.js').Cep} Cep
+	 * @typedef {import('../../types.ts').Cep} Cep
 	 * @param {string} cep
 	 * @returns {Promise<Cep>}
 	 */

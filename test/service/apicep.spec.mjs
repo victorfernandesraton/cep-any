@@ -17,4 +17,3 @@ describe.skip('ApiCepService', () => {
 		expect(result.city).toBe('Salvador')
 	})
 })
-
