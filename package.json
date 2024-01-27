@@ -1,6 +1,6 @@
 {
 	"name": "cep-any",
-	"version": "4.0.0",
+	"version": "4.1.0",
 	"description": "A modern and zero dependency cep consult lib",
 	"repository": {
 		"type": "git",
@@ -29,16 +29,16 @@
 	"author": {
 		"name": "Victor Fernandes Raton",
 		"email": "vfbraton@gmail.com",
-		"url": "https://github.com/victorfernandesraton"
+		"url": "https://vraton.dev"
 	},
 	"license": "MIT",
 	"devDependencies": {
-		"@typescript-eslint/eslint-plugin": "6.1.0",
-		"@typescript-eslint/parser": "6.1.0",
+		"@typescript-eslint/eslint-plugin": "6.19.1",
+		"@typescript-eslint/parser": "6.19.1",
 		"esbuild": "0.19.12",
 		"esbuild-jest": "0.5.0",
-		"eslint": "8.45.0",
-		"jest": "^29.7.0",
+		"eslint": "8.56.0",
+		"jest": "29.7.0",
 		"typescript": "5.3.3"
 	},
 	"engines": {
