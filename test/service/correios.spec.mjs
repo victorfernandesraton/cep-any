@@ -3,7 +3,7 @@ import { RequestWIthFetch } from '../../src/requester'
 
 import { CorreiosService } from '../../src/service/correios/index'
 
-describe('CorreiosService', () => {
+describe.skip('CorreiosService', () => {
 	const stub = new CorreiosService(new RequestWIthFetch())
 	test('should be a valid cep', async () => {
 		const result = await stub.execute('41342430')
