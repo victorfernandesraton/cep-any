@@ -1,6 +1,5 @@
 import { describe, test, expect } from '@jest/globals'
 import { RequestWIthFetch } from '../../src/requester/index.mjs'
-
 import { BrasilAPIService } from '../../src/service/brasilAPI'
 
 describe('BrasilAPIService', () => {
