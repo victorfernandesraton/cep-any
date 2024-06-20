@@ -1,12 +1,8 @@
 export class ParserError extends Error {
-	api = ''
+  api = ''
 
-	constructor(api, message) {
-		if (message) {
-			super(message)
-		} else {
-			super()
-		}
-		this.api = api
-	}
+  constructor (api, message) {
+    super(message)
+    this.api = api
+  }
 }

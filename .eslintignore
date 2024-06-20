@@ -1,5 +1,0 @@
-/dist
-/examples
-tsconfig.json
-esbuild.config.js
-*jest*
