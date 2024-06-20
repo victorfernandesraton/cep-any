@@ -2,17 +2,17 @@ import { CepService } from '../index.mjs'
 
 export class ApiCepService extends CepService {
   /**
-	 * @param {import('../index.mjs').RequestWIthFetch} request
-	 */
+  * @param {import('../index.mjs').RequestWIthFetch} request
+  */
   constructor (request) {
     super('apicep', request, 'https://ws.apicep.com/cep.json')
   }
 
   /**
-	 * @typedef {import('../../types.js').Cep} Cep
-	 * @param {string} cep
-	 * @returns {Promise<Cep>}
-	 */
+  * @typedef {import('../../types.js').Cep} Cep
+  * @param {string} cep
+  * @returns {Promise<Cep>}
+  */
   async handler (cep) {
     const request = await this.requester.execute({
       url: this.baseUrl,

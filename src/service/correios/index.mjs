@@ -3,9 +3,9 @@ import { parseParamsToXML, responseToCep } from './adapters.mjs'
 
 export class CorreiosService extends CepService {
   /**
-	 * @typedef {import('../../requester/index.mjs').RequestWIthFetch} RequestWIthFetch
-	 * @param {RequestWIthFetch} requester
-	 */
+  * @typedef {import('../../requester/index.mjs').RequestWIthFetch} RequestWIthFetch
+  * @param {RequestWIthFetch} requester
+  */
   constructor (requester) {
     super('correios', requester, 'https://apps.correios.com.br')
   }
