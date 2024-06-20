@@ -31,12 +31,6 @@ module.exports = __toCommonJS(src_exports);
 
 // src/errors/basicError.mjs
 var BasicError = class extends Error {
-  /**
-   * @param {string} [message]
-  */
-  constructor(message) {
-    super(message);
-  }
 };
 
 // src/errors/paramError.mjs
@@ -127,12 +121,12 @@ var Provider = class {
 // src/requester/index.mjs
 var RequestWIthFetch = class {
   /**
-   * @param {Object} param
-   * @param {string | URL} param.url
-   * @param {BodyInit} [param.body]
-   * @param {Object} [param.headers]
-   * @param {string} [param.method]
-   * @param {Object} [param.params]
+  * @param {Object} param
+  * @param {string | URL} param.url
+  * @param {BodyInit} [param.body]
+  * @param {Object} [param.headers]
+  * @param {string} [param.method]
+  * @param {Object} [param.params]
   */
   async execute({ url, body, headers, method, params }) {
     const searchParams = new URLSearchParams(params);
