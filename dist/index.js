@@ -49,10 +49,10 @@ var ParamError = class extends BasicError {
 // src/service/index.mjs
 var CepService = class _CepService {
   /**
-   * @param {string} api
-   * @param {RequestWIthFetch} requester
-   * @param {string} [baseUrl='']
-   */
+  * @param {string} api
+  * @param {RequestWIthFetch} requester
+  * @param {string} [baseUrl='']
+  */
   constructor(api, requester, baseUrl = "") {
     this.api = api;
     this.requester = requester;
@@ -60,27 +60,27 @@ var CepService = class _CepService {
   }
   /**
    * @param {RequestWIthFetch} requester
-   */
+  */
   overrideRequest(requester) {
     this.requester = requester;
   }
   /**
-   * @param {string} zipcode
-   */
+    * @param {string} zipcode
+  */
   static generalParse(zipcode) {
     return zipcode.split("-").join("").split(".").join("");
   }
   /**
-   * @param {string} zipcode
-   * @returns {boolean}
-   */
+  * @param {string} zipcode
+  * @returns {boolean}
+  */
   static validateCep(zipcode) {
     return /[0-9]{8}/.test(zipcode);
   }
   /**
-   * @param {string | number} zipcode
-   * @returns {Promise<Cep>}
-   */
+  * @param {string | number} zipcode
+  * @returns {Promise<Cep>}
+  */
   async execute(zipcode) {
     let data = "";
     if (typeof zipcode === "number") {
@@ -95,10 +95,9 @@ var CepService = class _CepService {
     return this.handler(value);
   }
   /**
-   * @param {string | number} _zipcode
-   * @returns {Promise<Cep>}
-   */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  * @param {string | number} _zipcode
+  * @returns {Promise<Cep>}
+  */
   handler(_zipcode) {
     throw new Error("Not implemented");
   }
@@ -114,9 +113,9 @@ var Provider = class {
     this.#services = services;
   }
   /**
-   * @param {string | number} zipcode
-   * @returns {Promise<Cep>}
-   */
+  * @param {string | number} zipcode
+  * @returns {Promise<Cep>}
+  */
   async execute(zipcode) {
     const result = await Promise.any(
       this.#services.map((item) => item.execute(zipcode))
@@ -150,17 +149,17 @@ var RequestWIthFetch = class {
 // src/service/brasilAPI/index.mjs
 var BrasilAPIService = class extends CepService {
   /**
-   * @typedef {import('../../requester/index.mjs').RequestWIthFetch} RequestWIthFetch
-   * @param {RequestWIthFetch} request
-   */
+  * @typedef {import('../../requester/index.mjs').RequestWIthFetch} RequestWIthFetch
+  * @param {RequestWIthFetch} request
+  */
   constructor(request) {
     super("brasilAPI", request, "https://brasilapi.com.br/api/cep/v1");
   }
   /**
-   * @typedef {import('../../types.ts').Cep} Cep
-   * @param {string} cep
-   * @returns {Promise<Cep>}
-   */
+  * @typedef {import('../../types.ts').Cep} Cep
+  * @param {string} cep
+  * @returns {Promise<Cep>}
+  */
   async handler(cep2) {
     const request = await this.requester.execute({ url: `${this.baseUrl}/${cep2}` });
     const data = await request.json();
@@ -173,98 +172,20 @@ var BrasilAPIService = class extends CepService {
   }
 };
 
-// src/errors/parserError.mjs
-var ParserError = class extends Error {
-  api = "";
-  constructor(api, message) {
-    if (message) {
-      super(message);
-    } else {
-      super();
-    }
-    this.api = api;
-  }
-};
-
-// src/service/correios/adapters.mjs
-function parseParamsToXML(data) {
-  return `<?xml version="1.0"?>
-	<soapenv:Envelope 		xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cli="http://cliente.bean.master.sigep.bsb.correios.com.br/">  <soapenv:Header />  <soapenv:Body>    <cli:consultaCEP>      <cep>${data}</cep>    </cli:consultaCEP>  </soapenv:Body></soapenv:Envelope>`;
-}
-function responseToCep(data) {
-  try {
-    const returnStatement = data.replace(/\r?\n|\r/g, "").match(/<return>(.*)<\/return>/)?.[0] ?? "";
-    if (returnStatement == "") {
-      throw new ParserError(`invalid regex got ${data}`, "correios");
-    }
-    const cleanReturnStatement = returnStatement.replace("<return>", "").replace("</return>", "");
-    const parsedReturnStatement = cleanReturnStatement.split(/</).reduce((result, exp) => {
-      const splittenExp = exp.split(">");
-      if (splittenExp.length > 1 && splittenExp[1].trim().length) {
-        result[splittenExp?.[0]] = splittenExp[1];
-      }
-      return result;
-    }, {});
-    if (parsedReturnStatement?.cep === "" || !parsedReturnStatement?.cep) {
-      throw new ParserError("not returnd a cep to parse", "correios");
-    }
-    return {
-      cep: parsedReturnStatement.cep ?? "",
-      state: parsedReturnStatement.uf ?? "",
-      city: parsedReturnStatement.cidade ?? "",
-      street: parsedReturnStatement.bairro ?? "",
-      neighborhood: parsedReturnStatement.end ?? ""
-    };
-  } catch (e) {
-    throw new ParserError("not implement xml", "correios");
-  }
-}
-
-// src/service/correios/index.mjs
-var CorreiosService = class extends CepService {
-  /**
-   * @typedef {import('../../requester/index.mjs').RequestWIthFetch} RequestWIthFetch
-   * @param {RequestWIthFetch} requester
-   */
-  constructor(requester) {
-    super("correios", requester, "https://apps.correios.com.br");
-  }
-  /**
-   * @typedef {import("../../types.js").Cep} Cep
-   * @param {string} cep
-   * @returns {Promise<Cep>}
-   */
-  async handler(cep2) {
-    const request = await this.requester.execute({
-      url: `${this.baseUrl}/SigepMasterJPA/AtendeClienteService/AtendeCliente`,
-      body: parseParamsToXML(cep2),
-      method: "POST",
-      headers: {
-        "Content-Type": "application/xml"
-      }
-    });
-    const data = await request.text();
-    if (!request.ok) {
-      throw new Error(data);
-    }
-    return responseToCep(data);
-  }
-};
-
 // src/service/viacep/index.mjs
 var ViaCepService = class extends CepService {
   /**
-   * @typedef {import('../../requester/index.mjs').RequestWIthFetch} RequestWIthFetch
-   * @param {RequestWIthFetch} requester
-   */
+  * @typedef {import('../../requester/index.mjs').RequestWIthFetch} RequestWIthFetch
+  * @param {RequestWIthFetch} requester
+  */
   constructor(requester) {
     super("viacep", requester, "https://viacep.com.br");
   }
   /**
-   * @typedef {import("../../types.js").Cep} Cep
-   * @param {string} cep
-   * @returns {Promise<Cep>}
-   */
+  * @typedef {import("../../types.js").Cep} Cep
+  * @param {string} cep
+  * @returns {Promise<Cep>}
+  */
   async handler(cep2) {
     const request = await this.requester.execute({
       url: `${this.baseUrl}/ws/${cep2}/json`,
@@ -294,8 +215,7 @@ function factory_default({
   if (useDefaultProviders) {
     services = [
       new ViaCepService(requester),
-      new BrasilAPIService(requester),
-      new CorreiosService(requester)
+      new BrasilAPIService(requester)
     ];
   }
   if (custonProviders?.length) {

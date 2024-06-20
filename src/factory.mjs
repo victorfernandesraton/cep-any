@@ -13,28 +13,28 @@ import { ViaCepService } from './service/viacep/index.mjs'
  *
  * @returns {Provider}
  */
-export default function({
-	useDefaultProviders = true,
-	custonProviders = [],
-	requester = new RequestWIthFetch(),
+export default function ({
+  useDefaultProviders = true,
+  custonProviders = [],
+  requester = new RequestWIthFetch()
 }) {
-	let services = []
-	if (useDefaultProviders) {
-		services = [
-			new ViaCepService(requester),
-			new BrasilAPIService(requester),
-		]
-	}
-	if (custonProviders?.length) {
-		services = [...services, ...custonProviders]
-	}
-	if (requester) {
-		services = [...services.map(service => {
-			service.overrideRequest(requester)
-			return service
-		})
-		]
-	}
+  let services = []
+  if (useDefaultProviders) {
+    services = [
+      new ViaCepService(requester),
+      new BrasilAPIService(requester)
+    ]
+  }
+  if (custonProviders?.length) {
+    services = [...services, ...custonProviders]
+  }
+  if (requester) {
+    services = [...services.map(service => {
+      service.overrideRequest(requester)
+      return service
+    })
+    ]
+  }
 
-	return new Provider(services)
+  return new Provider(services)
 }

@@ -11,13 +11,13 @@ declare module "errors/paramError" {
 declare module "requester/index" {
     export class RequestWIthFetch {
         /**
-         * @param {Object} param
-         * @param {string | URL} param.url
-         * @param {BodyInit} [param.body]
-         * @param {Object} [param.headers]
-         * @param {string} [param.method]
-         * @param {Object} [param.params]
-        */
+           * @param {Object} param
+           * @param {string | URL} param.url
+           * @param {BodyInit} [param.body]
+           * @param {Object} [param.headers]
+           * @param {string} [param.method]
+           * @param {Object} [param.params]
+          */
         execute({ url, body, headers, method, params }: {
             url: string | URL;
             body?: BodyInit | undefined;
@@ -30,36 +30,36 @@ declare module "requester/index" {
 declare module "service/index" {
     export class CepService {
         /**
-         * @param {string} zipcode
-         */
+          * @param {string} zipcode
+        */
         static generalParse(zipcode: string): string;
         /**
-         * @param {string} zipcode
-         * @returns {boolean}
-         */
+        * @param {string} zipcode
+        * @returns {boolean}
+        */
         static validateCep(zipcode: string): boolean;
         /**
-         * @param {string} api
-         * @param {RequestWIthFetch} requester
-         * @param {string} [baseUrl='']
-         */
+        * @param {string} api
+        * @param {RequestWIthFetch} requester
+        * @param {string} [baseUrl='']
+        */
         constructor(api: string, requester: RequestWIthFetch, baseUrl?: string | undefined);
         api: string;
         requester: import("requester/index.mjs").RequestWIthFetch;
         baseUrl: string;
         /**
          * @param {RequestWIthFetch} requester
-         */
+        */
         overrideRequest(requester: RequestWIthFetch): void;
         /**
-         * @param {string | number} zipcode
-         * @returns {Promise<Cep>}
-         */
+        * @param {string | number} zipcode
+        * @returns {Promise<Cep>}
+        */
         execute(zipcode: string | number): Promise<Cep>;
         /**
-         * @param {string | number} _zipcode
-         * @returns {Promise<Cep>}
-         */
+        * @param {string | number} _zipcode
+        * @returns {Promise<Cep>}
+        */
         handler(_zipcode: string | number): Promise<Cep>;
     }
     export type Cep = import("types").Cep;
@@ -72,13 +72,13 @@ declare module "provider" {
      */
     export class Provider {
         /**
-         * @param {CepService[]} services
-        */
+           * @param {CepService[]} services
+          */
         constructor(services: CepService[]);
         /**
-         * @param {string | number} zipcode
-         * @returns {Promise<Cep>}
-         */
+           * @param {string | number} zipcode
+           * @returns {Promise<Cep>}
+           */
         execute(zipcode: string | number): Promise<Cep>;
         #private;
     }
@@ -88,47 +88,15 @@ declare module "provider" {
 declare module "service/brasilAPI/index" {
     export class BrasilAPIService extends CepService {
         /**
-         * @typedef {import('../../requester/index.mjs').RequestWIthFetch} RequestWIthFetch
-         * @param {RequestWIthFetch} request
-         */
+           * @typedef {import('../../requester/index.mjs').RequestWIthFetch} RequestWIthFetch
+           * @param {RequestWIthFetch} request
+           */
         constructor(request: import("requester/index.mjs").RequestWIthFetch);
         /**
-         * @typedef {import('../../types.ts').Cep} Cep
-         * @param {string} cep
-         * @returns {Promise<Cep>}
-         */
-        handler(cep: string): Promise<import("types.js").Cep>;
-    }
-    import { CepService } from "service/index.mjs";
-}
-declare module "errors/parserError" {
-    export class ParserError extends Error {
-        constructor(api: any, message: any);
-        api: string;
-    }
-}
-declare module "service/correios/adapters" {
-    export function parseParamsToXML(data: any): string;
-    export function responseToCep(data: any): {
-        cep: any;
-        state: any;
-        city: any;
-        street: any;
-        neighborhood: any;
-    };
-}
-declare module "service/correios/index" {
-    export class CorreiosService extends CepService {
-        /**
-         * @typedef {import('../../requester/index.mjs').RequestWIthFetch} RequestWIthFetch
-         * @param {RequestWIthFetch} requester
-         */
-        constructor(requester: import("requester/index.mjs").RequestWIthFetch);
-        /**
-         * @typedef {import("../../types.js").Cep} Cep
-         * @param {string} cep
-         * @returns {Promise<Cep>}
-         */
+           * @typedef {import('../../types.ts').Cep} Cep
+           * @param {string} cep
+           * @returns {Promise<Cep>}
+           */
         handler(cep: string): Promise<import("types.js").Cep>;
     }
     import { CepService } from "service/index.mjs";
@@ -136,15 +104,15 @@ declare module "service/correios/index" {
 declare module "service/viacep/index" {
     export class ViaCepService extends CepService {
         /**
-         * @typedef {import('../../requester/index.mjs').RequestWIthFetch} RequestWIthFetch
-         * @param {RequestWIthFetch} requester
-         */
+           * @typedef {import('../../requester/index.mjs').RequestWIthFetch} RequestWIthFetch
+           * @param {RequestWIthFetch} requester
+           */
         constructor(requester: import("requester/index.mjs").RequestWIthFetch);
         /**
-         * @typedef {import("../../types.js").Cep} Cep
-         * @param {string} cep
-         * @returns {Promise<Cep>}
-         */
+           * @typedef {import("../../types.js").Cep} Cep
+           * @param {string} cep
+           * @returns {Promise<Cep>}
+           */
         handler(cep: string): Promise<import("types.js").Cep>;
     }
     import { CepService } from "service/index.mjs";
@@ -160,7 +128,7 @@ declare module "factory" {
      *
      * @returns {Provider}
      */
-    export default function _default({ useDefaultProviders, custonProviders, requester, }: {
+    export default function _default({ useDefaultProviders, custonProviders, requester }: {
         useDefaultProviders?: boolean | undefined;
         custonProviders?: any[] | undefined;
         requester?: RequestWIthFetch | undefined;
@@ -187,14 +155,46 @@ declare module "index" {
     import { RequestWIthFetch } from "requester/index.mjs";
     export { cep, CepService, Provider, factory, RequestWIthFetch };
 }
+declare module "errors/parserError" {
+    export class ParserError extends Error {
+        constructor(api: any, message: any);
+        api: string;
+    }
+}
 declare module "service/apicep/index" {
     export class ApiCepService extends CepService {
         /**
-         * @param {import('../index.mjs').RequestWIthFetch} request
-         */
+           * @param {import('../index.mjs').RequestWIthFetch} request
+           */
         constructor(request: import('../index.mjs').RequestWIthFetch);
         /**
-         * @typedef {import('../../types.js').Cep} Cep
+           * @typedef {import('../../types.js').Cep} Cep
+           * @param {string} cep
+           * @returns {Promise<Cep>}
+           */
+        handler(cep: string): Promise<import("types.js").Cep>;
+    }
+    import { CepService } from "service/index.mjs";
+}
+declare module "service/correios/adapters" {
+    export function parseParamsToXML(data: any): string;
+    export function responseToCep(data: any): {
+        cep: any;
+        state: any;
+        city: any;
+        street: any;
+        neighborhood: any;
+    };
+}
+declare module "service/correios/index" {
+    export class CorreiosService extends CepService {
+        /**
+           * @typedef {import('../../requester/index.mjs').RequestWIthFetch} RequestWIthFetch
+           * @param {RequestWIthFetch} requester
+           */
+        constructor(requester: import("requester/index.mjs").RequestWIthFetch);
+        /**
+         * @typedef {import("../../types.js").Cep} Cep
          * @param {string} cep
          * @returns {Promise<Cep>}
          */
