@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import { RequestWIthFetch } from '../../src/requester/index.mjs'
 import { BrasilAPIService } from '../../src/service/brasilAPI/index.mjs'
 
-describe.skip('BrasilAPIService', () => {
+describe('BrasilAPIService', () => {
   const stub = new BrasilAPIService(new RequestWIthFetch())
 
   test('should be a valid cep', async () => {

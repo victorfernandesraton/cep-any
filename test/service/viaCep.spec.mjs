@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import { RequestWIthFetch } from '../../src/requester/index.mjs'
 import { ViaCepService } from '../../src/service/viacep/index.mjs'
 
-describe.skip('ViaCepService', () => {
+describe('ViaCepService', () => {
   const stub = new ViaCepService(new RequestWIthFetch())
 
   test('should be a valid cep', async () => {
