@@ -62,8 +62,8 @@ declare module "service/index" {
         */
         handler(_zipcode: string | number): Promise<Cep>;
     }
-    export type Cep = import("types").Cep;
-    export type RequestWIthFetch = import("requester/index").RequestWIthFetch;
+    export type Cep = import("types.js").Cep;
+    export type RequestWIthFetch = import("requester/index.mjs").RequestWIthFetch;
 }
 declare module "provider" {
     /**
@@ -82,8 +82,8 @@ declare module "provider" {
         execute(zipcode: string | number): Promise<Cep>;
         #private;
     }
-    export type Cep = import("types").Cep;
-    export type CepService = import("service/index").CepService;
+    export type Cep = import("types.js").Cep;
+    export type CepService = import("service/index.mjs").CepService;
 }
 declare module "service/brasilAPI/index" {
     export class BrasilAPIService extends CepService {
@@ -133,7 +133,7 @@ declare module "factory" {
         custonProviders?: any[] | undefined;
         requester?: RequestWIthFetch | undefined;
     }): Provider;
-    export type CepService = import("service/index").CepService;
+    export type CepService = import("service/index.mjs").CepService;
     export type Params = {
         useDefaultProviders?: boolean | undefined;
         custonProviders?: import("service/index.mjs").CepService[] | undefined;
@@ -144,7 +144,7 @@ declare module "factory" {
 }
 declare module "cep" {
     export function cep(zipcode: string | number): Promise<Cep>;
-    export type Cep = import("types").Cep;
+    export type Cep = import("types.js").Cep;
 }
 declare module "index" {
     export const service: typeof CepService;
@@ -166,7 +166,7 @@ declare module "service/apicep/index" {
         /**
         * @param {import('../index.mjs').RequestWIthFetch} request
         */
-        constructor(request: import('../index.mjs').RequestWIthFetch);
+        constructor(request: import("service/index.mjs").RequestWIthFetch);
         /**
         * @typedef {import('../../types.js').Cep} Cep
         * @param {string} cep
