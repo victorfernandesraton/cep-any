@@ -1,3 +1,4 @@
+import type { Cep } from "../cep.ts";
 import { CepService } from "../service.ts";
 
 export class ViaCepService extends CepService {
@@ -5,7 +6,7 @@ export class ViaCepService extends CepService {
     super("viacep", requester, "https://viacep.com.br");
   }
 
-  async handler(cep: string | number) {
+  async handler(cep: string | number): Promise<Cep> {
     const request = await this.requester(`${this.baseUrl}/ws/${cep}/json`, {
       method: "GET",
     });

@@ -19,8 +19,12 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // mod.ts
 var mod_exports = {};
 __export(mod_exports, {
+  BrasilAPIService: () => BrasilAPIService,
   CepService: () => CepService,
+  ParamError: () => ParamError,
+  ParserError: () => ParserError,
   Provider: () => Provider,
+  ViaCepService: () => ViaCepService,
   cep: () => cep,
   factory: () => factory_default
 });
@@ -43,6 +47,13 @@ var Provider = class {
 var ParamError = class extends Error {
   constructor(args) {
     super(`invalid params ${args}`);
+  }
+};
+var ParserError = class extends Error {
+  api;
+  constructor(api, message) {
+    super(message);
+    this.api = api;
   }
 };
 
@@ -96,7 +107,7 @@ var BrasilAPIService = class extends CepService {
   }
 };
 
-// service/viacervice.ts
+// service/viacepservice.ts
 var ViaCepService = class extends CepService {
   constructor(requester) {
     super("viacep", requester, "https://viacep.com.br");

@@ -1,18 +1,29 @@
 {
+  "name": "@victorfernandestaton/cep-any",
+  "version": "5.0.0",
   "tasks": {
-    "test": "deno test -N main_test.ts",
     "build": "rm -rf ./dist && deno run -A bundler.ts"
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@1"
   },
-  "version": "5.0.0",
+  "lint": {
+    "exclude": [
+      "dist",
+      "node_modules"
+    ]
+  },
+  "fmt": {
+    "exclude": [
+      "dist/",
+      "node_modules/"
+    ]
+  },
   "exports": "./mod.ts",
   "compilerOptions": {
     "lib": [
-      "ES2021.Promise",
-      "ES2021.String",
-      "es2015.iterable",
+      "ES2021",
+      "deno.ns",
       "DOM"
     ]
   },

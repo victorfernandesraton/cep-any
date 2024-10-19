@@ -1,4 +1,4 @@
-import { Cep } from "./cep.ts";
+import type { Cep } from "./cep.ts";
 import { ParamError } from "./errors.ts";
 
 export abstract class CepService {
@@ -13,7 +13,7 @@ export abstract class CepService {
     this.requester = requester;
   }
 
-  static generalParse(zipcode: string) {
+  static generalParse(zipcode: string): string {
     return zipcode.split("-").join("").split(".").join("");
   }
 
@@ -21,7 +21,7 @@ export abstract class CepService {
     return /[0-9]{8}/.test(zipcode);
   }
 
-  execute(zipcode: string | number) {
+  execute(zipcode: string | number): Promise<Cep> {
     let data = "";
     if (typeof zipcode === "number") {
       data = zipcode.toString();

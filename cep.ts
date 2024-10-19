@@ -1,6 +1,4 @@
-import factory from "./factory.ts";
-
-export type Cep = {
+type Cep = {
   cep: string;
   street: string;
   state: string;
@@ -8,9 +6,4 @@ export type Cep = {
   city: string;
 };
 
-export const cep = (zipcode: string | number) => {
-  const handler = factory({
-    useDefaultProviders: true,
-  });
-  return handler.execute(zipcode);
-};
+export type { Cep };

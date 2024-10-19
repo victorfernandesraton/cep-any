@@ -17,6 +17,13 @@ var ParamError = class extends Error {
     super(`invalid params ${args}`);
   }
 };
+var ParserError = class extends Error {
+  api;
+  constructor(api, message) {
+    super(message);
+    this.api = api;
+  }
+};
 
 // service.ts
 var CepService = class _CepService {
@@ -68,7 +75,7 @@ var BrasilAPIService = class extends CepService {
   }
 };
 
-// service/viacervice.ts
+// service/viacepservice.ts
 var ViaCepService = class extends CepService {
   constructor(requester) {
     super("viacep", requester, "https://viacep.com.br");
@@ -124,8 +131,12 @@ var cep = (zipcode) => {
   return handler.execute(zipcode);
 };
 export {
+  BrasilAPIService,
   CepService,
+  ParamError,
+  ParserError,
   Provider,
+  ViaCepService,
   cep,
   factory_default as factory
 };

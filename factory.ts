@@ -1,13 +1,18 @@
 import { Provider } from "./provider.ts";
-import { CepService } from "./service.ts";
+import type { CepService } from "./service.ts";
 import { BrasilAPIService } from "./service/brasilapi.ts";
-import { ViaCepService } from "./service/viacervice.ts";
+import { ViaCepService } from "./service/viacepservice.ts";
 
+type FactoryOptions = {
+  useDefaultProviders?: boolean;
+  custonProviders?: CepService[];
+  requester?: typeof fetch;
+};
 export default function ({
   useDefaultProviders = true,
   custonProviders = [],
   requester = fetch,
-}) {
+}: FactoryOptions): Provider {
   let services = new Array<CepService>();
   if (useDefaultProviders) {
     services = [
@@ -27,3 +32,4 @@ export default function ({
 
   return new Provider(services);
 }
+export type { FactoryOptions };

@@ -1,53 +1,53 @@
 {
-  "name": "cep-any",
-  "version": "5.0.0",
-  "description": "A modern and zero dependency cep consult lib",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/victorfernandesraton/cep-any"
-  },
-  "keywords": [
-    "cep",
-    "cep-any",
-    "promisse.any",
-    "zip",
-    "zipcode",
-    "zipcode-brasil",
-    "correios",
-    "zip-br",
-    "CEP",
-    "cep-promise"
-  ],
-  "author": {
-    "name": "Victor Fernandes Raton",
-    "email": "vfbraton@gmail.com",
-    "url": "https://vraton.dev"
-  },
-  "license": "MIT",
-  "engines": {
-    "node": ">= 18"
-  },
-  "exports": {
-    ".": {
-      "import": "./dist/esm.mjs",
-      "require": "./dist/index.js"
-    }
-  },
-  "types": "./dist/types.d.ts",
-  "contributors": [
-    {
-      "name": "Victor Raton",
-      "url": "https://github.com/victorfernandesraton"
-    }
-  ],
-  "bin": {
-    "cep-any": "/bin/cep-any.js"
-  },
-  "files": [
-    "bin",
-    "dist",
-    "README.md",
-    "LICENSE"
-  ],
-  "homepage": "https://github.com/victorfernandesraton/cep-any"
+    "name": "cep-any",
+    "version": "5.0.0",
+    "description": "A modern and zero dependency cep consult lib",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/victorfernandesraton/cep-any"
+    },
+    "keywords": [
+        "cep",
+        "cep-any",
+        "promisse.any",
+        "zip",
+        "zipcode",
+        "zipcode-brasil",
+        "correios",
+        "zip-br",
+        "CEP",
+        "cep-promise"
+    ],
+    "author": {
+        "name": "Victor Fernandes Raton",
+        "email": "vfbraton@gmail.com",
+        "url": "https://vraton.dev"
+    },
+    "license": "MIT",
+    "engines": {
+        "node": ">= 18"
+    },
+    "exports": {
+        ".": {
+            "import": "./dist/esm.mjs",
+            "require": "./dist/index.js"
+        }
+    },
+    "types": "./dist/types.d.ts",
+    "contributors": [
+        {
+            "name": "Victor Raton",
+            "url": "https://github.com/victorfernandesraton"
+        }
+    ],
+    "bin": {
+        "cep-any": "/bin/cep-any.js"
+    },
+    "files": [
+        "bin",
+        "dist",
+        "README.md",
+        "LICENSE"
+    ],
+    "homepage": "https://github.com/victorfernandesraton/cep-any"
 }

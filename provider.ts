@@ -1,9 +1,10 @@
-import { CepService } from "./service.ts";
+import type { Cep } from "./cep.ts";
+import type { CepService } from "./service.ts";
 export class Provider {
   constructor(readonly services: CepService[]) {
   }
 
-  async execute(zipcode: string | number) {
+  async execute(zipcode: string | number): Promise<Cep> {
     const result = await Promise.any(
       this.services.map((item) => item.execute(zipcode)),
     );
