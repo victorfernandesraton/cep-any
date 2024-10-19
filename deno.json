@@ -1,6 +1,21 @@
 {
-  "name": "cep-any",
+  "tasks": {
+    "test": "deno test -N main_test.ts",
+    "build": "rm -rf ./dist && deno run -A bundler.ts"
+  },
+  "imports": {
+    "@std/assert": "jsr:@std/assert@1"
+  },
   "version": "5.0.0",
+  "exports": "./mod.ts",
+  "compilerOptions": {
+    "lib": [
+      "ES2021.Promise",
+      "ES2021.String",
+      "es2015.iterable",
+      "DOM"
+    ]
+  },
   "description": "A modern and zero dependency cep consult lib",
   "repository": {
     "type": "git",
@@ -25,29 +40,9 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">= 18"
+    "node": ">= 18",
+    "deno": ">=2.0"
   },
-  "exports": {
-    ".": {
-      "import": "./dist/esm.mjs",
-      "require": "./dist/index.js"
-    }
-  },
-  "types": "./dist/types.d.ts",
-  "contributors": [
-    {
-      "name": "Victor Raton",
-      "url": "https://github.com/victorfernandesraton"
-    }
-  ],
-  "bin": {
-    "cep-any": "/bin/cep-any.js"
-  },
-  "files": [
-    "bin",
-    "dist",
-    "README.md",
-    "LICENSE"
-  ],
-  "homepage": "https://github.com/victorfernandesraton/cep-any"
+  "homepage": "https://github.com/victorfernandesraton/cep-any",
+  "nodeModulesDir": "auto"
 }

@@ -1,4 +1,3 @@
-"use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
@@ -17,65 +16,53 @@ var __copyProps = (to, from, except, desc) => {
 };
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// src/index.mjs
-var src_exports = {};
-__export(src_exports, {
+// mod.ts
+var mod_exports = {};
+__export(mod_exports, {
   CepService: () => CepService,
   Provider: () => Provider,
-  RequestWIthFetch: () => RequestWIthFetch,
   cep: () => cep,
-  factory: () => factory_default,
-  service: () => service
+  factory: () => factory_default
 });
-module.exports = __toCommonJS(src_exports);
+module.exports = __toCommonJS(mod_exports);
 
-// src/errors/basicError.mjs
-var BasicError = class extends Error {
+// provider.ts
+var Provider = class {
+  constructor(services) {
+    this.services = services;
+  }
+  async execute(zipcode) {
+    const result = await Promise.any(
+      this.services.map((item) => item.execute(zipcode))
+    );
+    return result;
+  }
 };
 
-// src/errors/paramError.mjs
-var ParamError = class extends BasicError {
+// errors.ts
+var ParamError = class extends Error {
   constructor(args) {
     super(`invalid params ${args}`);
   }
 };
 
-// src/service/index.mjs
+// service.ts
 var CepService = class _CepService {
-  /**
-  * @param {string} api
-  * @param {RequestWIthFetch} requester
-  * @param {string} [baseUrl='']
-  */
-  constructor(api, requester, baseUrl = "") {
-    this.api = api;
+  constructor(API, requester, baseUrl) {
+    this.API = API;
     this.requester = requester;
     this.baseUrl = baseUrl;
   }
-  /**
-   * @param {RequestWIthFetch} requester
-  */
   overrideRequest(requester) {
     this.requester = requester;
   }
-  /**
-    * @param {string} zipcode
-  */
   static generalParse(zipcode) {
     return zipcode.split("-").join("").split(".").join("");
   }
-  /**
-  * @param {string} zipcode
-  * @returns {boolean}
-  */
   static validateCep(zipcode) {
     return /[0-9]{8}/.test(zipcode);
   }
-  /**
-  * @param {string | number} zipcode
-  * @returns {Promise<Cep>}
-  */
-  async execute(zipcode) {
+  execute(zipcode) {
     let data = "";
     if (typeof zipcode === "number") {
       data = zipcode.toString();
@@ -88,74 +75,17 @@ var CepService = class _CepService {
     }
     return this.handler(value);
   }
-  /**
-  * @param {string | number} _zipcode
-  * @returns {Promise<Cep>}
-  */
-  handler(_zipcode) {
-    throw new Error("Not implemented");
-  }
 };
 
-// src/provider.mjs
-var Provider = class {
-  #services;
-  /**
-   * @param {CepService[]} services
-  */
-  constructor(services) {
-    this.#services = services;
-  }
-  /**
-  * @param {string | number} zipcode
-  * @returns {Promise<Cep>}
-  */
-  async execute(zipcode) {
-    const result = await Promise.any(
-      this.#services.map((item) => item.execute(zipcode))
-    );
-    return result;
-  }
-};
-
-// src/requester/index.mjs
-var RequestWIthFetch = class {
-  /**
-  * @param {Object} param
-  * @param {string | URL} param.url
-  * @param {BodyInit} [param.body]
-  * @param {Object} [param.headers]
-  * @param {string} [param.method]
-  * @param {Object} [param.params]
-  */
-  async execute({ url, body, headers, method, params }) {
-    const searchParams = new URLSearchParams(params);
-    const options = {
-      method,
-      body,
-      headers
-    };
-    const URL = `${url}?${searchParams.toString()}`;
-    return fetch(URL, options);
-  }
-};
-
-// src/service/brasilAPI/index.mjs
+// service/brasilapi.ts
 var BrasilAPIService = class extends CepService {
-  /**
-  * @typedef {import('../../requester/index.mjs').RequestWIthFetch} RequestWIthFetch
-  * @param {RequestWIthFetch} request
-  */
   constructor(request) {
     super("brasilAPI", request, "https://brasilapi.com.br/api/cep/v1");
   }
-  /**
-  * @typedef {import('../../types.ts').Cep} Cep
-  * @param {string} cep
-  * @returns {Promise<Cep>}
-  */
   async handler(cep2) {
-    const request = await this.requester.execute({ url: `${this.baseUrl}/${cep2}` });
+    const request = await this.requester(
+      `${this.baseUrl}/${cep2}`
+    );
     const data = await request.json();
     if (!request.ok) {
       throw new Error(data);
@@ -166,23 +96,13 @@ var BrasilAPIService = class extends CepService {
   }
 };
 
-// src/service/viacep/index.mjs
+// service/viacervice.ts
 var ViaCepService = class extends CepService {
-  /**
-  * @typedef {import('../../requester/index.mjs').RequestWIthFetch} RequestWIthFetch
-  * @param {RequestWIthFetch} requester
-  */
   constructor(requester) {
     super("viacep", requester, "https://viacep.com.br");
   }
-  /**
-  * @typedef {import("../../types.js").Cep} Cep
-  * @param {string} cep
-  * @returns {Promise<Cep>}
-  */
   async handler(cep2) {
-    const request = await this.requester.execute({
-      url: `${this.baseUrl}/ws/${cep2}/json`,
+    const request = await this.requester(`${this.baseUrl}/ws/${cep2}/json`, {
       method: "GET"
     });
     const data = await request.json();
@@ -199,13 +119,13 @@ var ViaCepService = class extends CepService {
   }
 };
 
-// src/factory.mjs
+// factory.ts
 function factory_default({
   useDefaultProviders = true,
   custonProviders = [],
-  requester = new RequestWIthFetch()
+  requester = fetch
 }) {
-  let services = [];
+  let services = new Array();
   if (useDefaultProviders) {
     services = [
       new ViaCepService(requester),
@@ -216,23 +136,18 @@ function factory_default({
     services = [...services, ...custonProviders];
   }
   if (requester) {
-    services = [
-      ...services.map((service2) => {
-        service2.overrideRequest(requester);
-        return service2;
-      })
-    ];
+    services = [...services.map((service) => {
+      service.overrideRequest(requester);
+      return service;
+    })];
   }
   return new Provider(services);
 }
 
-// src/cep.mjs
+// mod.ts
 var cep = (zipcode) => {
   const handler = factory_default({
     useDefaultProviders: true
   });
   return handler.execute(zipcode);
 };
-
-// src/index.mjs
-var service = CepService;
