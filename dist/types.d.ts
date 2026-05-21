@@ -43,7 +43,7 @@ declare module "service/index" {
         * @param {RequestWIthFetch} requester
         * @param {string} [baseUrl='']
         */
-        constructor(api: string, requester: RequestWIthFetch, baseUrl?: string | undefined);
+        constructor(api: string, requester: RequestWIthFetch, baseUrl?: string);
         api: string;
         requester: import("requester/index.mjs").RequestWIthFetch;
         baseUrl: string;
@@ -130,7 +130,7 @@ declare module "factory" {
      */
     export default function _default({ useDefaultProviders, custonProviders, requester }: {
         useDefaultProviders?: boolean | undefined;
-        custonProviders?: any[] | undefined;
+        custonProviders?: never[] | undefined;
         requester?: RequestWIthFetch | undefined;
     }): Provider;
     export type CepService = import("service/index.mjs").CepService;
